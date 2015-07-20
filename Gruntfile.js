@@ -23,8 +23,16 @@ module.exports = function(grunt) {
         },
         target: {
             files: {
-                "app/js/app.js" : ["app/js/controller/home.js"],
-                "dist/app/js/app.js" : ["app/js/controller/home.js"]
+                "app/js/app.js" : [
+                    "app/js/controllers/All.js",
+                    "app/js/controllers/HomeController.js",
+                    "app/js/directives/InscriptionDirective.js"
+                ],
+                "dist/app/js/app.js" : [
+                    "app/js/controllers/All.js",
+                    "app/js/controllers/HomeController.js",
+                    "app/js/directives/InscriptionDirective.js"
+                ]
             }
         }
     },
@@ -46,7 +54,7 @@ module.exports = function(grunt) {
             tasks: ["less:compile"]
         },
         script: {
-            files: ["app/js/controller/*.js"],
+            files: ["app/js/controllers/*.js", "app/js/directives/*.js"],
             tasks: ["uglify"]
         },
         html: {

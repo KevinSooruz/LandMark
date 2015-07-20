@@ -1,0 +1,111 @@
+///////////////////////// CSS Spec /////////////////////////
+
+.fs(@fs){
+    font-size: @fs;
+}
+
+.fm(@fm){
+    font-family: @fm;
+}
+
+.bg(@bg){
+    background-color: @bg;
+}
+
+.br(@radius){
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.none{
+    display: none;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
+}
+
+.textRight{
+    text-align: right;
+}
+
+.fw3{
+    font-weight: 300;
+}
+
+.fw4{
+    font-weight: 400;
+}
+
+.fw9{
+    font-weight: 900;
+}
+
+.center{
+    text-align: center;
+}
+
+///////////////////////// Couleurs /////////////////////////
+
+@primary: #357df4;
+@secondary: #d3e8ff;
+@primaryDark: darken(@primary, 10%);
+@white: #fff;
+@grey: #eee;
+@greyLight: #f8f8f8;
+@textDark: #222;
+@textLight: #929294;
+@bgOpacity: rgba(0, 0, 0, 0.6);
+@primaryOpacity: rgba(53, 125, 244, 0.6);
+
+///////////////////////// Boutons /////////////////////////
+
+.btnPrimary{
+    .bg(@primary);
+    color: @white;
+    .br(4px);
+    border: none;
+    .fs(16px);
+    
+    &:hover{
+        color: @white;
+        .bg(@primaryDark);
+    }
+    
+    &:active{
+        .box-shadow(@shadow: none);
+        
+        &:focus{
+            outline: none;
+        }
+    }
+    
+    &:focus{
+        color: @white;
+        outline: none;
+    }
+}
+
+.btnBig{
+    padding: 10px 70px;
+    .uppercase;
+}
+
+///////////////////////// Body /////////////////////////
+
+body{
+    .fs(16px);
+    .fm(sans-serif);
+    color: @textDark;
+}

@@ -1,0 +1,90 @@
+.modal{
+    .absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    .bg(@bgOpacity);
+    .translate3d(0; -9999px; 0);
+    
+    .modalBody{
+        color: @textDark;
+        width: 750px;
+        margin: 0 auto;
+        .br(4px);
+        margin-top: 50px;
+        .translate3d(0; -150px; 0);
+        .box-shadow(@shadow: 0 3px 9px rgba(0,0,0,0.5));
+        
+        &.showModal{
+            .translate3d(0; 0; 0);
+            .transition-duration(600ms);
+        }
+        
+        .modalTitle{
+            .relative;
+            .uppercase;
+            .center;
+            .bg(@primary);
+            color: @white;
+            .border-top-radius(4px);
+            padding: 12px 0;
+            
+            .glyphicon{
+                .absolute;
+                right: 8px; top: 8px;
+                .opacity(0.6);
+                
+                &:hover{
+                    cursor: pointer;
+                    .opacity(1);
+                }
+            }
+        }
+        
+        .modalContent{
+            .bg(@white);
+            padding: 25px 12px;
+            .border-bottom-radius(4px);
+            
+            form{
+                .form-group{
+                    margin-bottom: 10px;
+                    .relative;
+
+                    label{
+                        .translate3d(9px; 10px; 0);
+                        .transition-duration(200ms);
+                        color: @textLight;
+                        .fw3;
+                        display: inline-block;
+                        .bg(@white);
+                        padding: 0 5px;
+                        .absolute;
+                        left: 0; top: 0;
+                        margin-bottom: 0;
+
+                        &.move{
+                            .translate3d(9px; -10px; 0);
+                            .transition-duration(200ms);
+                        }
+                    }
+
+                    input.form-control{
+                        height: 40px;
+                        
+                        &:focus{
+                            border-color: @primary;
+                            .box-shadow(@shadow: 0 0 8px @primaryOpacity);
+                        }
+                    }
+
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.in{
+        .translate3d(0; 0; 0);
+    }
+}

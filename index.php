@@ -10,7 +10,7 @@
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 <!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">-->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="app/css/style.css">
 <!-- icon for iOS Devices -->
 <link rel="apple-touch-icon" href="images/icon.png"/>
 <link rel="apple-touch-icon" sizes="57x57" href="images/icon.png"/>
@@ -34,14 +34,20 @@
 <body>
     
     <!--Home container-->
-    <div id="home" ng-controller="homeCtrl">
+    <div id="home" ng-controller="HomeController">
+        <header id="header">
+            <h1>LandMark</h1>
+            <h2>M&eacute;morisez et partagez vos lieux pr&eacute;f&eacute;rez</h2>
+            <button class="btn btnPrimary btnBig" ng-click="showModalInscription()">Inscription</button>
+        </header>
         
+        <inscription></inscription>
     </div>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.min.js"></script>
+<script type="text/javascript" src="app/js/app.js"></script>
 
 </body>
 </html>
