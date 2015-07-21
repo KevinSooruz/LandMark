@@ -7,6 +7,7 @@ app.directive("inscription", function(){
         templateUrl: "app/views/inscriptionModal.php",
         link: function(scope){
             
+            // Animation label on focus label
             scope.focusInputModal = function(inputId){
         
                 var label = document.getElementById("label" + inputId);
@@ -15,12 +16,14 @@ app.directive("inscription", function(){
 
             };
 
+            // Animation label on blur label
             scope.blurInputModal = function(inputId){
 
                 var input = document.getElementById(inputId);
                 var value = input.value;
                 var label = document.getElementById("label" + inputId);
 
+                // Si value vide animation label sinon label reste en position haute
                 if(value === "" || value === undefined){
 
                     label.classList.remove("move");
@@ -28,7 +31,8 @@ app.directive("inscription", function(){
                 }
 
             };
-
+            
+            // Fermeture modal
             scope.hideModal = function(){
 
                 scope.modalInscription = false;

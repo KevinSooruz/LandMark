@@ -4,6 +4,11 @@
     .bg(@bgOpacity);
     .translate3d(0; -9999px; 0);
     
+    .modalOut{
+        .absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+    }
+    
     .modalBody{
         color: @textDark;
         width: 750px;
@@ -62,8 +67,9 @@
                         margin-bottom: 0;
 
                         &.move{
-                            .translate3d(9px; -10px; 0);
+                            .translate3d(9px; -8px; 0);
                             .transition-duration(200ms);
+                            .fs(14px);
                         }
                     }
 
@@ -74,10 +80,21 @@
                             border-color: @primary;
                             .box-shadow(@shadow: 0 0 8px @primaryOpacity);
                         }
+                        
+                        &.ng-touched.ng-invalid{
+                            border-color: @error;
+                            .box-shadow(@shadow: 0 0 8px @errorOpacity);
+                        }
                     }
 
                     &:last-of-type{
                         margin-bottom: 0;
+                    }
+                    
+                    .errorInfos{
+                        .absolute;
+                        top: 10px; right: 15px;
+                        color: @textLight;
                     }
                 }
             }

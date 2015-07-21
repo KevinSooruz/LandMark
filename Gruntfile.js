@@ -43,7 +43,8 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                "dist/app/index.php": "index.php"
+                "dist/app/index.php": "index.php",
+                "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php"
             }
         }
     },
