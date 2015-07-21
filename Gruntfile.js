@@ -26,11 +26,13 @@ module.exports = function(grunt) {
                 "app/js/app.js" : [
                     "app/js/controllers/All.js",
                     "app/js/controllers/HomeController.js",
+                    "app/js/services/Api.js",
                     "app/js/directives/InscriptionDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/All.js",
                     "app/js/controllers/HomeController.js",
+                    "app/js/services/Api.js",
                     "app/js/directives/InscriptionDirective.js"
                 ]
             }
@@ -44,7 +46,11 @@ module.exports = function(grunt) {
         dist: {
             files: {
                 "dist/app/index.php": "index.php",
-                "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php"
+                "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
+                "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",
+                "dist/back/models/connexionSql.php": "back/models/connexionSql.php",
+                "dist/back/models/loadClass.php": "back/models/loadClass.php",
+                "dist/back/models/AuthUser.class.php": "back/models/AuthUser.class.php"
             }
         }
     },
@@ -55,11 +61,11 @@ module.exports = function(grunt) {
             tasks: ["less:compile"]
         },
         script: {
-            files: ["app/js/controllers/*.js", "app/js/directives/*.js"],
+            files: ["app/js/controllers/*.js", "app/js/directives/*.js", "app/js/services/*.js"],
             tasks: ["uglify"]
         },
         html: {
-            files: ["index.php", "app/views/*.php"],
+            files: ["index.php", "app/views/*.php", "back/**/*.php"],
             tasks: ["minifyHtml"]
         }
     }

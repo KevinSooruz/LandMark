@@ -1,4 +1,4 @@
-app.directive("inscription", function(){
+app.directive("inscription", function(Api){
     
     var inscription = {
         
@@ -37,6 +37,31 @@ app.directive("inscription", function(){
 
                 scope.modalInscription = false;
 
+            };
+            
+            // Validation formulaire inscription
+            scope.confirmInscription = function(){
+                
+                // Données utilisées pour l'enregistrement de l'utilisateur
+                var data = this.user;
+                
+                // Envoi des données d'inscription
+                Api.post("back/controls/authUserCtrl.php", data).then(function(response){
+                    
+                    console.log(response);
+                    
+                    if(response !== "Error"){
+                        
+                        
+                        
+                    }else{
+                        
+                        
+                        
+                    }
+                    
+                });
+                
             };
             
         }

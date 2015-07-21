@@ -8,21 +8,21 @@
         <div class="modalContent">
             <form name="inscription">
                 <div class="form-group">
-                    <label id="labeluPrenom" for="uPrenom"><i class="glyphicon glyphicon-user"></i> Pr&eacute;nom</label>
-                    <input id="uPrenom" class="form-control" name="uPrenom" ng-model="user.prenom" type="text" ng-focus="focusInputModal('uPrenom')" ng-blur="blurInputModal('uPrenom')" ng-minlength="3" ng-maxlength="50" required="">
+                    <label id="labeluSurname" for="uSurname"><i class="glyphicon glyphicon-user"></i> Pr&eacute;nom</label>
+                    <input id="uSurname" class="form-control" name="uSurname" ng-model="user.surname" type="text" ng-focus="focusInputModal('uSurname')" ng-blur="blurInputModal('uSurname')" ng-minlength="3" ng-maxlength="50" required="">
                     <div class="errorInfos">
-                        <span ng-show="inscription.uPrenom.$error.required">Obligatoire</span>
-                        <span ng-show="inscription.uPrenom.$error.minlength">3 car. min</span>
-                        <span ng-show="inscription.uPrenom.$error.maxlength">50 car. max</span>
+                        <span ng-show="inscription.uSurname.$error.required">Obligatoire</span>
+                        <span ng-show="inscription.uSurname.$error.minlength">3 car. min</span>
+                        <span ng-show="inscription.uSurname.$error.maxlength">50 car. max</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label id="labeluNom" for="uNom"><i class="glyphicon glyphicon-user"></i> Nom</label>
-                    <input id="uNom" class="form-control" name="uNom" ng-model="user.nom" type="text" ng-focus="focusInputModal('uNom')" ng-blur="blurInputModal('uNom')" ng-minlength="3" ng-maxlength="50" required="">
+                    <label id="labeluName" for="uName"><i class="glyphicon glyphicon-user"></i> Nom</label>
+                    <input id="uName" class="form-control" name="uName" ng-model="user.name" type="text" ng-focus="focusInputModal('uName')" ng-blur="blurInputModal('uName')" ng-minlength="3" ng-maxlength="50" required="">
                     <div class="errorInfos">
-                        <span ng-show="inscription.uNom.$error.required">Obligatoire</span>
-                        <span ng-show="inscription.uNom.$error.minlength">3 car. min</span>
-                        <span ng-show="inscription.uNom.$error.maxlength">50 car. max</span>
+                        <span ng-show="inscription.uName.$error.required">Obligatoire</span>
+                        <span ng-show="inscription.uName.$error.minlength">3 car. min</span>
+                        <span ng-show="inscription.uName.$error.maxlength">50 car. max</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,16 +34,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label id="labeluPasse" for="uPasse"><i class="glyphicon glyphicon-barcode"></i> Mot de passe</label>
-                    <input id="uPasse" class="form-control" name="uPasse" ng-model="user.passe" type="password" ng-focus="focusInputModal('uPasse')" ng-blur="blurInputModal('uPasse')" ng-minlength="5" ng-maxlength="20" required="">
+                    <label id="labeluPassword" for="uPassword"><i class="glyphicon glyphicon-barcode"></i> Mot de passe</label>
+                    <input id="uPassword" class="form-control" name="uPassword" ng-model="user.password" type="password" ng-focus="focusInputModal('uPassword')" ng-blur="blurInputModal('uPassword')" ng-minlength="5" ng-maxlength="20" required="">
                     <div class="errorInfos">
-                        <span ng-show="inscription.uPasse.$error.required">Obligatoire</span>
-                        <span ng-show="inscription.uPasse.$error.minlength">5 car. min</span>
-                        <span ng-show="inscription.uPasse.$error.maxlength">20 car. max</span>
+                        <span ng-show="inscription.uPassword.$error.required">Obligatoire</span>
+                        <span ng-show="inscription.uPassword.$error.minlength">5 car. min</span>
+                        <span ng-show="inscription.uPassword.$error.maxlength">20 car. max</span>
                     </div>
                 </div>
                 <div class="form-group textRight">
-                    <button type="submit" class="btn btnPrimary">Valider</button>
+                    <button type="submit" class="btn btnPrimary" ng-click="confirmInscription()">Valider</button>
                 </div>
             </form>
         </div>
