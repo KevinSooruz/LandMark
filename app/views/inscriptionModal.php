@@ -48,6 +48,7 @@
                     <button type="submit" class="btn btnPrimary" ng-click="confirmInscription()">Valider</button>
                 </div>
             </form>
+            <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>
         </div>
     </div>
 </div>

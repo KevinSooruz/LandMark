@@ -41,9 +41,13 @@ app.directive("inscription", function(Api, Log){
             
             scope.userExist = false; // Initialisation userExist en base
             scope.wrongMail = false; // Initialisation wrongMail backend
+            scope.errorModalBackEnd = false; // Initialisation message erreur général
             
             // Validation formulaire inscription
             scope.confirmInscription = function(){
+                
+                // Suppression message erreur général si apparait
+                scope.errorModalBackEnd = false;
                 
                 // Données utilisées pour l'enregistrement de l'utilisateur
                 var data = this.user;
@@ -53,7 +57,7 @@ app.directive("inscription", function(Api, Log){
                     
                     if(response === "error"){
                         
-                        
+                        scope.errorModalBackEnd = true;
                         
                     }else{
                         
@@ -61,19 +65,21 @@ app.directive("inscription", function(Api, Log){
                             
                             case "userExist":
                                 
+                                // Affichage message erreur user exist
                                 scope.userExist = true;
                                 
                                 break;
 
                             case "wrongMail":
                                 
+                                // Affichage message erreur wrong mail
                                 scope.wrongMail = true;
 
                                 break;
 
                             case "userAdded":
                                 
-                                scope.modalInscription = false;
+                                scope.modalInscription = false; // suppression modal
                                 
                                 // Stockage info session
                                 // do something
@@ -81,7 +87,7 @@ app.directive("inscription", function(Api, Log){
                                 Log.in("/profil");
 
                                 break;
-
+                                
                         }
                         
                     }
