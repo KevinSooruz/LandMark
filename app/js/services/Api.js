@@ -15,11 +15,33 @@ services.factory("Api", function($http){
             
         }).success(function(response){
             
-            return response.data;
+            return response;
             
         }).error(function(data, status, headers, config){
             
-            var response = "Error";
+            var response = "error";
+            console.log(data, status, headers, config);
+            
+            return response;
+            
+        });
+        
+    };
+    
+    api.get = function(url){
+        
+        return $http({
+            
+            method: "GET",
+            url: url
+            
+        }).success(function(response){
+            
+            return response;
+            
+        }).error(function(data, status, headers, config){
+            
+            var response = "error";
             console.log(data, status, headers, config);
             
             return response;

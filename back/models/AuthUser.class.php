@@ -19,26 +19,21 @@ class AuthUser{
     // Inscription
     public function inscription($surname, $name, $email, $password){
         
-        $verifUser = $this->verificationUser($email); // Vérification si utilisateur existe déjà
-        $regexEmail = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#";
-        
-        if(empty($surname) OR empty($name) OR empty($email) OR empty($password)){
-            
-            echo "emptyData";
-            
-        }else if($email === $verifUser){
-            
-            echo "userExist";
-            
-        }else if(!preg_match($regexEmail, $email)){
-            
-            echo "wrongMail";
-            
-        }
+        $postUser = $this->_bdd->prepare("INSERT INTO users(surname, name, email, password) VALUES(:surname, :name, :email, :password)") or die(print_r($this->_bdd->errorInfo()));
+        $postUser->execute(array(
+
+            "surname" => $surname,
+            "name" => $name,
+            "email" => $email,
+            "password" => $password
+
+        ));
+
+        echo "userAdded";
         
     }
     
-    // Vérification si utilisateur existe déjà
+    // Vérification si utilisateur existe déjà depuis email
     public function verificationUser($email){
         
         $reqVerifUser = $this->_bdd->prepare("SELECT email FROM users WHERE email = :email");
@@ -50,7 +45,19 @@ class AuthUser{
         
         $respVerifUser = $reqVerifUser->fetch();
         
-        return $respVerifser;
+        return $respVerifUser["email"];
+        
+    }
+    
+    // Démarrage session + création token pour identification user
+    public function createSession(){
+        
+        session_start();
+        
+        // Création d'un token unique + temps pour limitation dans la durée
+        $token = uniqid(rand(), true);
+        $_SESSION["token"] = $token;
+        $_SESSION['token_time'] = time();
         
     }
     

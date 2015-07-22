@@ -24,15 +24,25 @@ module.exports = function(grunt) {
         target: {
             files: {
                 "app/js/app.js" : [
-                    "app/js/controllers/All.js",
+                    "app/js/controllers/InitController.js",
+                    "app/js/controllers/RouteController.js",
+                    "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
+                    "app/js/controllers/ProfilController.js",
                     "app/js/services/Api.js",
+                    "app/js/services/Log.js",
+                    "app/js/services/Session.js",
                     "app/js/directives/InscriptionDirective.js"
                 ],
                 "dist/app/js/app.js" : [
-                    "app/js/controllers/All.js",
+                    "app/js/controllers/InitController.js",
+                    "app/js/controllers/RouteController.js",
+                    "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
+                    "app/js/controllers/ProfilController.js",
                     "app/js/services/Api.js",
+                    "app/js/services/Log.js",
+                    "app/js/services/Session.js",
                     "app/js/directives/InscriptionDirective.js"
                 ]
             }
@@ -45,8 +55,11 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                "dist/app/index.php": "index.php",
+                "dist/app/views/home.php": "app/views/home.php",
+                "dist/app/views/profil.php": "app/views/profil.php",
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
+                "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
+                "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",
                 "dist/back/models/connexionSql.php": "back/models/connexionSql.php",
                 "dist/back/models/loadClass.php": "back/models/loadClass.php",
@@ -65,7 +78,7 @@ module.exports = function(grunt) {
             tasks: ["uglify"]
         },
         html: {
-            files: ["index.php", "app/views/*.php", "back/**/*.php"],
+            files: ["app/views/*.php", "back/**/*.php"],
             tasks: ["minifyHtml"]
         }
     }

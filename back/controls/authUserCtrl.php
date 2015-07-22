@@ -21,9 +21,31 @@ switch($method){
             $surname = strip_tags($_POST["surname"]);
             $name = strip_tags($_POST["name"]);
             $email = strip_tags($_POST["email"]);
-            $password = strip_tags(sha1($_POST["password"]));
+            $password = strip_tags(sha1($_POST["password"])); // Sécurisation mot de passe sha1
+            $verifUser = $authUser->verificationUser($email); // Vérification si utilisateur existe déjà
+            $regexEmail = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#"; // Regex email
             
-            $authUser->inscription($surname, $name, $email, $password);
+            if($surname === "undefined" OR $name === "undefined" OR $password === "undefined"){
+                
+                echo "undefined";
+                
+            }else if($email === $verifUser){
+
+                echo "userExist";
+
+            }else if(!preg_match($regexEmail, $email)){
+
+                echo "wrongMail";
+
+            }else{
+                
+                // Enregistrement utilisateur en base
+                $authUser->inscription($surname, $name, $email, $password);
+                
+                // Démarrage session + création token pour identification user
+                $authUser->createSession();
+                
+            }
             
         }
         

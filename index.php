@@ -33,16 +33,7 @@
 </head>
 <body>
     
-    <!--Home container-->
-    <div id="home" ng-controller="HomeController">
-        <header id="header">
-            <h1>LandMark</h1>
-            <h2>M&eacute;morisez et partagez vos lieux pr&eacute;f&eacute;rez</h2>
-            <button class="btn btnPrimary btnBig" ng-click="showModalInscription()">Inscription</button>
-        </header>
-        
-        <inscription></inscription>
-    </div>
+    <div ng-controller="AllController" ng-view></div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>

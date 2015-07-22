@@ -1,4 +1,4 @@
-app.directive("inscription", function(Api){
+app.directive("inscription", function(Api, Log){
     
     var inscription = {
         
@@ -39,6 +39,9 @@ app.directive("inscription", function(Api){
 
             };
             
+            scope.userExist = false; // Initialisation userExist en base
+            scope.wrongMail = false; // Initialisation wrongMail backend
+            
             // Validation formulaire inscription
             scope.confirmInscription = function(){
                 
@@ -48,15 +51,38 @@ app.directive("inscription", function(Api){
                 // Envoi des données d'inscription
                 Api.post("back/controls/authUserCtrl.php", data).then(function(response){
                     
-                    console.log(response);
-                    
-                    if(response !== "Error"){
+                    if(response === "error"){
                         
                         
                         
                     }else{
                         
-                        
+                        switch(response.data){
+                            
+                            case "userExist":
+                                
+                                scope.userExist = true;
+                                
+                                break;
+
+                            case "wrongMail":
+                                
+                                scope.wrongMail = true;
+
+                                break;
+
+                            case "userAdded":
+                                
+                                scope.modalInscription = false;
+                                
+                                // Stockage info session
+                                // do something
+                                // La session est créé (backend), on peut renvoyer vers le profil utilisateur
+                                Log.in("/profil");
+
+                                break;
+
+                        }
                         
                     }
                     
