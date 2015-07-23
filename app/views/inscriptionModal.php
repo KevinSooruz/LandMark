@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="form-group textRight">
-                    <button type="submit" class="btn btnPrimary" ng-click="confirm(user)">Valider</button>
+                    <button type="submit" class="btn btnPrimary" ng-click="confirmInscription(user)">Valider</button>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>

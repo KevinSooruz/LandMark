@@ -32,9 +32,10 @@ app.directive("inscription", function(Modal){
             };
             
             // Validation formulaire
-            scope.confirm = function(user){
+            scope.confirmInscription = function(user){
                 
                 // Données utilisées pour l'enregistrement de l'utilisateur
+                this.user.inscription = "login"; // Envoie de la donnée inscription pour différencier les 2 POST en back office (inscription ou connexion)
                 var data = angular.copy(user);
                 
                 Modal.confirm(scope, data);

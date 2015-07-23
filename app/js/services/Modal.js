@@ -6,7 +6,7 @@ services.factory("Modal", function(Api, Log){
     modal.init = function(scope){
         
         scope.userExist = false; // Initialisation userExist en base
-        scope.userExistCo = false;
+        scope.userNotExist = false;
         scope.wrongMail = false; // Initialisation wrongMail backend
         scope.wrongMailCo = false;
         scope.errorModalBackEnd = false; // Initialisation message erreur général

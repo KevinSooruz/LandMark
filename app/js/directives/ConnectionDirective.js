@@ -32,9 +32,10 @@ app.directive("connection", function(Modal){
             };
             
             // Validation formulaire
-            scope.confirm = function(userCo){
+            scope.confirmConnection = function(userCo){
                 
                 // Données utilisées pour l'enregistrement de l'utilisateur
+                this.userCo.connection = "login"; // Envoie de la donnée connection pour différencier les 2 POST en back office (inscription ou connexion)
                 var data = angular.copy(userCo);
                 
                 Modal.confirm(scope, data);

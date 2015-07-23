@@ -2,7 +2,7 @@
     <div class="modalOut" ng-click="hideModalConnection()"></div>
     <div class="modalBody" ng-class="{showModal: modalConnection === true}">
         <div class="modalTitle">
-            <span>Connection</span>
+            <span>Connexion</span>
             <i class="glyphicon glyphicon-remove" ng-click="hideModalConnection()"></i>
         </div>
         <div class="modalContent">
@@ -13,7 +13,7 @@
                     <div class="errorInfos">
                         <span ng-show="connection.uEmailCo.$error.required">Obligatoire</span>
                         <span ng-show="connection.uEmailCo.$error.email">E-mail invalide</span>
-                        <span ng-show="userExistCo === true">Utilisateur existant</span>
+                        <span ng-show="userNotExist === true">Utilisateur inexistant</span>
                         <span ng-show="wrongMailCo === true">E-mail invalide</span>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="form-group textRight">
-                    <button type="submit" class="btn btnPrimary" ng-click="confirm(userCo)">Valider</button>
+                    <button type="submit" class="btn btnPrimary" ng-click="confirmConnection(userCo)">Valider</button>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>
