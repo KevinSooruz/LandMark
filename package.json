@@ -1,5 +1,5 @@
 {
-  "name": "LandMark",
+  "name": "SpartanTraining",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -9,5 +9,5 @@
     "grunt-minify-html": "~2.0.0"
   },
   "author": "Kévin Sourrue",
-  "description": "Application géolocalisation LandMark"
+  "description": "Application fitness / crossfit / musculation SpartanTraining"
 }

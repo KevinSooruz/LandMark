@@ -58,8 +58,8 @@
 
 ///////////////////////// Couleurs /////////////////////////
 
-@primary: #357df4;
-@secondary: #d3e8ff;
+@primary: #1bbc9b; // #357df4
+@secondary: 86decc; // #d3e8ff
 @primaryDark: darken(@primary, 10%);
 @white: #fff;
 @grey: #eee;
@@ -70,8 +70,13 @@
 @primaryOpacity: rgba(53, 125, 244, 0.6);
 @error: #d91e18;
 @errorOpacity: rgba(217, 30, 24, 0.6);
+@black: #000;
 
 ///////////////////////// Boutons /////////////////////////
+
+.btn{
+    margin: 0 5px;
+}
 
 .btnPrimary{
     .bg(@primary);
@@ -124,10 +129,33 @@
     color: @error;
 }
 
+///////////////////////// Filtres /////////////////////////
+
+.filter{
+    .absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 0;
+}
+
+.filterBlack{
+    .bg(@bgOpacity);
+}
+
 ///////////////////////// Body /////////////////////////
 
 body{
     .fs(16px);
     .fm(sans-serif);
     color: @textDark;
+    
+    #logo{
+        height: 200px; width: 200px;
+        border: 10px solid @white;
+        .bg(@primary);
+        background-image: url("../images/logo.png");
+        .br(200px);
+        background-position: center center;
+        background-repeat: no-repeat;
+        .box-shadow(@shadow: 0 0 10px -5px @black);
+    }
 }
