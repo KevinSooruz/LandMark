@@ -44,11 +44,19 @@
                         <span ng-show="inscription.uPassword.$error.maxlength">20 car. max</span>
                     </div>
                 </div>
-                <div class="form-group textRight">
-                    <button type="submit" class="btn btnPrimary" ng-click="confirmInscription(user)">Valider</button>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="link linkBlue" ng-click="changeModal()">Se connecter</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 textRight">
+                            <button type="submit" class="btn btnPrimary" ng-click="confirmInscription(user)">Valider</button>
+                        </div>
+                    </div>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>
+            <span ng-show="userExist === true" class="errorModal">Cet utilisateur semble d&eacutej&agrave; exister.<br /><span class="link linkError" ng-click="changeModal()">Connectez-vous !</span></span>
         </div>
     </div>
 </div>

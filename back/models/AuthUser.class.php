@@ -36,7 +36,7 @@ class AuthUser{
     // Vérification si utilisateur existe déjà depuis email
     public function verificationUser($email){
         
-        $reqVerifUser = $this->_bdd->prepare("SELECT email FROM users WHERE email = :email");
+        $reqVerifUser = $this->_bdd->prepare("SELECT email, password FROM users WHERE email = :email");
         $reqVerifUser->execute(array(
             
             "email" => $email
@@ -45,7 +45,7 @@ class AuthUser{
         
         $respVerifUser = $reqVerifUser->fetch();
         
-        return $respVerifUser["email"];
+        return $respVerifUser;
         
     }
     

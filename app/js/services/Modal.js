@@ -1,15 +1,16 @@
-services.factory("Modal", function(Api, Log){
+services.factory("Modal", function(Api, Log, $timeout){
     
     var modal = {};
     
     // Initialisation modal
     modal.init = function(scope){
         
-        scope.userExist = false; // Initialisation userExist en base
-        scope.userNotExist = false;
-        scope.wrongMail = false; // Initialisation wrongMail backend
-        scope.wrongMailCo = false;
-        scope.errorModalBackEnd = false; // Initialisation message erreur général
+        scope.userExist = false; // Initialisation userExist en base (inscription)
+        scope.userNotExist = false; // Initialisation userExist en base (connexion)
+        scope.wrongMail = false; // Initialisation wrongMail backend (inscription)
+        scope.wrongMailCo = false; // Initialisation wrongMail backend (connexion)
+        scope.errorModalBackEnd = false; // Initialisation message erreur général (inscription / connexion)
+        scope.incorrectPassword = false; // Initialisation erreur mot de passe (connexion)
         
     };
     
@@ -38,6 +39,24 @@ services.factory("Modal", function(Api, Log){
         
     };
     
+    // Permet de passer de la connexion à l'inscription et inversement
+    modal.change = function(scope){
+        
+        // Si inscription
+        if(scope.modalInscription === true){
+            
+            scope.modalInscription = false; // Remove inscription
+            scope.modalConnection = true; // Show connexion
+    
+        }else{
+            
+            scope.modalConnection = false; // Remove connexion
+            scope.modalInscription = true; // Show inscription
+            
+        }
+        
+    };
+    
     // Validation formulaire
     modal.confirm = function(scope, data){
         
@@ -61,23 +80,48 @@ services.factory("Modal", function(Api, Log){
             }else{
 
                 switch(response.data){
+                    
+                    case "userNotExist":
+                        
+                        // Affichage message erreur utilisateur n'existe pas (connexion)
+                        scope.userNotExist = true;
+                    
+                        break;
+                        
+                    case "wrongPassword":
+                    
+                        // Affichage message erreur mot de passe (connexion)
+                        scope.incorrectPassword = true;
+                    
+                        break;
+                        
+                    case "userLogin":
+                        
+                        // Connexion
+                        scope.modalConnection = false; // suppression modal
+                        
+                        // La session est créé (backend), on peut renvoyer vers le profil utilisateur
+                        Log.in("/profil");
+                    
+                        break;
 
                     case "userExist":
 
-                        // Affichage message erreur user exist
+                        // Affichage message erreur utilisateur existe déjà (inscription)
                         scope.userExist = true;
 
                         break;
 
                     case "wrongMail":
 
-                        // Affichage message erreur wrong mail
+                        // Affichage message erreur mauvais email (inscription)
                         scope.wrongMail = true;
 
                         break;
 
                     case "userAdded":
-
+                        
+                        // Inscription
                         scope.modalInscription = false; // suppression modal
 
                         // Stockage info session

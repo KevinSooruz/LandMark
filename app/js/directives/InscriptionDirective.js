@@ -31,6 +31,13 @@ app.directive("inscription", function(Modal){
 
             };
             
+            // Permet de passer de la connexion à l'inscription et inversement
+            scope.changeModal = function(){
+                
+                Modal.change(scope);
+        
+            };
+            
             // Validation formulaire
             scope.confirmInscription = function(user){
                 
