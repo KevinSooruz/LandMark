@@ -1,9 +1,9 @@
 <div class="modal" ng-class="{in: modalInscription === true}">
-    <div class="modalOut" ng-click="hideModal()"></div>
+    <div class="modalOut" ng-click="hideModalInscription()"></div>
     <div class="modalBody" ng-class="{showModal: modalInscription === true}">
         <div class="modalTitle">
             <span>Inscription</span>
-            <i class="glyphicon glyphicon-remove" ng-click="hideModal()"></i>
+            <i class="glyphicon glyphicon-remove" ng-click="hideModalInscription()"></i>
         </div>
         <div class="modalContent">
             <form name="inscription">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="form-group textRight">
-                    <button type="submit" class="btn btnPrimary" ng-click="confirmInscription()">Valider</button>
+                    <button type="submit" class="btn btnPrimary" ng-click="confirm(user)">Valider</button>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>

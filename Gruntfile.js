@@ -32,7 +32,9 @@ module.exports = function(grunt) {
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
-                    "app/js/directives/InscriptionDirective.js"
+                    "app/js/services/Modal.js",
+                    "app/js/directives/InscriptionDirective.js",
+                    "app/js/directives/ConnectionDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -43,7 +45,9 @@ module.exports = function(grunt) {
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
-                    "app/js/directives/InscriptionDirective.js"
+                    "app/js/services/Modal.js",
+                    "app/js/directives/InscriptionDirective.js",
+                    "app/js/directives/ConnectionDirective.js"
                 ]
             }
         }
@@ -58,6 +62,7 @@ module.exports = function(grunt) {
                 "dist/app/views/home.php": "app/views/home.php",
                 "dist/app/views/profil.php": "app/views/profil.php",
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
+                "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",

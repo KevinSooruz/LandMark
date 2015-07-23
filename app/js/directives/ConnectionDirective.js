@@ -1,10 +1,10 @@
-app.directive("inscription", function(Modal){
+app.directive("connection", function(Modal){
     
-    var inscription = {
+    var connection = {
         
         restrict: "E",
         replace: true,
-        templateUrl: "app/views/inscriptionModal.php",
+        templateUrl: "app/views/connectionModal.php",
         link: function(scope){
             
             // Initialisation modal
@@ -25,17 +25,17 @@ app.directive("inscription", function(Modal){
             };
             
             // Fermeture modal inscription
-            scope.hideModalInscription = function(){
+            scope.hideModalConnection = function(){
 
-                scope.modalInscription = false;
+                scope.modalConnection = false;
 
             };
             
             // Validation formulaire
-            scope.confirm = function(user){
+            scope.confirm = function(userCo){
                 
                 // Données utilisées pour l'enregistrement de l'utilisateur
-                var data = angular.copy(user);
+                var data = angular.copy(userCo);
                 
                 Modal.confirm(scope, data);
                 
@@ -45,6 +45,6 @@ app.directive("inscription", function(Modal){
         
     };
     
-    return inscription;
+    return connection;
     
 });
