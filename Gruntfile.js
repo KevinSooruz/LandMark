@@ -33,6 +33,7 @@ module.exports = function(grunt) {
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
                     "app/js/services/Modal.js",
+                    "app/js/services/ChangeText.js",
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js"
                 ],
@@ -46,6 +47,7 @@ module.exports = function(grunt) {
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
                     "app/js/services/Modal.js",
+                    "app/js/services/ChangeText.js",
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js"
                 ]
