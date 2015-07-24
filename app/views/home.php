@@ -7,8 +7,8 @@
         <h2>Devenez une meilleure version de vous-m&ecirc;me<br />
             Devenez {{textTitle}}</h2>
         <div class="btnGroup">
-            <button class="btn btnPrimary btnBig" ng-click="showModalInscription()">Inscription</button>
-            <button class="btn btnPrimary btnBig" ng-click="showModalConnection()">Connexion</button>
+            <button class="btn btnPrimary btnBig btnHoverGrey" ng-click="showModalInscription()">Inscription</button>
+            <button class="btn btnPrimary btnBig btnHoverGrey" ng-click="showModalConnection()">Connexion</button>
         </div>
     </header>
     <inscription></inscription>

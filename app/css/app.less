@@ -82,12 +82,15 @@
     .bg(@primary);
     color: @white;
     .br(4px);
-    border: none;
+    border: 1px solid transparent;
     .fs(16px);
+    .transition-duration(100ms);
     
     &:hover{
-        color: @white;
-        .bg(@primaryDark);
+        color: @primary;
+        border: 1px solid @primary;
+        .bg(@white);
+        .transition-duration(100ms);
     }
     
     &:active{
@@ -99,7 +102,9 @@
     }
     
     &:focus{
-        color: @white;
+        color: @primary;
+        border: 1px solid @primary;
+        .bg(@white);
         outline: none;
     }
 }
@@ -107,6 +112,20 @@
 .btnBig{
     padding: 10px 70px;
     .uppercase;
+}
+
+.btnHoverGrey{
+    &:hover{
+        color: @textDark;
+        .bg(@grey);
+        border: 1px solid transparent;
+    }
+    
+    &:focus{
+        .bg(@grey);
+        color: @textDark;
+        border: 1px solid transparent;
+    }
 }
 
 ///////////////////////// Liens /////////////////////////
