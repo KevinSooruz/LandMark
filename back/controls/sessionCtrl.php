@@ -9,6 +9,14 @@ if(isset($_SESSION["token"]) && isset($_SESSION["token_time"])){
         
         echo "session"; // Lancement de la session
         
+    }else{
+        
+        echo "noSession";
+        
     }
+    
+}else{
+    
+     echo "noSession";
     
 }

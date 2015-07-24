@@ -1,4 +1,4 @@
-services.factory("Modal", function(Api, Log, $timeout){
+services.factory("Modal", function(Api, Log){
     
     var modal = {};
     
