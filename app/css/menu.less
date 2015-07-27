@@ -1,6 +1,6 @@
 #menuApp{
     .absolute;
-    top: @heightHeaderApp; left: 0; bottom: 0;
+    top: 0; left: 0; bottom: 0;
     width: @widthMenu;
     .bg(@primary);
     color: @white;
@@ -11,5 +11,32 @@
         background-size: 90px 90px;
         border: 6px solid @white;
         margin: 25px auto;
+    }
+    
+    .btn{
+        margin: 0 auto;
+        display: block;
+    }
+    
+    ul{
+        margin: 0 0 25px 0;
+        padding: 0;
+        
+        li{
+            margin: 0;
+            padding: 15px;
+            list-style-type: none;
+            border-top: 1px solid @primaryDark;
+            
+            &:last-of-type{
+                border-bottom: 1px solid @primaryDark;
+            }
+            
+            &:hover{
+                cursor: pointer;
+                color: @primary;
+                .bg(@white);
+            }
+        }
     }
 }

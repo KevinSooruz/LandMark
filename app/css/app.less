@@ -59,7 +59,7 @@
 ///////////////////////// Couleurs /////////////////////////
 
 @primary: #1bbc9b; // #357df4
-@secondary: 86decc; // #d3e8ff
+@secondary: #86decc; // #d3e8ff
 @primaryDark: darken(@primary, 10%);
 @white: #fff;
 @grey: #eee;
@@ -77,21 +77,16 @@
 
 .btn{
     margin: 0;
-}
-
-.btnPrimary{
-    .bg(@primary);
-    color: @white;
     .br(4px);
-    border: 1px solid transparent;
     .fs(16px);
     .transition-duration(100ms);
     
     &:hover{
-        color: @primary;
-        border: 1px solid @primary;
-        .bg(@white);
         .transition-duration(100ms);
+    }
+    
+    &:focus{
+        outline: none;
     }
     
     &:active{
@@ -101,12 +96,23 @@
             outline: none;
         }
     }
+}
+
+.btnPrimary{
+    .bg(@primary);
+    color: @white;
+    border: 1px solid transparent;
+    
+    &:hover{
+        color: @primary;
+        border: 1px solid @primary;
+        .bg(@white);
+    }
     
     &:focus{
         color: @primary;
         border: 1px solid @primary;
         .bg(@white);
-        outline: none;
     }
 }
 
@@ -126,6 +132,26 @@
         .bg(@grey);
         color: @textDark;
         border: 1px solid transparent;
+    }
+}
+
+.btnWhite{
+    .bg(@white);
+    color: @primary;
+    border: 1px solid @white;
+    
+    &:hover{
+        color: @white;
+        border: 1px solid @white;
+        .bg(@primary);
+        
+        &:focus{
+            color: @white;
+        }
+    }
+    
+    &:focus{
+        color: @primary;
     }
 }
 
@@ -163,7 +189,6 @@
 
 ///////////////////////// Tailles éléments /////////////////////////
 
-@heightHeaderApp: 50px;
 @widthMenu: 220px;
 
 ///////////////////////// Body /////////////////////////

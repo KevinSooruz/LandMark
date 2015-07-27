@@ -5,4 +5,5 @@
             <i class="glyphicon {{link.icon}}"></i> {{link.title}}
         </li>
     </ul>
+    <button class="btn btnWhite" ng-click="logout()">Deconnexion</button>
 </div>

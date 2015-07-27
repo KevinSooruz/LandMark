@@ -8,21 +8,17 @@ app.directive("menu", function(){
         link: function(scope){
             
             scope.menu = [
-                /*{
+                {
+                    icon: "glyphicon-th-list",
+                    title: "Adresses"
+                },
+                {
+                    icon: "glyphicon-map-marker",
+                    title: "Carte"
+                },
+                {
                     icon: "glyphicon-user",
-                    title: "Profil"
-                },*/
-                {
-                    icon: "glyphicon-flash",
-                    title: "Exercices"
-                },
-                {
-                    icon: "glyphicon-th-large",
-                    title: "Workouts"
-                },
-                {
-                    icon: "glyphicon-tint",
-                    title: "Entraînements"
+                    title: "Amis"
                 }
             ];
             
