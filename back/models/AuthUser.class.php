@@ -57,7 +57,7 @@ class AuthUser{
         // Création d'un token unique + temps pour limitation dans la durée
         $token = uniqid(rand(), true);
         $_SESSION["token"] = $token;
-        $_SESSION['token_time'] = time();
+        $_SESSION["token_time"] = time();
         
     }
     

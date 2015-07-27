@@ -8,7 +8,10 @@ app.config(["$routeProvider", function($routeProvider){
     }).when("/profil", {
         
         templateUrl: "app/views/profil.php",
-        controller: "ProfilController"
+        controller: "ProfilController",
+        resolve:{
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
         
     }).otherwise({
         

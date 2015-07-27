@@ -1,6 +1,5 @@
-app.controller("ProfilController", function(Session){
+app.controller("ProfilController", function(){
     
-    // Vérification si session active
-    Session.get();
+    
     
 });
