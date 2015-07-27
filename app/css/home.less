@@ -1,0 +1,36 @@
+#home{
+    .absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    #header{
+        .relative;
+        z-index: 10;
+        color: @white;
+        .center;
+        margin-top: 125px;
+        
+        #logo{
+            margin: 0 auto;
+        }
+        
+        h1{
+            .uppercase;
+            .fw9;
+            .fs(60px);
+            letter-spacing: -2px;
+        }
+        
+        .btnGroup{
+            margin-top: 30px;
+            
+            .btn{
+                margin: 0 5px;
+            }
+        }
+    }
+}
+

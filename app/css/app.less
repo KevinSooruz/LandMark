@@ -1,0 +1,187 @@
+///////////////////////// CSS Spec /////////////////////////
+
+.fs(@fs){
+    font-size: @fs;
+}
+
+.fm(@fm){
+    font-family: @fm;
+}
+
+.bg(@bg){
+    background-color: @bg;
+}
+
+.br(@radius){
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.none{
+    display: none;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
+}
+
+.textRight{
+    text-align: right;
+}
+
+.fw3{
+    font-weight: 300;
+}
+
+.fw4{
+    font-weight: 400;
+}
+
+.fw9{
+    font-weight: 900;
+}
+
+.center{
+    text-align: center;
+}
+
+///////////////////////// Couleurs /////////////////////////
+
+@primary: #1bbc9b; // #357df4
+@secondary: 86decc; // #d3e8ff
+@primaryDark: darken(@primary, 10%);
+@white: #fff;
+@grey: #eee;
+@greyLight: #f8f8f8;
+@greyDark: #303030;
+@textDark: #333;
+@textLight: #929294;
+@bgOpacity: rgba(0, 0, 0, 0.6);
+@primaryOpacity: rgba(27, 188, 155, 0.6); // rgba(53, 125, 244, 0.6)
+@error: #d91e18;
+@errorOpacity: rgba(217, 30, 24, 0.6);
+@black: #000;
+
+///////////////////////// Boutons /////////////////////////
+
+.btn{
+    margin: 0;
+}
+
+.btnPrimary{
+    .bg(@primary);
+    color: @white;
+    .br(4px);
+    border: 1px solid transparent;
+    .fs(16px);
+    .transition-duration(100ms);
+    
+    &:hover{
+        color: @primary;
+        border: 1px solid @primary;
+        .bg(@white);
+        .transition-duration(100ms);
+    }
+    
+    &:active{
+        .box-shadow(@shadow: none);
+        
+        &:focus{
+            outline: none;
+        }
+    }
+    
+    &:focus{
+        color: @primary;
+        border: 1px solid @primary;
+        .bg(@white);
+        outline: none;
+    }
+}
+
+.btnBig{
+    padding: 10px 70px;
+    .uppercase;
+}
+
+.btnHoverGrey{
+    &:hover{
+        color: @textDark;
+        .bg(@grey);
+        border: 1px solid transparent;
+    }
+    
+    &:focus{
+        .bg(@grey);
+        color: @textDark;
+        border: 1px solid transparent;
+    }
+}
+
+///////////////////////// Liens /////////////////////////
+
+.link{
+    text-decoration: none;
+    display: inline-block;
+    
+    &:hover{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.linkBlue{
+    color: @primary;
+}
+
+.linkError{
+    color: @error;
+}
+
+///////////////////////// Filtres /////////////////////////
+
+.filter{
+    .absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 0;
+}
+
+.filterBlack{
+    .bg(@bgOpacity);
+}
+
+///////////////////////// Tailles éléments /////////////////////////
+
+@heightHeaderApp: 50px;
+@widthMenu: 220px;
+
+///////////////////////// Body /////////////////////////
+
+body{
+    .fs(16px);
+    .fm(sans-serif);
+    color: @textDark;
+    overflow: hidden;
+    
+    #logo{
+        height: 200px; width: 200px;
+        border: 10px solid @white;
+        .bg(@primary);
+        background-image: url("../images/logo.png");
+        .br(200px);
+        background-position: center center;
+        background-repeat: no-repeat;
+        .box-shadow(@shadow: 0 0 10px -5px @black);
+    }
+}

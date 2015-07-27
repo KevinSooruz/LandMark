@@ -1,0 +1,13 @@
+{
+  "name": "SpartanTraining",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.7.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-minify-html": "~2.0.0"
+  },
+  "author": "Kévin Sourrue",
+  "description": "Application fitness / crossfit / musculation SpartanTraining"
+}
