@@ -1,2 +1,7 @@
-<p>test</p>
-<button class="btn" ng-click="logout()">Deconnexion</button>
+<div id="profil">
+    <headapp></headapp>
+    <menu></menu>
+    <div class="content">
+        <p>test</p>
+    </div>
+</div>

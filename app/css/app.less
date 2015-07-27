@@ -64,7 +64,8 @@
 @white: #fff;
 @grey: #eee;
 @greyLight: #f8f8f8;
-@textDark: #222;
+@greyDark: #303030;
+@textDark: #333;
 @textLight: #929294;
 @bgOpacity: rgba(0, 0, 0, 0.6);
 @primaryOpacity: rgba(27, 188, 155, 0.6); // rgba(53, 125, 244, 0.6)
@@ -75,7 +76,7 @@
 ///////////////////////// Boutons /////////////////////////
 
 .btn{
-    margin: 0 5px;
+    margin: 0;
 }
 
 .btnPrimary{
@@ -160,12 +161,18 @@
     .bg(@bgOpacity);
 }
 
+///////////////////////// Tailles éléments /////////////////////////
+
+@heightHeaderApp: 50px;
+@widthMenu: 220px;
+
 ///////////////////////// Body /////////////////////////
 
 body{
     .fs(16px);
     .fm(sans-serif);
     color: @textDark;
+    overflow: hidden;
     
     #logo{
         height: 200px; width: 200px;

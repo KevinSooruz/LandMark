@@ -35,7 +35,9 @@ module.exports = function(grunt) {
                     "app/js/services/Modal.js",
                     "app/js/services/ChangeText.js",
                     "app/js/directives/InscriptionDirective.js",
-                    "app/js/directives/ConnectionDirective.js"
+                    "app/js/directives/ConnectionDirective.js",
+                    "app/js/directives/HeadDirective.js",
+                    "app/js/directives/MenuDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -49,7 +51,9 @@ module.exports = function(grunt) {
                     "app/js/services/Modal.js",
                     "app/js/services/ChangeText.js",
                     "app/js/directives/InscriptionDirective.js",
-                    "app/js/directives/ConnectionDirective.js"
+                    "app/js/directives/ConnectionDirective.js",
+                    "app/js/directives/HeadDirective.js",
+                    "app/js/directives/MenuDirective.js"
                 ]
             }
         }
@@ -65,6 +69,8 @@ module.exports = function(grunt) {
                 "dist/app/views/profil.php": "app/views/profil.php",
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
                 "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
+                "dist/app/views/headApp.php": "app/views/headApp.php",
+                "dist/app/views/menu.php": "app/views/menu.php",
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",
