@@ -19,8 +19,22 @@ app.directive("menu", function(){
                 {
                     icon: "glyphicon-user",
                     title: "Amis"
+                },
+                {
+                    icon: "glyphicon-cog",
+                    title: "Paramètres"
                 }
             ];
+            
+            // Initialisation menu actif
+            scope.indexMenu = 0;
+            
+            // Modification menu actif
+            scope.activeMenu = function(index){
+                
+                scope.indexMenu = index;
+                
+            };
             
         }
         

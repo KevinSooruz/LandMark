@@ -59,14 +59,15 @@
 ///////////////////////// Couleurs /////////////////////////
 
 @primary: #1bbc9b; // #357df4
-@secondary: #86decc; // #d3e8ff
+@secondary: #ccf4ec; // #d3e8ff
 @primaryDark: darken(@primary, 10%);
 @white: #fff;
-@grey: #eee;
-@greyLight: #f8f8f8;
-@greyDark: #303030;
-@textDark: #333;
-@textLight: #929294;
+@grey: #e7eaec;
+@greyLight: #f3f3f4;
+@greyDark: #293846;
+@greyDarkLight: #2f4050;
+@textDark: #676a6c;
+@textLight: #9da8b9;
 @bgOpacity: rgba(0, 0, 0, 0.6);
 @primaryOpacity: rgba(27, 188, 155, 0.6); // rgba(53, 125, 244, 0.6)
 @error: #d91e18;
@@ -195,7 +196,8 @@
 
 body{
     .fs(16px);
-    .fm(sans-serif);
+    .fw4;
+    font-family: 'Lato', sans-serif;;
     color: @textDark;
     overflow: hidden;
     
@@ -208,5 +210,19 @@ body{
         background-position: center center;
         background-repeat: no-repeat;
         .box-shadow(@shadow: 0 0 10px -5px @black);
+    }
+    
+    .headApp{
+        .fw3;
+        height: 100px;
+        line-height: 100px;
+        .fs(25px);
+        .bg(@white);
+        padding: 0 25px;
+        border-bottom: 1px solid @grey;
+    }
+    
+    .form-control{
+        border: 1px solid @grey;
     }
 }

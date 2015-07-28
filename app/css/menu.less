@@ -2,7 +2,7 @@
     .absolute;
     top: 0; left: 0; bottom: 0;
     width: @widthMenu;
-    .bg(@primary);
+    .bg(@greyDarkLight);
     color: @white;
     
     #logo{
@@ -19,24 +19,39 @@
     }
     
     ul{
-        margin: 0 0 25px 0;
+        margin: 0;
         padding: 0;
+        height: 100%;
+        .bg(@greyDarkLight);
         
         li{
             margin: 0;
             padding: 15px;
             list-style-type: none;
-            border-top: 1px solid @primaryDark;
-            
-            &:last-of-type{
-                border-bottom: 1px solid @primaryDark;
-            }
+            .bg(@greyDarkLight);
+            color: @textLight;
+            border-left: 3px solid transparent;
             
             &:hover{
                 cursor: pointer;
-                color: @primary;
-                .bg(@white);
+                color: @white;
+                .bg(@greyDark);
             }
+            
+            i{
+                margin-right: 5px;
+                .fs(14px);
+            }
+            
+            &.active{
+                border-left: 3px solid @primary;
+                color: @white;
+                .bg(@greyDark);
+            }
+        }
+        
+        .btn{
+            margin-top: 25px;
         }
     }
 }

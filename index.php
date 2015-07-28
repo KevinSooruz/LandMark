@@ -30,6 +30,7 @@
 <!-- iPad Landscape (Retina) -->
 <link href="images/apple-startup-ipad-retina-landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 <link rel="shortcut icon" type="image/jpg" href="images/favico.png">
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
     

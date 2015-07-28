@@ -1,6 +1,6 @@
 <div id="profil">
     <menu></menu>
     <div class="content">
-        <p>test</p>
+        <adresses></adresses>
     </div>
 </div>

@@ -37,7 +37,8 @@ module.exports = function(grunt) {
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js"
+                    "app/js/directives/MenuDirective.js",
+                    "app/js/directives/AdressesDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -53,7 +54,8 @@ module.exports = function(grunt) {
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js"
+                    "app/js/directives/MenuDirective.js",
+                    "app/js/directives/AdressesDirective.js"
                 ]
             }
         }
@@ -70,6 +72,7 @@ module.exports = function(grunt) {
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
                 "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
                 "dist/app/views/menu.php": "app/views/menu.php",
+                "dist/app/views/adresses.php": "app/views/adresses.php",
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",
