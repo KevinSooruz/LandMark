@@ -100,6 +100,9 @@ services.factory("Modal", function(Api, Log){
                         // Connexion
                         scope.modalConnection = false; // suppression modal
                         
+                        // Utilisateur connecté
+                        Log.storageIn();
+                        
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/profil");
                     
@@ -123,6 +126,9 @@ services.factory("Modal", function(Api, Log){
                         
                         // Inscription
                         scope.modalInscription = false; // suppression modal
+                        
+                        // Utilisateur connecté
+                        Log.storageIn();
 
                         // Stockage info session
                         // do something

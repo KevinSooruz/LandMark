@@ -69,7 +69,6 @@ module.exports = function(grunt) {
                 "dist/app/views/profil.php": "app/views/profil.php",
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
                 "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
-                "dist/app/views/headApp.php": "app/views/headApp.php",
                 "dist/app/views/menu.php": "app/views/menu.php",
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
@@ -110,8 +109,3 @@ module.exports = function(grunt) {
   grunt.registerTask("goGrunt", ["less:compile", "watch"]);
   
 };
-
-/*"js/js.min.js" : ["js/js.js"],
-"js/jquery.min.js" : ["js/jquery.js"],
-"js/ajax.min.js" : ["js/ajax.js"],
-"bootstrap/js/modal.min.js" : ["bootstrap/js/modal.js"]*/
