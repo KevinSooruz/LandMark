@@ -25,7 +25,7 @@ services.factory("Log", function(Api, $location){
             if(response.data === "logout"){
                 
                 // Utilisateur déconnecté
-                sessionStorage.setItem("Log", 0);
+                log.storageOut();
                 
                 // Redirection accueil
                 $location.path("/");
