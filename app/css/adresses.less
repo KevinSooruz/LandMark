@@ -1,0 +1,33 @@
+.pac-container{
+    font-family: 'Lato', sans-serif;
+    
+    &:after{
+        display: none;
+    }
+    
+    .pac-item{
+        color: @textLight;
+        
+        .pac-icon-marker{
+            background-image: none;
+            .fm('Glyphicons Halflings');
+            margin-top: 0;
+            .fs(14px);
+            width: auto; height: auto;
+            color: @textLight;
+        }
+        
+        .pac-item-query{
+            color: @textLight;
+            
+            .pac-matched{
+                color: @textDark;
+            }
+        }
+        
+        &:hover{
+            cursor: pointer;
+            .bg(@greyLight);
+        }
+    }
+}

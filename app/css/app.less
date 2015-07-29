@@ -40,12 +40,20 @@
     text-align: right;
 }
 
+.textLeft{
+    text-align: left;
+}
+
 .fw3{
     font-weight: 300;
 }
 
 .fw4{
     font-weight: 400;
+}
+
+.fw7{
+    font-weight: 700;
 }
 
 .fw9{
@@ -197,7 +205,7 @@
 body{
     .fs(16px);
     .fw4;
-    font-family: 'Lato', sans-serif;;
+    font-family: 'Lato', sans-serif;
     color: @textDark;
     overflow: hidden;
     
@@ -218,11 +226,135 @@ body{
         line-height: 100px;
         .fs(25px);
         .bg(@white);
-        padding: 0 25px;
+        padding: 0 30px;
         border-bottom: 1px solid @grey;
     }
     
     .form-control{
         border: 1px solid @grey;
+    }
+    
+    .contentBox{
+        margin-top: 30px;
+    }
+    
+    .inBox{
+        border-top: 3px solid @grey;
+        .bg(@white);
+        
+        .title{
+            .fw7;
+            display: block;
+            padding: 10px 15px;
+            border-bottom: 1px solid @grey;
+        }
+        
+        .inBoxContent{
+            padding: 15px;
+            .fs(14px);
+            
+            .title{
+                padding: 0;
+                border: none;
+                margin-bottom: 5px;
+            }
+            
+            p{
+                margin: 0;
+            }
+            
+            form{
+                .form-group{
+                    .relative;
+                    
+                    label{
+                        .fw4;
+                        .textLeft;
+                    }
+                    
+                    .errorInfos{
+                        .absolute;
+                        top: 8px; right: 25px;
+                        color: @textLight;
+                    }
+                    
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                }
+                
+                input{
+                    &:focus{
+                        border-color: @primary;
+                        .box-shadow(@shadow: 0 0 8px @primaryOpacity);
+                    }
+
+                    &.ng-touched.ng-invalid{
+                        border-color: @error;
+                        .box-shadow(@shadow: 0 0 8px @errorOpacity);
+                    }
+
+                    &.errorBackEnd{
+                        border-color: @error;
+                        .box-shadow(@shadow: 0 0 8px @errorOpacity);
+                    }
+                }
+            }
+            
+            .multiContent{
+                padding: 15px 0;
+                border-bottom: 1px solid @grey;
+                
+                &:first-of-type{
+                    padding-top: 0;
+                }
+                
+                &:last-of-type{
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+                
+                ul{
+                    padding: 0;
+                    margin-bottom: 0;
+                    
+                    li{
+                        margin: 0;
+                        list-style-type: none;
+                        
+                        .categorieSelect{
+                            color: @textDark;
+                            .bg(@greyLight);
+                            display: inline-block;
+                            width: 100%;
+                            .center;
+                            margin-bottom: 3px;
+                            padding: 4px;
+                            .transition-duration(100ms);
+                            .br(4px);
+                            
+                            &.active{
+                                .bg(@primary);
+                                color: @white;
+                            }
+                            
+                            &:hover{
+                                .bg(@grey);
+                                .transition-duration(100ms);
+                                cursor: pointer;
+                                
+                                &.active{
+                                    .bg(@primary);
+                                }
+                            }
+                            
+                            &:focus{
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
