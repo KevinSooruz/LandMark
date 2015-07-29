@@ -321,40 +321,45 @@ body{
                     li{
                         margin: 0;
                         list-style-type: none;
-                        
-                        .categorieSelect{
-                            color: @textDark;
-                            .bg(@greyLight);
-                            display: inline-block;
-                            width: 100%;
-                            .center;
-                            margin-bottom: 3px;
-                            padding: 4px;
-                            .transition-duration(100ms);
-                            .br(4px);
-                            
-                            &.active{
-                                .bg(@primary);
-                                color: @white;
-                            }
-                            
-                            &:hover{
-                                .bg(@grey);
-                                .transition-duration(100ms);
-                                cursor: pointer;
-                                
-                                &.active{
-                                    .bg(@primary);
-                                }
-                            }
-                            
-                            &:focus{
-                                outline: none;
-                            }
-                        }
                     }
                 }
             }
+        }
+        
+        .selectObject{
+            color: @textDark;
+            .bg(@greyLight);
+            display: inline-block;
+            width: 100%;
+            .center;
+             margin-bottom: 3px;
+            padding: 4px;
+            .transition-duration(100ms);
+            .br(4px);
+                            
+            &.active{
+                .bg(@primary);
+                color: @white;
+                .transition-duration(100ms);
+            }
+                            
+            &:hover{
+                .bg(@grey);
+                .transition-duration(100ms);
+                cursor: pointer;
+                                
+                &.active{
+                    .bg(@primary);
+                }
+            }
+                            
+            &:focus{
+                outline: none;
+            }
+        }
+        
+        &.other{
+            margin-top: 25px;
         }
     }
 }
