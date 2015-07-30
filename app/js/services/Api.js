@@ -28,12 +28,25 @@ services.factory("Api", function($http){
         
     };
     
-    api.get = function(url){
+    api.get = function(url, dataReq){
+        
+        var data;
+        
+        if(dataReq){
+            
+            data = dataReq;
+            
+        }else{
+            
+            data = {};
+            
+        }
         
         return $http({
             
             method: "GET",
-            url: url
+            url: url,
+            params: data
             
         }).success(function(response){
             

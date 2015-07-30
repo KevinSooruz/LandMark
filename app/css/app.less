@@ -164,6 +164,10 @@
     }
 }
 
+.btnFullWidth{
+    width: 100%;
+}
+
 ///////////////////////// Liens /////////////////////////
 
 .link{
@@ -246,6 +250,12 @@ body{
         .br(4px);
     }
     
+    .errorBlock{
+        color: @error;
+        display: block;
+        .center;
+    }
+    
     .inBox{
         border-top: 3px solid @grey;
         .bg(@white);
@@ -273,6 +283,16 @@ body{
             
             p{
                 margin: 0;
+            }
+            
+            ul{
+                padding: 0;
+                margin-bottom: 0;
+                    
+                li{
+                    margin: 0;
+                    list-style-type: none;
+                }
             }
             
             form{
@@ -324,16 +344,6 @@ body{
                 &:last-of-type{
                     padding-bottom: 0;
                     border-bottom: none;
-                }
-                
-                ul{
-                    padding: 0;
-                    margin-bottom: 0;
-                    
-                    li{
-                        margin: 0;
-                        list-style-type: none;
-                    }
                 }
             }
         }

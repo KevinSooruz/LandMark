@@ -105,7 +105,7 @@ services.factory("Modal", function(Api, Log){
                         
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/profil");
-                    
+                        
                         break;
 
                     case "userExist":

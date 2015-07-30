@@ -1,4 +1,4 @@
-<div id="adresses" ng-controller="AdressesController">
+<div id="adresses" ng-controller="AdressesController" class="row">
     <div class="headApp">
         <span class="title">Adresses</span>
     </div>
@@ -12,7 +12,7 @@
                             <div class="form-group">
                                 <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                 <div class="col-md-10 col-sm-10">
-                                    <input id="adName" name="adName" placeholder="Indiquez un nom" class="form-control" ng-model="adName" ng-minlength="3" ng-maxlength="50" required="">
+                                    <input id="adName" name="adName" placeholder="Indiquez un nom" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false" ng-minlength="3" ng-maxlength="50" required="">
                                     <div class="errorInfos">
                                         <span ng-show="adresses.adName.$error.required">Obligatoire</span>
                                         <span ng-show="adresses.adName.$error.minlength">3 car. min</span>
@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="adLocation" class="col-md-2 col-sm-2 control-label">Adresse</label>
                                 <div class="col-md-10 col-sm-10">
-                                    <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" class="form-control" ng-model="adLocation" required="">
+                                    <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" class="form-control" ng-model="adLocation" ng-class="{errorBackEnd: errorLocation === true}" ng-click="errorLocation = false" required="">
                                     <div class="errorInfos">
                                         <span ng-show="adresses.adLocation.$error.required">Obligatoire</span>
                                     </div>
@@ -38,6 +38,7 @@
                                 <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
                             </li>
                         </ul>
+                        <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
                     </div>
                     <div class="multiContent">
                         <span class="title">Liste</span>
@@ -49,19 +50,13 @@
                         <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
                     </div>
                     <div class="multiContent">
-                        <button class="btn" ng-click="adresseAdd()">Ajouter</button>
+                        <button class="btn btnPrimary btnHoverGrey btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="inBox">
-                <span class="title">Vos adresses</span>
-                <div class="inBoxContent">
-                    <p>Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
-                </div>
-            </div>
-            <div class="inBox other">
                 <span class="title">Vos listes <span class="toolTip">{{lists.length}} liste<span ng-show="lists.length > 1">s</span></span></span>
                 <div class="inBoxContent">
                     <div class="multiContent">
@@ -69,7 +64,7 @@
                             <div class="form-group">
                                 <label for="listName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input id="listName" name="listName" placeholder="Indiquez un nom" class="form-control" ng-model="listName" ng-minlength="3" ng-maxlength="50" required="">
+                                    <input id="listName" name="listName" placeholder="Indiquez un nom" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false" ng-minlength="3" ng-maxlength="50" required="">
                                     <div class="errorInfos">
                                         <span ng-show="adLists.listName.$error.required">Obligatoire</span>
                                         <span ng-show="adLists.listName.$error.minlength">3 car. min</span>
@@ -90,6 +85,23 @@
                         </ul>
                         <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
                     </div>
+                </div>
+            </div>
+            <div id="adressesList" class="inBox other">
+                <span class="title">Vos adresses <span class="toolTip">{{addresses.length}} Adresse<span ng-show="addresses.length > 1">s</span></span></span>
+                <div class="inBoxContent">
+                    <ul class="row listAdresses">
+                        <li class="col-md-12 col-sm-12 col-xs-12" ng-repeat="address in addresses">
+                            <div class="row">
+                                <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
+                                <div class="col-md-4 col-sm-4 col-xs-4 textRight">
+                                    <span class="categorie">{{address.categorie}}</span>
+                                </div>
+                            </div>
+                            <span class="locationAddress">{{address.location}}</span>
+                        </li>
+                    </ul>
+                    <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@ class AuthUser{
     }
     
     // Démarrage session + création token pour identification user
-    public function createSession(){
+    public function createSession($email){
         
         session_start();
         
@@ -58,6 +58,7 @@ class AuthUser{
         $token = uniqid(rand(), true);
         $_SESSION["token"] = $token;
         $_SESSION["token_time"] = time();
+        $_SESSION["email"] = $email;
         
     }
     

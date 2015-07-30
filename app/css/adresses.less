@@ -31,3 +31,35 @@
         }
     }
 }
+
+#adressesList{
+    ul.listAdresses{
+        padding: 0 15px;
+        
+        li{
+            padding: 15px 0;
+            border-bottom: 1px solid @grey;
+            
+            .title{
+                padding: 0 15px;
+            }
+            
+            .categorie{
+                .fs(12px);
+                .bg(@greyDarkLight);
+                color: @textLight;
+                .br(4px);
+                padding: 2px 10px;
+            }
+            
+            .locationAddress{
+                display: inline-block;
+                width: 100%;
+            }
+            
+            &:last-of-type{
+                border: none;
+            }
+        }
+    }
+}

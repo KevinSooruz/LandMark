@@ -38,7 +38,7 @@ switch($method){
                 }else{
                     
                     // Démarrage session + création token pour identification user
-                    $authUser->createSession();
+                    $authUser->createSession($email);
                     
                     echo "userLogin";
                     
@@ -70,7 +70,7 @@ switch($method){
                     $authUser->inscription($surname, $name, $email, $password);
 
                     // Démarrage session + création token pour identification user
-                    $authUser->createSession();
+                    $authUser->createSession($email);
 
                 }
                 
