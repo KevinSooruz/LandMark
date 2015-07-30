@@ -238,6 +238,14 @@ body{
         margin-top: 30px;
     }
     
+    .toolTip{
+        .bg(@secondary);
+        .fw4;
+        .fs(12px);
+        padding: 2px 10px;
+        .br(4px);
+    }
+    
     .inBox{
         border-top: 3px solid @grey;
         .bg(@white);
@@ -247,6 +255,10 @@ body{
             display: block;
             padding: 10px 15px;
             border-bottom: 1px solid @grey;
+            
+            .toolTip{
+                float: right;
+            }
         }
         
         .inBoxContent{

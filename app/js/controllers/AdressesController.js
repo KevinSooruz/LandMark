@@ -1,15 +1,17 @@
 app.controller("AdressesController", function($scope, Autocomplete){
     
+    // Service autocomplétion
+    Autocomplete.run();
+    
     // Initialisation adresse
     var adresse = {
         
-        categorie: "Autre",
-        list: "Général"
+        categorie: "Autre"
         
     };
     
-    // Service autocomplétion
-    Autocomplete.run();
+    // Initialisation des listes
+    $scope.lists = [];
     
     // Intégration des catégories
     $scope.categories = [
@@ -68,12 +70,25 @@ app.controller("AdressesController", function($scope, Autocomplete){
         
     };
     
-    // Intégration des listes
-    $scope.lists = [
-        {
-            name: "Général"
+    // Ajout de liste
+    $scope.adList = function(listName){
+        
+        if(listName === undefined || listName === ""){
+            
+            return;
+            
+        }else{
+            
+            // Ajout de la liste
+            $scope.lists.push({
+            
+                name: listName
+            
+            });
+            
         }
-    ];
+        
+    };
     
     // Sélection de la liste
     $scope.selectList = function(index, listName){
@@ -86,9 +101,11 @@ app.controller("AdressesController", function($scope, Autocomplete){
         
     };
     
+    // Ajout adresse
     $scope.adresseAdd = function(){
         
         console.log(Autocomplete.geocode());
+        console.log(adresse);
         
     };
     
