@@ -16,6 +16,26 @@ services.factory("Address", function(Api){
         
     };
     
+    address.get = function(){
+        
+        var data = {
+            
+            getaddresses: "all"
+            
+        };
+        
+        Api.get("back/controls/addressCtrl.php", data).then(function(response){
+            
+            console.log(response);
+            
+        }, function(data, status, config, headers){
+            
+            console.log(data, status, config, headers);
+            
+        });
+        
+    };
+    
     return address;
     
 });

@@ -35,4 +35,15 @@ class Address{
         
     }
     
+    public function read($user){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, id_user WHERE id_user = :user");
+        $reqRead->execute(array(
+        
+            "user" => $user[id]
+            
+        ));
+        
+    }
+    
 }

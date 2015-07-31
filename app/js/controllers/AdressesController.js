@@ -14,20 +14,9 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     $scope.lists = [];
     
     // Initialisation des adresses
-    $scope.addresses = [
-        {
-            name: "test",
-            location: "test",
-            categorie: "test",
-            categorieName: "test"
-        },
-        {
-            name: "test2",
-            location: "test2",
-            categorie: "test2",
-            categorieName: "test"
-        }
-    ];
+    $scope.addresses = [];
+    
+    Address.get();
     
     /////////////////////////////////// Categories ///////////////////////////////////
     
@@ -57,14 +46,13 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     });
     
     // Sélection de la catégorie
-    $scope.selectCategorie = function(index, categorieId, categorieName){
+    $scope.selectCategorie = function(index, categorie){
         
         // Ajout class active au front
         $scope.categorieIndex = index;
         
         // Envoie donnée catégorie à objet adresse
-        adresse.categorie = categorieId;
-        adresse.categorieName = categorieName;
+        adresse.categorie = categorie;
         
     };
     
