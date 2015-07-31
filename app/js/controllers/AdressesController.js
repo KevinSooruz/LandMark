@@ -3,21 +3,6 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     // Service autocomplétion
     Autocomplete.run();
     
-    // Initialisation adresse
-    var adresse = {
-        
-        categorie: "Autre"
-        
-    };
-    
-    // Initialisation des listes
-    $scope.lists = [];
-    
-    // Initialisation des adresses
-    $scope.addresses = [];
-    
-    Address.get();
-    
     /////////////////////////////////// Categories ///////////////////////////////////
     
     // Intégration des catégories
@@ -58,6 +43,9 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     
     /////////////////////////////////// Listes ///////////////////////////////////
     
+    // Initialisation des listes
+    $scope.lists = [];
+    
     // Ajout de liste
     $scope.adList = function(listName){
         
@@ -91,6 +79,17 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     };
     
     /////////////////////////////////// Adresse ///////////////////////////////////
+    
+    // Initialisation Objet adresse
+    var adresse = {
+        
+        categorie: "Autre"
+        
+    };
+    
+    // Initialisation des adresses front
+    $scope.addresses = [];
+    Address.get($scope);
     
     // Ajout adresse
     $scope.adresseAdd = function(){
@@ -144,8 +143,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
                 
                 name: adresse.name,
                 location: adresse.location,
-                categorie: adresse.categorie,
-                categorieName: adresse.categorieName
+                categorie: adresse.categorie
                 
             });
             

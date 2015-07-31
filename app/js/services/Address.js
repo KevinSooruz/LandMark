@@ -16,7 +16,7 @@ services.factory("Address", function(Api){
         
     };
     
-    address.get = function(){
+    address.get = function(scope){
         
         var data = {
             
@@ -26,7 +26,7 @@ services.factory("Address", function(Api){
         
         Api.get("back/controls/addressCtrl.php", data).then(function(response){
             
-            console.log(response);
+            scope.addresses = response.data;
             
         }, function(data, status, config, headers){
             

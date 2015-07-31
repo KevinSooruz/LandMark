@@ -37,12 +37,30 @@ class Address{
     
     public function read($user){
         
-        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, id_user WHERE id_user = :user");
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user");
         $reqRead->execute(array(
         
-            "user" => $user[id]
+            "user" => $user["id"]
             
         ));
+        
+        $result = "[";
+        while($addresses = $reqRead->fetch()){
+            if($result != "["){
+                $result .= ",";
+            }
+            $result.= json_encode(array(
+                "name" => $addresses["name"],
+                "categorie" => $addresses["categorie"],
+                "location" => $addresses["location"],
+                "list" => $addresses["list"],
+                "lat" => $addresses["lat"],
+                "lng" => $addresses["lng"]
+            ));
+        };
+        $result.= "]";
+        
+        echo $result;
         
     }
     

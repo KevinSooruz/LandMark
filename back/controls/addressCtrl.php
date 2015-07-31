@@ -19,7 +19,7 @@ switch($method){
     
         if(isset($_GET["getaddresses"]) && $_GET["getaddresses"] === "all"){
             
-            echo "yes";
+            $address->read($userActif);
             
         }
     
@@ -53,7 +53,7 @@ switch($method){
             
         }else{
             
-            echo "lowData";    
+            echo "lowData";
             
         }
     
