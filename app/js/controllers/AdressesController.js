@@ -1,4 +1,4 @@
-app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode){
+app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode, Address){
     
     // Service autocomplétion
     Autocomplete.run();
@@ -14,18 +14,18 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     $scope.lists = [];
     
     // Initialisation des adresses
-    //$scope.addresses = [];
-    
     $scope.addresses = [
         {
             name: "test",
             location: "test",
-            categorie: "test"
+            categorie: "test",
+            categorieName: "test"
         },
         {
             name: "test2",
             location: "test2",
-            categorie: "test2"
+            categorie: "test2",
+            categorieName: "test"
         }
     ];
     
@@ -57,13 +57,14 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     });
     
     // Sélection de la catégorie
-    $scope.selectCategorie = function(index, categorieName){
+    $scope.selectCategorie = function(index, categorieId, categorieName){
         
         // Ajout class active au front
         $scope.categorieIndex = index;
         
         // Envoie donnée catégorie à objet adresse
-        adresse.categorie = categorieName;
+        adresse.categorie = categorieId;
+        adresse.categorieName = categorieName;
         
     };
     
@@ -151,14 +152,16 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
         }).finally(function(){
             
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
-            console.log($scope.addresses);
             $scope.addresses.push({
                 
                 name: adresse.name,
                 location: adresse.location,
-                categorie: adresse.categorie
+                categorie: adresse.categorie,
+                categorieName: adresse.categorieName
                 
             });
+            
+            Address.post(adresse);
             
         });
         

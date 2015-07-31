@@ -18,7 +18,7 @@ class Categorie{
     
     public function read(){
         
-        $reqRead = $this->_bdd->query("SELECT name FROM categories");
+        $reqRead = $this->_bdd->query("SELECT id, name FROM categories");
         
         $result = "[";
         while($categories = $reqRead->fetch()){
@@ -26,6 +26,7 @@ class Categorie{
                 $result .= ",";
             }
             $result.= json_encode(array(
+                "id" => $categories["id"],
                 "name" => $categories["name"]
             ));
         };

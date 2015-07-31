@@ -35,7 +35,7 @@
                         <span class="title">Cat&eacute;gorie</span>
                         <ul class="row">
                             <li class="col-md-3" ng-repeat="categorie in categories">
-                                <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
+                                <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.id, categorie.name)">{{categorie.name}}</span>
                             </li>
                         </ul>
                         <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
@@ -95,7 +95,7 @@
                             <div class="row">
                                 <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
                                 <div class="col-md-4 col-sm-4 col-xs-4 textRight">
-                                    <span class="categorie">{{address.categorie}}</span>
+                                    <span class="categorie">{{address.categorieName}}</span>
                                 </div>
                             </div>
                             <span class="locationAddress">{{address.location}}</span>
