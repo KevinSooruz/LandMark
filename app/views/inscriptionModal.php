@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <span class="link linkBlue" ng-click="changeModal()">Se connecter</span>
+                            <span class="link linkPrimary" ng-click="changeModal()">Se connecter</span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6 textRight">
                             <button type="submit" class="btn btnPrimary" ng-click="confirmInscription(user)">Valider</button>

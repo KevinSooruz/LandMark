@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <span class="link linkBlue" ng-click="changeModal()">S&rsquo;inscrire</span>
+                            <span class="link linkPrimary" ng-click="changeModal()">S&rsquo;inscrire</span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6 textRight">
                             <button type="submit" class="btn btnPrimary" ng-click="confirmConnection(userCo)">Valider</button>

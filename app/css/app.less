@@ -64,10 +64,18 @@
     text-align: center;
 }
 
+.inlineAll{
+    display: inline-block;
+    width: 100%; height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 ///////////////////////// Couleurs /////////////////////////
 
 @primary: #1bbc9b; // #357df4
 @secondary: #ccf4ec; // #d3e8ff
+@third: #b5b8cf;
 @primaryDark: darken(@primary, 10%);
 @white: #fff;
 @grey: #e7eaec;
@@ -87,7 +95,7 @@
 .btn{
     margin: 0;
     .br(4px);
-    .fs(16px);
+    .fs(14px);
     .transition-duration(100ms);
     
     &:hover{
@@ -110,18 +118,20 @@
 .btnPrimary{
     .bg(@primary);
     color: @white;
-    border: 1px solid transparent;
     
     &:hover{
-        color: @primary;
-        border: 1px solid @primary;
-        .bg(@white);
+        .bg(@primaryDark);
+        color: @white;
     }
     
     &:focus{
-        color: @primary;
-        border: 1px solid @primary;
-        .bg(@white);
+        .bg(@primary);
+        color: @white;
+        
+        &:hover{
+            .bg(@primaryDark);
+            color: @white;
+        }
     }
 }
 
@@ -134,33 +144,16 @@
     &:hover{
         color: @textDark;
         .bg(@grey);
-        border: 1px solid transparent;
     }
     
     &:focus{
-        .bg(@grey);
-        color: @textDark;
-        border: 1px solid transparent;
-    }
-}
-
-.btnWhite{
-    .bg(@white);
-    color: @primary;
-    border: 1px solid @white;
-    
-    &:hover{
-        color: @white;
-        border: 1px solid @white;
         .bg(@primary);
+        color: @white;
         
-        &:focus{
-            color: @white;
+        &:hover{
+            color: @textDark;
+            .bg(@grey);
         }
-    }
-    
-    &:focus{
-        color: @primary;
     }
 }
 
@@ -180,7 +173,7 @@
     }
 }
 
-.linkBlue{
+.linkPrimary{
     color: @primary;
 }
 
@@ -207,11 +200,22 @@
 ///////////////////////// Body /////////////////////////
 
 body{
-    .fs(16px);
+    .fs(14px);
     .fw4;
     font-family: 'Lato', sans-serif;
     color: @textDark;
     overflow: hidden;
+    
+    .page{
+        .absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        .bg(@greyLight);
+
+        .content{
+            .absolute;
+            top: 0; left: @widthMenu; right: 0; bottom: 0;
+        }
+    }
     
     #logo{
         height: 200px; width: 200px;
@@ -236,6 +240,7 @@ body{
     
     .form-control{
         border: 1px solid @grey;
+        color: @textLight;
     }
     
     .contentBox{
@@ -265,6 +270,7 @@ body{
             display: block;
             padding: 10px 15px;
             border-bottom: 1px solid @grey;
+            .fs(16px);
             
             .toolTip{
                 float: right;
@@ -273,12 +279,13 @@ body{
         
         .inBoxContent{
             padding: 15px;
-            .fs(14px);
+            .fs(13px);
             
             .title{
                 padding: 0;
                 border: none;
                 margin-bottom: 5px;
+                .fs(14px);
             }
             
             p{
@@ -316,6 +323,9 @@ body{
                 }
                 
                 input{
+                    .fs(13px);
+                    color: @textLight;
+                    
                     &:focus{
                         border-color: @primary;
                         .box-shadow(@shadow: 0 0 8px @primaryOpacity);
@@ -360,9 +370,8 @@ body{
             .br(4px);
                             
             &.active{
-                .bg(@primary);
-                color: @white;
-                .transition-duration(100ms);
+                .bg(@secondary);
+                color: @textDark;
             }
                             
             &:hover{
@@ -371,7 +380,8 @@ body{
                 cursor: pointer;
                                 
                 &.active{
-                    .bg(@primary);
+                    .bg(@secondary);
+                    color: @textDark;
                 }
             }
                             

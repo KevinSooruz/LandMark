@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                 "app/js/app.js" : [
                     "app/js/controllers/InitController.js",
                     "app/js/controllers/RouteController.js",
+                    "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/ProfilController.js",
@@ -46,6 +47,7 @@ module.exports = function(grunt) {
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
                     "app/js/controllers/RouteController.js",
+                    "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/ProfilController.js",
@@ -95,7 +97,7 @@ module.exports = function(grunt) {
             tasks: ["less:compile"]
         },
         script: {
-            files: ["app/js/controllers/*.js", "app/js/directives/*.js", "app/js/services/*.js"],
+            files: ["app/js/controllers/*.js", "app/js/directives/*.js", "app/js/services/*.js", "app/js/filters/*.js"],
             tasks: ["uglify"]
         },
         html: {

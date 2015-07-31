@@ -1,4 +1,4 @@
-<div id="profil">
+<div id="profil" class="page">
     <menu></menu>
     <div class="content">
         <adresses></adresses>

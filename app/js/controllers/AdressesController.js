@@ -14,7 +14,20 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     $scope.lists = [];
     
     // Initialisation des adresses
-    $scope.addresses = [];
+    //$scope.addresses = [];
+    
+    $scope.addresses = [
+        {
+            name: "test",
+            location: "test",
+            categorie: "test"
+        },
+        {
+            name: "test2",
+            location: "test2",
+            categorie: "test2"
+        }
+    ];
     
     /////////////////////////////////// Categories ///////////////////////////////////
     
@@ -138,7 +151,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
         }).finally(function(){
             
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
-            console.log(adresse);
+            console.log($scope.addresses);
             $scope.addresses.push({
                 
                 name: adresse.name,

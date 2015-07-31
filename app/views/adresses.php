@@ -1,4 +1,4 @@
-<div id="adresses" ng-controller="AdressesController" class="row">
+<div id="adresses" ng-controller="AdressesController" class="inlineAll">
     <div class="headApp">
         <span class="title">Adresses</span>
     </div>
@@ -50,7 +50,7 @@
                         <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
                     </div>
                     <div class="multiContent">
-                        <button class="btn btnPrimary btnHoverGrey btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
+                        <button class="btn btnPrimary btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-2 textRight">
-                                    <button class="btn btnPrimary btnHoverGrey" ng-click="adList(listName)">Ajouter</button>
+                                    <button class="btn btnPrimary" ng-click="adList(listName)">Ajouter</button>
                                 </div>
                             </div>
                         </form>
@@ -91,7 +91,7 @@
                 <span class="title">Vos adresses <span class="toolTip">{{addresses.length}} Adresse<span ng-show="addresses.length > 1">s</span></span></span>
                 <div class="inBoxContent">
                     <ul class="row listAdresses">
-                        <li class="col-md-12 col-sm-12 col-xs-12" ng-repeat="address in addresses">
+                        <li class="col-md-12 col-sm-12 col-xs-12" ng-repeat="address in addresses | limitTo:-5 | reverse">
                             <div class="row">
                                 <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
                                 <div class="col-md-4 col-sm-4 col-xs-4 textRight">
@@ -102,6 +102,9 @@
                         </li>
                     </ul>
                     <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
+                    <div class="textRight">
+                        <button class="btn btnPrimary" ng-show="addresses.length > 5">Voir toutes les adresses</button>
+                    </div>
                 </div>
             </div>
         </div>
