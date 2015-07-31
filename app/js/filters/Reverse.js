@@ -1,8 +1,8 @@
 app.filter("reverse", function(){
     
-    return function(addresses){
+    return function(items){
         
-        return addresses.slice().reverse();
+        return items.slice().reverse();
         
     }
     
