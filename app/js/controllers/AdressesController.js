@@ -1,4 +1,7 @@
-app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode, Address){
+app.controller("AdressesController", function($scope, $rootScope, Autocomplete, Api, Geocode, Address){
+    
+    var user = $rootScope.userActif;
+    console.log(user);
     
     // Service autocomplétion
     Autocomplete.run();
@@ -88,8 +91,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Api, Geocode
     };
     
     // Initialisation des adresses front
-    $scope.addresses = [];
-    Address.get($scope);
+    $scope.addresses = user.addresses;
     
     // Ajout adresse
     $scope.adresseAdd = function(){

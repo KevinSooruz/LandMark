@@ -6,8 +6,11 @@ include_once "../models/loadClass.php";
 // Permet de définir méthode serveur (POST / GET)
 $method = $_SERVER["REQUEST_METHOD"];
 
-// Objet User
+// Objet Authentification User
 $authUser = new AuthUser($bdd);
+
+// Objet User
+$user = new User($bdd);
 
 switch($method){
     
@@ -37,8 +40,11 @@ switch($method){
                     
                 }else{
                     
+                    // Récupération de l'id utilisateur pour créer session avec ID
+                    $userActif = $user->readId($email);
+                    
                     // Démarrage session + création token pour identification user
-                    $authUser->createSession($email);
+                    $authUser->createSession($email, $userActif["id"]);
                     
                     echo "userLogin";
                     
@@ -68,9 +74,12 @@ switch($method){
 
                     // Enregistrement utilisateur en base
                     $authUser->inscription($surname, $name, $email, $password);
+                    
+                    // Récupération de l'id utilisateur pour créer session avec ID
+                    $userActif = $user->readId($email);
 
                     // Démarrage session + création token pour identification user
-                    $authUser->createSession($email);
+                    $authUser->createSession($email, $userActif["id"]);
 
                 }
                 

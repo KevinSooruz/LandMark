@@ -38,6 +38,7 @@ module.exports = function(grunt) {
                     "app/js/services/ChangeText.js",
                     "app/js/services/Autocomplete.js",
                     "app/js/services/Geocode.js",
+                    "app/js/services/User.js",
                     "app/js/services/Address.js",
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -60,6 +61,7 @@ module.exports = function(grunt) {
                     "app/js/services/ChangeText.js",
                     "app/js/services/Autocomplete.js",
                     "app/js/services/Geocode.js",
+                    "app/js/services/User.js",
                     "app/js/services/Address.js",
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -86,11 +88,12 @@ module.exports = function(grunt) {
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",
-                "dist/back/controls/addressCtrl.php": "back/controls/addressCtrl.php",
                 "dist/back/models/connexionSql.php": "back/models/connexionSql.php",
                 "dist/back/models/loadClass.php": "back/models/loadClass.php",
                 "dist/back/models/AuthUser.class.php": "back/models/AuthUser.class.php",
-                "dist/back/models/Address.class.php": "back/models/Address.class.php"
+                "dist/back/models/Address.class.php": "back/models/Address.class.php",
+                "dist/back/models/Categorie.class.php": "back/models/Categorie.class.php",
+                "dist/back/models/User.class.php": "back/models/User.class.php"
             }
         }
     },

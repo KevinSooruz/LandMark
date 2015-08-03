@@ -16,7 +16,7 @@ class Address{
         
     }
     
-    public function create($categorie, $location, $name, $list, $lat, $lng, $user){
+    public function create($categorie, $location, $name, $list, $lat, $lng){
         
         $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, list, lat, lng, id_user) VALUES(:name, :categorie, :location, :list, :lat, :lng, :user)") or die(print_r($this->_bdd->errorInfo()));
         $reqCreate->execute(array(
@@ -27,7 +27,7 @@ class Address{
             "list" => $list,
             "lat" => $lat,
             "lng" => $lng,
-            "user" => $user["id"]
+            "user" => $_SESSION["user"]
             
         ));
         
@@ -35,12 +35,12 @@ class Address{
         
     }
     
-    public function read($user){
+    public function read(){
         
         $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user");
         $reqRead->execute(array(
         
-            "user" => $user["id"]
+            "user" => $_SESSION["user"]
             
         ));
         

@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 include_once "../models/connexionSql.php";
 include_once "../models/loadClass.php";
@@ -8,7 +8,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 
 // Objet User
 $user = new User($bdd);
-$userActif = $user->read();
+$email = $_SESSION["email"];
 
 // Objet adresse
 $address = new Address($bdd);
@@ -17,9 +17,17 @@ switch($method){
     
     case "GET":
     
-        if(isset($_GET["getaddresses"]) && $_GET["getaddresses"] === "all"){
+        // Récupération des informations utilisateur
+        if(isset($_GET["get"]) && $_GET["get"] === "informations"){
             
-            $address->read($userActif);
+            $user->read();
+            
+        }
+    
+        // Récupération des adresses utilisateur
+        if(isset($_GET["get"]) && $_GET["get"] === "addresses"){
+            
+            $address->read();
             
         }
     
@@ -27,6 +35,7 @@ switch($method){
     
     case "POST":
     
+        // Ajout d'une adresse
         if(isset($_POST["categorie"]) && isset($_POST["location"]) && isset($_POST["name"])){
             
             $categorie = strip_tags($_POST["categorie"]);
@@ -49,7 +58,7 @@ switch($method){
                 
             }
             
-            $address->create($categorie, $location, $name, $list, $lat, $lng, $userActif);
+            $address->create($categorie, $location, $name, $list, $lat, $lng);
             
         }else{
             
@@ -58,5 +67,5 @@ switch($method){
         }
     
         break;
-
+    
 }
