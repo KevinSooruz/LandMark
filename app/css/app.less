@@ -71,6 +71,20 @@
     overflow-x: hidden;
 }
 
+.placeholder(@color){
+    &:-moz-placeholder {
+        color: @color;
+    }
+    
+    &:-ms-input-placeholder {
+        color: @color;
+    }
+    
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+}
+
 ///////////////////////// Couleurs /////////////////////////
 
 @primary: #1bbc9b; // #357df4
@@ -241,6 +255,7 @@ body{
     .form-control{
         border: 1px solid @grey;
         color: @textLight;
+        .placeholder(@textLight);
     }
     
     .contentBox{
@@ -366,7 +381,6 @@ body{
             .center;
              margin-bottom: 3px;
             padding: 4px;
-            .transition-duration(100ms);
             .br(4px);
                             
             &.active{
@@ -376,7 +390,6 @@ body{
                             
             &:hover{
                 .bg(@grey);
-                .transition-duration(100ms);
                 cursor: pointer;
                                 
                 &.active{

@@ -1,4 +1,4 @@
-services.factory("Address", function(Api){
+services.factory("Address", function(Api, $timeout){
     
     var address = {};
     
@@ -9,14 +9,36 @@ services.factory("Address", function(Api){
             switch(response.data){
                     
                     case "emptyName":
-                    
+                        
+                        // Si pas de nom renseigné
                         scope.errorName = true;
                     
                         break;
                     
                     case "emptyLocation":
                     
+                        // Si pas d'adresse renseignée
                         scope.errorLocation = true;
+                    
+                        break;
+                    
+                    case "successAddAddress":
+                    
+                        // Si succés on remet tout à 0
+                        var adName = document.getElementById("adName");
+                        var adLocation = document.getElementById("adLocation");
+                    
+                        scope.categorieIndex = "";
+                        scope.listIndex = "";
+                        scope.adName = "";
+                        scope.adLocation = "";
+                    
+                        $timeout(function(){
+                            
+                            adName.classList.remove("ng-invalid");
+                            adLocation.classList.remove("ng-invalid");
+                            
+                        });
                     
                         break;
                     
