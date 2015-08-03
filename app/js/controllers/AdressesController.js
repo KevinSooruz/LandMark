@@ -51,7 +51,7 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
     /////////////////////////////////// Listes ///////////////////////////////////
     
     // Initialisation des listes
-    $scope.lists = [];
+    $scope.lists = user.lists;
     
     // Ajout de liste
     $scope.adList = function(listName){

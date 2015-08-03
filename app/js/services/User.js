@@ -11,7 +11,7 @@ services.factory("User", function(Api, $q){
             
             get: "informations"
             
-        }
+        };
         
         Api.get("back/controls/userCtrl.php", data).then(function(response){
             
@@ -55,7 +55,25 @@ services.factory("User", function(Api, $q){
     // Informations listes utilisateur
     user.lists = function(){
         
+        var deferred = $q.defer();
         
+        var data = {
+            
+            get: "lists"
+            
+        };
+        
+        Api.get("back/controls/userCtrl.php", data).then(function(response){
+            
+            return deferred.resolve(response.data);
+            
+        }, function(data, status, config, headers){
+            
+            return deferred.reject(data, status, config, headers);
+            
+        });
+        
+        return deferred.promise;
         
     };
     

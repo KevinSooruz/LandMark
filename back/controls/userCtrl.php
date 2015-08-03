@@ -13,6 +13,9 @@ $email = $_SESSION["email"];
 // Objet adresse
 $address = new Address($bdd);
 
+// Objet list
+$lists = new Lists($bdd);
+
 switch($method){
     
     case "GET":
@@ -20,19 +23,26 @@ switch($method){
         // Récupération des informations utilisateur
         if(isset($_GET["get"]) && $_GET["get"] === "informations"){
             
-            $user->read();
+            if($_GET["get"] === "informations"){
+                
+                $user->read();
+                
+            }
             
         }
-    
+            
         // Récupération des adresses utilisateur
         if(isset($_GET["get"]) && $_GET["get"] === "addresses"){
-            
+                
             $address->read();
-            
-        }else{
-            
-            echo "errorLoadAddresses";
-            
+                
+        }
+        
+        // Récupération des listes utilisateur
+        if(isset($_GET["get"]) && $_GET["get"] === "lists"){
+                
+            $lists->read();
+                
         }
     
         break;

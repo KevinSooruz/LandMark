@@ -68,4 +68,36 @@ app.controller("AllController", function($scope, $rootScope, User, Log){
         
     });
     
+    // Informations listes utilisateur
+    User.lists().then(function(response){
+        
+        if(response === "errorLoadLists"){
+            
+            $scope.errorLoadLists = true;
+            
+        }else{
+            
+            $rootScope.userActif.lists = [];
+        
+            // Ajout des listes à l'objet lists de l'objet userActif
+            var i = 0;
+            var max = response.length;
+            for(; i < max; i++){
+
+                $rootScope.userActif.lists.push({
+
+                    name: response[i].name
+
+                });
+
+            }
+            
+        }
+        
+    }, function(data, status, config, headers){
+        
+        console.log(data, status, config, headers);
+        
+    });
+    
 });
