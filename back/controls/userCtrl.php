@@ -29,6 +29,10 @@ switch($method){
             
             $address->read();
             
+        }else{
+            
+            echo "errorLoadAddresses";
+            
         }
     
         break;
@@ -45,24 +49,32 @@ switch($method){
             $lat = "";
             $lng = "";
             
-            if(isset($_POST["list"])){
+            if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
                 
-                $list = strip_tags($_POST["list"]);
+                echo "emptyName";
+                
+            }else if(empty($_POST["location"])){
+                
+                echo "emptyLocation";
+                
+            }else{
+                
+                if(isset($_POST["list"])){
+                
+                    $list = strip_tags($_POST["list"]);
+
+                }
+
+                if(isset($_POST["lat"]) && isset($_POST["lng"])){
+
+                    $lat = $_POST["lat"];
+                    $lng = $_POST["lng"];
+
+                }
+
+                $address->create($categorie, $location, $name, $list, $lat, $lng);
                 
             }
-            
-            if(isset($_POST["lat"]) && isset($_POST["lng"])){
-                
-                $lat = $_POST["lat"];
-                $lng = $_POST["lng"];
-                
-            }
-            
-            $address->create($categorie, $location, $name, $list, $lat, $lng);
-            
-        }else{
-            
-            echo "lowData";
             
         }
     

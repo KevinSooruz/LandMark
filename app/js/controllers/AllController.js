@@ -34,23 +34,31 @@ app.controller("AllController", function($scope, $rootScope, User, Log){
     // Informations adresses utilisateur
     User.addresses().then(function(response){
         
-        $rootScope.userActif.addresses = [];
-        
-        // Ajout des adresses à l'objet addresses de l'objet userActif
-        var i = 0;
-        var max = response.length;
-        for(; i < max; i++){
+        if(response === "errorLoadAddresses"){
             
-            $rootScope.userActif.addresses.push({
-                
-                categorie: response[i].categorie,
-                name: response[i].name,
-                location: response[i].location,
-                list: response[i].list,
-                lat: response[i].lat,
-                lng: response[i].lng
-                
-            });
+            $scope.errorLoadAddresses = true;
+            
+        }else{
+            
+            $rootScope.userActif.addresses = [];
+        
+            // Ajout des adresses à l'objet addresses de l'objet userActif
+            var i = 0;
+            var max = response.length;
+            for(; i < max; i++){
+
+                $rootScope.userActif.addresses.push({
+
+                    categorie: response[i].categorie,
+                    name: response[i].name,
+                    location: response[i].location,
+                    list: response[i].list,
+                    lat: response[i].lat,
+                    lng: response[i].lng
+
+                });
+
+            }
             
         }
         

@@ -7,8 +7,8 @@
             <div class="inBox">
                 <span class="title">Ajouter une adresse</span>
                 <div class="inBoxContent">
-                    <div class="multiContent">
-                        <form name="adresses" class="form-horizontal">
+                    <form name="adresses" class="form-horizontal">
+                        <div class="multiContent">
                             <div class="form-group">
                                 <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                 <div class="col-md-10 col-sm-10">
@@ -29,29 +29,33 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="multiContent">
-                        <span class="title">Cat&eacute;gorie</span>
-                        <ul class="row">
-                            <li class="col-md-3" ng-repeat="categorie in categories">
-                                <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
-                            </li>
-                        </ul>
-                        <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
-                    </div>
-                    <div class="multiContent">
-                        <span class="title">Liste</span>
-                        <ul class="row">
-                            <li class="col-md-3" ng-repeat="list in lists">
-                                <span class="selectObject" ng-class="{active: listIndex === $index}" ng-click="selectList($index, list.name)">{{list.name}}</span>
-                            </li>
-                        </ul>
-                        <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
-                    </div>
-                    <div class="multiContent">
-                        <button class="btn btnPrimary btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
-                    </div>
+                            <div class="form-group">
+                                <span ng-show="errorName === true" class="errorBlock">Merci de renseigner un nom.</span>
+                                <span ng-show="errorLocation === true" class="errorBlock">Merci de renseigner une adresse.</span>
+                            </div>
+                        </div>
+                        <div class="multiContent">
+                            <span class="title">Cat&eacute;gorie</span>
+                            <ul class="row">
+                                <li class="col-md-3" ng-repeat="categorie in categories">
+                                    <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
+                                </li>
+                            </ul>
+                            <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
+                        </div>
+                        <div class="multiContent">
+                            <span class="title">Liste</span>
+                            <ul class="row">
+                                <li class="col-md-3" ng-repeat="list in lists">
+                                    <span class="selectObject" ng-class="{active: listIndex === $index}" ng-click="selectList($index, list.name)">{{list.name}}</span>
+                                </li>
+                            </ul>
+                            <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
+                        </div>
+                        <div class="multiContent">
+                            <button type="submit" class="btn btnPrimary btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -102,6 +106,7 @@
                         </li>
                     </ul>
                     <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
+                    <span ng-show="errorLoadAddresses === true" class="errorBlock">Une erreur s'est produite. Merci de recharger la page.</span>
                     <div class="textRight">
                         <button class="btn btnPrimary" ng-show="addresses.length > 5">Voir toutes les adresses</button>
                     </div>

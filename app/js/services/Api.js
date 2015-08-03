@@ -54,10 +54,7 @@ services.factory("Api", function($http){
             
         }).error(function(data, status, headers, config){
             
-            var response = "error";
             console.log(data, status, headers, config);
-            
-            return response;
             
         });
         

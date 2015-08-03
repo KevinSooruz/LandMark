@@ -1,7 +1,7 @@
 app.controller("AdressesController", function($scope, $rootScope, Autocomplete, Api, Geocode, Address){
     
+    // Récupération des information de l'utilisateur (initialisé sur AllController.js) grâce à rootScope
     var user = $rootScope.userActif;
-    console.log(user);
     
     // Service autocomplétion
     Autocomplete.run();
@@ -21,15 +21,19 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
     // Récupération des catégories
     Api.get("back/controls/categorieCtrl.php", dataCategorie).then(function(response){
         
-        if(response !== "error"){
-            
-            $scope.categories = response.data;
-            
-        }else{
+        if(response.data === "categorieProblem"){
             
             $scope.errorCategorieBackEnd = true;
             
+        }else{
+            
+            $scope.categories = response.data;
+            
         }
+        
+    }, function(data, status, headers, config){
+        
+        console.log(data, status, headers, config);
         
     });
     
@@ -149,7 +153,7 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
                 
             });
             
-            Address.post(adresse);
+            Address.post(adresse, $scope);
             
         });
         
