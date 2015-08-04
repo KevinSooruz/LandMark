@@ -1,11 +1,13 @@
 <div class="modal" ng-class="{in: modalInscription === true}">
-    <div class="modalOut" ng-click="hideModalInscription()"></div>
+    <!--<div class="modalOut" ng-click="hideModalInscription()"></div> div permettant la fermeture de la modal-->
+    <i class="glyphicon glyphicon-remove" ng-click="hideModalInscription()"></i>
     <div class="modalBody" ng-class="{showModal: modalInscription === true}">
         <div class="modalTitle">
-            <span>Inscription</span>
-            <i class="glyphicon glyphicon-remove" ng-click="hideModalInscription()"></i>
+            <span>Localize</span>
         </div>
         <div class="modalContent">
+            <span class="title">Retrouvez et partagez vos lieux pr&eacute;f&eacute;rez</span>
+            <p>Localize est un service vous permettant de sauvegarder vos lieux pr&eacute;f&eacute;rez. Vous pouvez partager ces lieux avec tous vos amis afin de leur faire d&eacute;couvrir votre univers.</p>
             <form name="inscription">
                 <div class="form-group">
                     <label id="labeluSurname" for="uSurname"><i class="glyphicon glyphicon-user"></i> Pr&eacute;nom</label>
@@ -45,18 +47,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <span class="link linkPrimary" ng-click="changeModal()">Se connecter</span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 textRight">
-                            <button type="submit" class="btn btnPrimary" ng-click="confirmInscription(user)">Valider</button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btnPrimary btnFullWidth" ng-click="confirmInscription(user)">Inscription</button>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>
             <span ng-show="userExist === true" class="errorModal">Cet utilisateur semble d&eacutej&agrave; exister.<br /><span class="link linkError" ng-click="changeModal()">Connectez-vous !</span></span>
+            <div class="center">
+                <span>Vous poss&eacute;dez un compte ?</span>
+                <span class="btn btnGhostGrey btnFullWidth btnChangeModal" ng-click="changeModal()">Se connecter</span>
+                <span class="link linkPrimary" ng-click="hideModalInscription()">Retour accueil</span>
+            </div>
         </div>
     </div>
 </div>

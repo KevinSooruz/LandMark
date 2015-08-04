@@ -41,6 +41,15 @@ app.directive("connection", function(Modal){
             // Validation formulaire
             scope.confirmConnection = function(userCo){
                 
+                var uEmailCo = document.getElementById("uEmailCo").value;
+                var uPasswordCo = document.getElementById("uPasswordCo").value;
+                
+                if(uEmailCo === "" || uEmailCo === undefined || uPasswordCo === "" || uPasswordCo === undefined){
+                    
+                    return;
+                    
+                }
+                
                 // Données utilisées pour l'enregistrement de l'utilisateur
                 this.userCo.connection = "login"; // Envoie de la donnée connection pour différencier les 2 POST en back office (inscription ou connexion)
                 var data = angular.copy(userCo);

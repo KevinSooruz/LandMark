@@ -1,9 +1,21 @@
 .modal{
     .absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    .bg(@bgOpacity);
+    .bg(@greyLight);
     .translate3d(0; -9999px; 0);
     z-index: 999999;
+    
+    .glyphicon-remove{
+        .absolute;
+        right: 15px; top: 15px;
+        color: @grey;
+        .fs(16px);
+                
+        &:hover{
+            cursor: pointer;
+            color: @textDark;
+        }
+    }
     
     .modalOut{
         .absolute;
@@ -12,12 +24,10 @@
     
     .modalBody{
         color: @textDark;
-        width: 750px;
+        width: 400px;
         margin: 0 auto;
-        .br(4px);
         margin-top: 50px;
         .translate3d(0; -150px; 0);
-        .box-shadow(@shadow: 0 3px 9px rgba(0,0,0,0.5));
         
         &.showModal{
             .translate3d(0; 0; 0);
@@ -28,29 +38,39 @@
             .relative;
             .uppercase;
             .center;
-            .bg(@primary);
-            color: @white;
-            .border-top-radius(4px);
-            padding: 12px 0;
-            
-            .glyphicon{
-                .absolute;
-                right: 8px; top: 8px;
-                .opacity(0.6);
-                
-                &:hover{
-                    cursor: pointer;
-                    .opacity(1);
-                }
-            }
+            .bg(@greyLight);
+            color: @grey;
+            .fs(60px);
+            .fm(sans-serif);
+            letter-spacing: -2px;
+            .fw9;
         }
         
         .modalContent{
-            .bg(@white);
-            padding: 25px 15px;
-            .border-bottom-radius(4px);
+            .bg(@greyLight);
+            padding: 15px;
+            
+            .title{
+                display: inline-block;
+                width: 100%;
+                .fs(16px);
+                .center;
+                .fw7;
+                margin-bottom: 10px;
+            }
+            
+            p{
+                .center;
+                margin-bottom: 20px;
+            }
+            
+            .btnChangeModal{
+                margin: 15px 0;
+            }
             
             form{
+                margin-bottom: 25px;
+                
                 .form-group{
                     margin-bottom: 10px;
                     .relative;
@@ -66,6 +86,7 @@
                         .absolute;
                         left: 0; top: 0;
                         margin-bottom: 0;
+                        .br(4px);
 
                         &.move{
                             .translate3d(9px; -8px; 0);
@@ -79,17 +100,17 @@
                         
                         &:focus{
                             border-color: @primary;
-                            .box-shadow(@shadow: 0 0 8px @primaryOpacity);
+                            .box-shadow(@shadow: none);
                         }
                         
                         &.ng-touched.ng-invalid{
                             border-color: @error;
-                            .box-shadow(@shadow: 0 0 8px @errorOpacity);
+                            .box-shadow(@shadow: none);
                         }
                         
                         &.errorBackEnd{
                             border-color: @error;
-                            .box-shadow(@shadow: 0 0 8px @errorOpacity);
+                            .box-shadow(@shadow: none);
                         }
                     }
 
@@ -114,7 +135,7 @@
                 display: block;
                 width: 100%; 
                 .center;
-                margin-top: 10px;
+                margin-bottom: 15px;
             }
         }
     }

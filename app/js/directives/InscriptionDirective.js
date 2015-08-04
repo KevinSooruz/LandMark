@@ -41,6 +41,17 @@ app.directive("inscription", function(Modal){
             // Validation formulaire
             scope.confirmInscription = function(user){
                 
+                var uSurname = document.getElementById("uSurname").value;
+                var uName = document.getElementById("uName").value;
+                var uEmail = document.getElementById("uEmail").value;
+                var uPassword = document.getElementById("uPassword").value;
+                
+                if(uSurname === "" || uSurname === undefined || uName === "" || uName === undefined || uEmail === "" || uEmail === undefined || uPassword === "" || uPassword === undefined){
+                    
+                    return;
+                    
+                }
+                
                 // Données utilisées pour l'enregistrement de l'utilisateur
                 this.user.inscription = "login"; // Envoie de la donnée inscription pour différencier les 2 POST en back office (inscription ou connexion)
                 var data = angular.copy(user);

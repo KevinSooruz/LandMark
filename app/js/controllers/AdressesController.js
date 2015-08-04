@@ -1,41 +1,19 @@
-app.controller("AdressesController", function($scope, $rootScope, Autocomplete, Api, Geocode, Address){
-    
-    // Récupération des information de l'utilisateur (initialisé sur AllController.js) grâce à rootScope
-    var user = $rootScope.userActif;
+app.controller("AdressesController", function($scope, Autocomplete, Geocode, Address, User, Categorie, Lists){
     
     // Service autocomplétion
     Autocomplete.run();
     
-    /////////////////////////////////// Categories ///////////////////////////////////
-    
-    // Intégration des catégories
-    var dataCategorie = {
+    // Initialisation Objet adresse
+    var adresse = {
         
-        categorie: true
+        categorie: "Autre"
         
     };
     
-    // Initialisation message erreur categorie
-    $scope.errorCategorieBackEnd = false;
+    /////////////////////////////////// Categories ///////////////////////////////////
     
     // Récupération des catégories
-    Api.get("back/controls/categorieCtrl.php", dataCategorie).then(function(response){
-        
-        if(response.data === "categorieProblem"){
-            
-            $scope.errorCategorieBackEnd = true;
-            
-        }else{
-            
-            $scope.categories = response.data;
-            
-        }
-        
-    }, function(data, status, headers, config){
-        
-        console.log(data, status, headers, config);
-        
-    });
+    Categorie.get($scope);
     
     // Sélection de la catégorie
     $scope.selectCategorie = function(index, categorie){
@@ -51,7 +29,7 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
     /////////////////////////////////// Listes ///////////////////////////////////
     
     // Initialisation des listes
-    $scope.lists = user.lists;
+    Lists.get($scope);
     
     // Ajout de liste
     $scope.adList = function(listName){
@@ -63,12 +41,7 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
             
         }else{
             
-            // Ajout de la liste
-            $scope.lists.push({
-            
-                name: listName
-            
-            });
+            Lists.post($scope, listName);
             
         }
         
@@ -87,15 +60,8 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
     
     /////////////////////////////////// Adresse ///////////////////////////////////
     
-    // Initialisation Objet adresse
-    var adresse = {
-        
-        categorie: "Autre"
-        
-    };
-    
     // Initialisation des adresses front
-    $scope.addresses = user.addresses;
+    Address.get($scope);
     
     // Ajout adresse
     $scope.adresseAdd = function(){
@@ -145,14 +111,6 @@ app.controller("AdressesController", function($scope, $rootScope, Autocomplete, 
         }).finally(function(){
             
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
-            $scope.addresses.push({
-                
-                name: adresse.name,
-                location: adresse.location,
-                categorie: adresse.categorie
-                
-            });
-            
             Address.post(adresse, $scope);
             
         });

@@ -2,9 +2,39 @@ services.factory("Address", function(Api, $timeout){
     
     var address = {};
     
+    // Informations adresses utilisateur
+    address.get = function(scope){
+        
+        var data = {
+            
+            user: "addresses"
+            
+        };
+        
+        Api.get("back/controls/addressesCtrl.php", data).then(function(response){
+            
+            if(response.data === "errorLoadAddresses"){
+
+                scope.errorLoadAddresses = true;
+
+            }else{
+
+                scope.addresses = response.data;
+
+            }
+            
+        }, function(data, status, config, headers){
+            
+            console.log(data, status, config, headers);
+            scope.errorLoadAddresses = true;
+            
+        });
+        
+    };
+    
     address.post = function(data, scope){
         
-        Api.post("back/controls/userCtrl.php", data).then(function(response){
+        Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
             switch(response.data){
                     
@@ -23,6 +53,15 @@ services.factory("Address", function(Api, $timeout){
                         break;
                     
                     case "successAddAddress":
+                    
+                        // Envoie des données au front
+                        scope.addresses.push({
+                
+                            name: data.name,
+                            location: data.location,
+                            categorie: data.categorie
+
+                        });
                     
                         // Si succés on remet tout à 0
                         var adName = document.getElementById("adName");

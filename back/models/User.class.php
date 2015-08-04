@@ -18,7 +18,7 @@ class User{
     
     public function read(){
         
-        $reqRead = $this->_bdd->prepare("SELECT id, name, surname, email FROM users WHERE email = :email");
+        $reqRead = $this->_bdd->prepare("SELECT name, surname, email FROM users WHERE email = :email");
         $reqRead->execute(array(
         
             "email" => $_SESSION["email"]
@@ -31,7 +31,6 @@ class User{
                 $result .= ",";
             }
             $result.= json_encode(array(
-                "id" => $respRead["id"],
                 "name" => $respRead["name"],
                 "surname" => $respRead["surname"],
                 "email" => $respRead["email"]

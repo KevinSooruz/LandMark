@@ -1,11 +1,13 @@
 <div class="modal" ng-class="{in: modalConnection === true}">
-    <div class="modalOut" ng-click="hideModalConnection()"></div>
+    <!--<div class="modalOut" ng-click="hideModalConnection()"></div> div permettant la fermeture de la modal-->
+    <i class="glyphicon glyphicon-remove" ng-click="hideModalConnection()"></i>
     <div class="modalBody" ng-class="{showModal: modalConnection === true}">
         <div class="modalTitle">
-            <span>Connexion</span>
-            <i class="glyphicon glyphicon-remove" ng-click="hideModalConnection()"></i>
+            <span>Localize</span>
         </div>
         <div class="modalContent">
+            <span class="title">Bienvenue sur Localize</span>
+            <p>Acc&eacute;dez &agrave; votre compte personnel en vous connectant. Si vous ne poss&eacute;dez pas de compte Localize, inscrivez-vous et b&eacute;n&eacute;ficiez de l&rsquo;int&eacute;gralit&eacute; de nos services.</p>
             <form name="connection">
                 <div class="form-group">
                     <label id="labeluEmailCo" for="uEmailCo"><i class="glyphicon glyphicon-envelope"></i> E-mail</label>
@@ -27,19 +29,18 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <span class="link linkPrimary" ng-click="changeModal()">S&rsquo;inscrire</span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 textRight">
-                            <button type="submit" class="btn btnPrimary" ng-click="confirmConnection(userCo)">Valider</button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btnPrimary btnFullWidth" ng-click="confirmConnection(userCo)">Connexion</button>
                 </div>
             </form>
             <span ng-show="errorModalBackEnd === true" class="errorModal">Une erreur s&rsquo;est produite. Merci d&rsquo;essayer de nouveau.</span>
             <span ng-show="userNotExist === true" class="errorModal">Cet utilisateur n&rsquo;existe pas.<br /><span class="link linkError" ng-click="changeModal()">Inscrivez-vous !</span></span>
             <span ng-show="incorrectPassword === true" class="errorModal">Mot de passe incorrect.</span>
+            <div class="center">
+                <span class="link linkPrimary">Mot de passe oubli&eacute; ?</span><br />
+                <span>Vous ne poss&eacute;dez pas de compte ?</span>
+                <span class="btn btnGhostGrey btnFullWidth btnChangeModal" ng-click="changeModal()">Cr&eacute;er un compte</span>
+                <span class="link linkPrimary" ng-click="hideModalConnection()">Retour accueil</span>
+            </div>
         </div>
     </div>
 </div>
