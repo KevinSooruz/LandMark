@@ -1,4 +1,4 @@
-services.factory("Lists", function(Api){
+services.factory("Lists", function(Api, $timeout){
     
     var lists = {};
     
@@ -34,10 +34,50 @@ services.factory("Lists", function(Api){
     
     lists.post = function(scope, listName){
         
-        // Ajout de la liste
-        scope.lists.push({
+        var data = {
             
             name: listName
+            
+        };
+        
+        Api.post("back/controls/listsCtrl.php", data).then(function(response){
+            
+            switch(response.data){
+                    
+                    case "emptyName":
+                    
+                        scope.errorList = true;
+                        scope.errorNameList = true;
+                    
+                        break;
+                    
+                    case "successAddList":
+                        
+                        var listName = document.getElementById("listName");
+                        
+                        // Ajout de la liste
+                        scope.lists.push({
+
+                            name: data.name
+
+                        });
+                        
+                        // Remise à 0 de l'input
+                        scope.listName = "";
+                        
+                        $timeout(function(){
+                            
+                            listName.classList.remove("ng-invalid");
+                            
+                        });
+                        
+                        break;
+                    
+            }
+            
+        }, function(data, status, config, headers){
+            
+            console.log(data, status, config, headers);
             
         });
         

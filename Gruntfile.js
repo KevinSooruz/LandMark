@@ -29,7 +29,6 @@ module.exports = function(grunt) {
                     "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
-                    "app/js/controllers/ProfilController.js",
                     "app/js/controllers/AdressesController.js",
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -54,7 +53,6 @@ module.exports = function(grunt) {
                     "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
-                    "app/js/controllers/ProfilController.js",
                     "app/js/controllers/AdressesController.js",
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -84,7 +82,6 @@ module.exports = function(grunt) {
         dist: {
             files: {
                 "dist/app/views/home.php": "app/views/home.php",
-                "dist/app/views/profil.php": "app/views/profil.php",
                 "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
                 "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
                 "dist/app/views/menu.php": "app/views/menu.php",

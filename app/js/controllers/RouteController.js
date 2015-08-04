@@ -5,10 +5,10 @@ app.config(["$routeProvider", function($routeProvider){
         templateUrl: "app/views/home.php",
         controller: "HomeController"
         
-    }).when("/profil", {
+    }).when("/addresses", {
         
-        templateUrl: "app/views/profil.php",
-        controller: "ProfilController",
+        templateUrl: "app/views/adresses.php",
+        controller: "AdressesController",
         resolve:{
             session: app.session // Vérification si session active pour accéder au compte client
         }

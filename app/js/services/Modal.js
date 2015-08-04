@@ -104,7 +104,7 @@ services.factory("Modal", function(Api, Log){
                         Log.storageIn();
                         
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
-                        Log.in("/profil");
+                        Log.in("/addresses");
                         
                         break;
 
@@ -133,7 +133,7 @@ services.factory("Modal", function(Api, Log){
                         // Stockage info session
                         // do something
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
-                        Log.in("/profil");
+                        Log.in("/addresses");
 
                         break;
 

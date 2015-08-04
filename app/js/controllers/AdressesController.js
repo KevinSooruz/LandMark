@@ -37,6 +37,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         if(listName === undefined || listName === ""){
             
             $scope.errorList = true;
+            $scope.errorNameList = true;
             return;
             
         }else{

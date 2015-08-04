@@ -23,6 +23,23 @@ switch($method){
         break;
     
     case "POST":
+    
+        if(isset($_POST["name"])){
+            
+            $name = strip_tags($_POST["name"]);
+            
+            if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
+                
+                echo "emptyName";
+                
+            }else{
+                
+                $lists->create($name);
+                
+            }
+            
+        }    
+    
         break;
 
 }
