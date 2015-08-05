@@ -12,10 +12,10 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     /////////////////////////////////// Categories ///////////////////////////////////
     
-    // Récupération des catégories
+    ///// Récupération des catégories /////
     Categorie.get($scope);
     
-    // Sélection de la catégorie
+    ///// Sélection de la catégorie /////
     $scope.selectCategorie = function(index, categorie){
         
         // Ajout class active au front
@@ -28,10 +28,27 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     /////////////////////////////////// Listes ///////////////////////////////////
     
-    // Initialisation des listes
-    Lists.get($scope);
+    ///// Initialisation des listes /////
+    Lists.get().then(function(response){
+        
+        if(response === "errorLoadLists"){
+
+            $scope.errorLoadLists = true;
+
+        }else{
+
+            $scope.lists = response;
+
+        }
+        
+    }, function(data, status, config, headers){
+        
+        console.log(data, status, config, headers);
+        $scope.errorLoadLists = true;
+        
+    });
     
-    // Ajout de liste
+    ///// Ajout de liste /////
     $scope.adList = function(listName){
         
         if(listName === undefined || listName === ""){
@@ -48,7 +65,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         
     };
     
-    // Sélection de la liste
+    ///// Sélection de la liste /////
     $scope.selectList = function(index, listName){
         
         // Ajout class active au front
@@ -61,10 +78,27 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     /////////////////////////////////// Adresse ///////////////////////////////////
     
-    // Initialisation des adresses front
-    Address.get($scope);
+    ///// Initialisation des adresses front /////
+    Address.get().then(function(response){
+        
+        if(response === "errorLoadAddresses"){
+
+            $scope.errorLoadAddresses = true;
+
+        }else{
+
+            $scope.addresses = response;
+
+        }
+        
+    }, function(){
+        
+        console.log(data, status, config, headers);
+        $scope.errorLoadAddresses = true;
+        
+    });
     
-    // Ajout adresse
+    ///// Ajout adresse /////
     $scope.adresseAdd = function(){
         
         // Récupération de l'adresse

@@ -1,34 +1,36 @@
-services.factory("Address", function(Api, $timeout){
+services.factory("Address", function(Api, $timeout, $q, $routeParams){
     
     var address = {};
     
     // Informations adresses utilisateur
-    address.get = function(scope){
+    address.get = function(){
         
-        var data = {
+        var deferred = $q.defer();
+        
+        // Initialisation objet data
+        var data = {};
+        
+        // Si paramètre url $routeParams
+        if($routeParams){
             
-            user: "addresses"
+            data = $routeParams;
             
-        };
+        }
+        
+        // Paramètre pour get lists
+        data.user = "addresses";
         
         Api.get("back/controls/addressesCtrl.php", data).then(function(response){
             
-            if(response.data === "errorLoadAddresses"){
-
-                scope.errorLoadAddresses = true;
-
-            }else{
-
-                scope.addresses = response.data;
-
-            }
+            return deferred.resolve(response.data);
             
         }, function(data, status, config, headers){
             
-            console.log(data, status, config, headers);
-            scope.errorLoadAddresses = true;
+            return deferred.reject(data, status, config, headers);
             
         });
+        
+        return deferred.promise;
         
     };
     

@@ -13,6 +13,14 @@ app.config(["$routeProvider", function($routeProvider){
             session: app.session // Vérification si session active pour accéder au compte client
         }
         
+    }).when("/addresses/:nameList", {
+        
+        templateUrl: "app/views/liste.php",
+        controller: "ListeController",
+        resolve:{
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
     }).otherwise({
         
         redirectTo: "/"

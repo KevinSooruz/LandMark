@@ -1,34 +1,29 @@
-services.factory("Lists", function(Api, $timeout){
+services.factory("Lists", function(Api, $timeout, $q){
     
     var lists = {};
     
     // Informations listes utilisateur
     lists.get = function(scope){
         
-        var data = {
-            
-            user: "lists"
-            
-        };
+        var deferred = $q.defer();
+        
+        // Initialisation objet data
+        var data = {};
+        
+        // Paramètre pour get lists
+        data.user = "lists";
         
         Api.get("back/controls/listsCtrl.php", data).then(function(response){
-            
-            if(response.data === "errorLoadLists"){
 
-                scope.errorLoadLists = true;
+            return deferred.resolve(response.data);
 
-            }else{
-
-                scope.lists = response.data;
-
-            }
-            
         }, function(data, status, config, headers){
-            
-            console.log(data, status, config, headers);
-            scope.errorLoadLists = true;
-            
+
+            return deferred.reject(data, status, config, headers);
+
         });
+        
+        return deferred.promise;
         
     };
     

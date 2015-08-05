@@ -9,6 +9,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 // Objet adresse
 $address = new Address($bdd);
 
+// Objet list
+$lists = new Lists($bdd);
+
 switch($method){
     
     case "GET":
@@ -16,7 +19,27 @@ switch($method){
         // Récupération des adresses utilisateur
         if(isset($_GET["user"]) && $_GET["user"] === "addresses"){
                 
-            $address->read();
+            if(isset($_GET["nameList"])){
+            
+                $nameList = strip_tags($_GET["nameList"]);
+                $numberResult = $lists->verifListExist($nameList); // Vérifier si le nom de liste existe
+                
+                if($numberResult === 0){
+                    
+                    // Si liste n'existe pas car nombre de liste avec ce nom === 0
+                    echo "noResult";
+                    
+                }else{
+                    
+                    $address->readOne($nameList);
+                    
+                }
+            
+            }else{
+                
+                $address->read();
+                
+            }
                 
         }
     

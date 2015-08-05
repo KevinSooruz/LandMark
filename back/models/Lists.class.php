@@ -54,4 +54,18 @@ class Lists{
         
     }
     
+    public function verifListExist($nameList){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name FROM lists WHERE id_user = :user AND name = :nameList");
+        $reqRead->execute(array(
+        
+            "user" => $_SESSION["user"],
+            "nameList" => $nameList
+        
+        ));
+        
+        return $reqRead->rowCount();
+        
+    }
+    
 }

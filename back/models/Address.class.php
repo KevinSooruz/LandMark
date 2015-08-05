@@ -64,4 +64,34 @@ class Address{
         
     }
     
+    public function readOne($nameList){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND list = :nameList");
+        $reqRead->execute(array(
+        
+            "user" => $_SESSION["user"],
+            "nameList" => $nameList
+            
+        ));
+        
+        $result = "[";
+        while($addresses = $reqRead->fetch()){
+            if($result != "["){
+                $result .= ",";
+            }
+            $result.= json_encode(array(
+                "name" => $addresses["name"],
+                "categorie" => $addresses["categorie"],
+                "location" => $addresses["location"],
+                "list" => $addresses["list"],
+                "lat" => $addresses["lat"],
+                "lng" => $addresses["lng"]
+            ));
+        };
+        $result.= "]";
+        
+        echo $result;
+        
+    }
+    
 }

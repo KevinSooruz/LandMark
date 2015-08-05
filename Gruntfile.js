@@ -30,6 +30,7 @@ module.exports = function(grunt) {
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AdressesController.js",
+                    "app/js/controllers/ListeController.js",
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
@@ -53,6 +54,7 @@ module.exports = function(grunt) {
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AdressesController.js",
+                    "app/js/controllers/ListeController.js",
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
@@ -84,6 +86,7 @@ module.exports = function(grunt) {
                 "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
                 "dist/app/views/menu.php": "app/views/menu.php",
                 "dist/app/views/adresses.php": "app/views/adresses.php",
+                "dist/app/views/liste.php": "app/views/liste.php",
                 
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",

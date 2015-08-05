@@ -15,7 +15,7 @@ switch($method){
     
         // Récupération des listes utilisateur
         if(isset($_GET["user"]) && $_GET["user"] === "lists"){
-                
+            
             $lists->read();
                 
         }

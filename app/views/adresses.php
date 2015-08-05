@@ -89,11 +89,10 @@
                             </div>
                             <div class="multiContent">
                                 <ul class="row">
-                                    <li class="col-md-6" ng-repeat="list in lists">
+                                    <li class="col-md-6" ng-repeat="list in lists" ng-click="viewAddressesList(list.name)">
                                         <span class="title col-md-6">{{list.name}}</span>
                                         <div class="icons col-md-6">
-                                            <i class="glyphicon glyphicon-cog"></i>
-                                            <i class="glyphicon glyphicon-remove"></i>
+                                            <i class="glyphicon glyphicon-menu-right"></i>
                                         </div>
                                     </li>
                                 </ul>
