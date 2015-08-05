@@ -44,8 +44,7 @@ module.exports = function(grunt) {
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js",
-                    "app/js/directives/AdressesDirective.js"
+                    "app/js/directives/MenuDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -68,8 +67,7 @@ module.exports = function(grunt) {
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js",
-                    "app/js/directives/AdressesDirective.js"
+                    "app/js/directives/MenuDirective.js"
                 ]
             }
         }

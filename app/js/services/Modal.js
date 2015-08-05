@@ -1,4 +1,4 @@
-services.factory("Modal", function(Api, Log){
+services.factory("Modal", function(Api, Log, $timeout){
     
     var modal = {};
     
@@ -98,13 +98,18 @@ services.factory("Modal", function(Api, Log){
                     case "userLogin":
                         
                         // Connexion
-                        scope.modalConnection = false; // suppression modal
-                        
                         // Utilisateur connecté
                         Log.storageIn();
                         
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/addresses");
+                        
+                        // suppression modal : Timeout pour éviter de revenir sur la page d'accueil avant d'être renvoyé vers le compte utilisateur
+                        $timeout(function(){
+                            
+                            scope.modalConnection = false;
+                            
+                        }, 200);
                         
                         break;
 
@@ -125,8 +130,6 @@ services.factory("Modal", function(Api, Log){
                     case "userAdded":
                         
                         // Inscription
-                        scope.modalInscription = false; // suppression modal
-                        
                         // Utilisateur connecté
                         Log.storageIn();
 
@@ -134,6 +137,13 @@ services.factory("Modal", function(Api, Log){
                         // do something
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/addresses");
+                        
+                        // suppression modal : Timeout pour éviter de revenir sur la page d'accueil avant d'être renvoyé vers le compte utilisateur
+                        $timeout(function(){
+                            
+                            scope.modalInscription = false;
+                            
+                        }, 200);
 
                         break;
 

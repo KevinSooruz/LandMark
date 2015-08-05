@@ -63,14 +63,14 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="inBox">
+                    <div id="listsSelect" class="inBox">
                         <span class="title">Vos listes <span class="toolTip">{{lists.length}} liste<span ng-show="lists.length > 1">s</span></span></span>
                         <div class="inBoxContent">
                             <div class="multiContent">
                                 <form name="adLists" class="form-horizontal">
                                     <div class="form-group">
                                         <label for="listName" class="col-md-2 col-sm-2 control-label">Nom</label>
-                                        <div class="col-md-8 col-sm-8">
+                                        <div class="col-md-7 col-sm-7">
                                             <input id="listName" name="listName" placeholder="Indiquez un nom" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false; errorNameList = false" ng-minlength="3" ng-maxlength="50" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adLists.listName.$error.required">Obligatoire</span>
@@ -78,7 +78,7 @@
                                                 <span ng-show="adLists.listName.$error.maxlength">50 car. max</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 col-sm-2 textRight">
+                                        <div class="col-md-3 col-sm-3 textRight">
                                             <button class="btn btnPrimary" ng-click="adList(listName)">Ajouter</button>
                                         </div>
                                     </div>
@@ -89,8 +89,12 @@
                             </div>
                             <div class="multiContent">
                                 <ul class="row">
-                                    <li class="col-md-3" ng-repeat="list in lists">
-                                        <span class="selectObject">{{list.name}}</span>
+                                    <li class="col-md-6" ng-repeat="list in lists">
+                                        <span class="title col-md-6">{{list.name}}</span>
+                                        <div class="icons col-md-6">
+                                            <i class="glyphicon glyphicon-cog"></i>
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </div>
                                     </li>
                                 </ul>
                                 <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
