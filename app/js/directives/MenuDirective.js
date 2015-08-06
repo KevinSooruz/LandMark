@@ -4,13 +4,14 @@ app.directive("menu", function(){
         
         replace: true,
         restrict: "E",
-        templateUrl: "app/views/menu.php",
+        templateUrl: "app/views/templates/menu.php",
         link: function(scope){
             
             scope.menu = [
                 {
                     icon: "glyphicon-th-list",
-                    title: "Adresses"
+                    title: "Adresses",
+                    locate: "/addresses"
                 },
                 {
                     icon: "glyphicon-map-marker",

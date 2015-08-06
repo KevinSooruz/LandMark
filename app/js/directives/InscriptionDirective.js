@@ -4,7 +4,7 @@ app.directive("inscription", function(Modal){
         
         restrict: "E",
         replace: true,
-        templateUrl: "app/views/inscriptionModal.php",
+        templateUrl: "app/views/templates/inscriptionModal.php",
         link: function(scope){
             
             // Animation label on focus

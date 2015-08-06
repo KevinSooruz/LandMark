@@ -19,17 +19,10 @@ app.controller("AllController", function($scope, Log, $location){
         
     };
     
-    // Acces aux adresses de la liste sélectionnée
-    $scope.viewAddressesList = function(nameList){
+    // Redirection
+    $scope.redirect = function(locate){
         
-        $location.path("/addresses/" + nameList);
-        
-    };
-    
-    //Retour page addresses
-    $scope.backAddresses = function(){
-        
-        $location.path("/addresses")
+        $location.path(locate);
         
     };
     

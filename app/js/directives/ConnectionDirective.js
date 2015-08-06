@@ -4,7 +4,7 @@ app.directive("connection", function(Modal){
         
         restrict: "E",
         replace: true,
-        templateUrl: "app/views/connectionModal.php",
+        templateUrl: "app/views/templates/connectionModal.php",
         link: function(scope){
             
             // Animation label on focus

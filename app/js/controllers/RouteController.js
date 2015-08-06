@@ -13,10 +13,18 @@ app.config(["$routeProvider", function($routeProvider){
             session: app.session // Vérification si session active pour accéder au compte client
         }
         
-    }).when("/addresses/:nameList", {
+    }).when("/addresses/lists/:nameList", {
         
-        templateUrl: "app/views/liste.php",
-        controller: "ListeController",
+        templateUrl: "app/views/lists.php",
+        controller: "ListsController",
+        resolve:{
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
+    }).when("/addresses/categories", {
+        
+        templateUrl: "app/views/categories.php",
+        controller: "CategoriesController",
         resolve:{
             session: app.session // Vérification si session active pour accéder au compte client
         }

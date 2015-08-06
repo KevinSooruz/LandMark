@@ -30,7 +30,9 @@ module.exports = function(grunt) {
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AdressesController.js",
-                    "app/js/controllers/ListeController.js",
+                    "app/js/controllers/ListsController.js",
+                    "app/js/controllers/CategoriesController.js",
+                    
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
@@ -42,10 +44,14 @@ module.exports = function(grunt) {
                     "app/js/services/Address.js",
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
+                    
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js"
+                    "app/js/directives/MenuDirective.js",
+                    "app/js/directives/AddressesDirective.js",
+                    "app/js/directives/ListsDirective.js",
+                    "app/js/directives/CategoriesDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -54,7 +60,9 @@ module.exports = function(grunt) {
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AdressesController.js",
-                    "app/js/controllers/ListeController.js",
+                    "app/js/controllers/ListsController.js",
+                    "app/js/controllers/CategoriesController.js",
+                    
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
                     "app/js/services/Session.js",
@@ -66,10 +74,14 @@ module.exports = function(grunt) {
                     "app/js/services/Address.js",
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
+                    
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
                     "app/js/directives/HeadDirective.js",
-                    "app/js/directives/MenuDirective.js"
+                    "app/js/directives/MenuDirective.js",
+                    "app/js/directives/AddressesDirective.js",
+                    "app/js/directives/ListsDirective.js",
+                    "app/js/directives/CategoriesDirective.js"
                 ]
             }
         }
@@ -82,11 +94,19 @@ module.exports = function(grunt) {
         dist: {
             files: {
                 "dist/app/views/home.php": "app/views/home.php",
-                "dist/app/views/inscriptionModal.php": "app/views/inscriptionModal.php",
-                "dist/app/views/connectionModal.php": "app/views/connectionModal.php",
-                "dist/app/views/menu.php": "app/views/menu.php",
                 "dist/app/views/adresses.php": "app/views/adresses.php",
-                "dist/app/views/liste.php": "app/views/liste.php",
+                "dist/app/views/lists.php": "app/views/lists.php",
+                "dist/app/views/categories.php": "app/views/categories.php",
+                
+                "dist/app/views/templates/inscriptionModal.php": "app/views/templates/inscriptionModal.php",
+                "dist/app/views/templates/connectionModal.php": "app/views/templates/connectionModal.php",
+                "dist/app/views/templates/menu.php": "app/views/templates/menu.php",
+                "dist/app/views/templates/addresses/addressesTemplate.php": "app/views/templates/addresses/addressesTemplate.php",
+                "dist/app/views/templates/addresses/listsTemplate.php": "app/views/templates/addresses/listsTemplate.php",
+                "dist/app/views/templates/addresses/listsTemplateSelect.php": "app/views/templates/addresses/listsTemplateSelect.php",
+                "dist/app/views/templates/addresses/categoriesTemplate.php": "app/views/templates/addresses/categoriesTemplate.php",
+                "dist/app/views/templates/lists/listsTemplate.php": "app/views/templates/lists/listsTemplate.php",
+                "dist/app/views/templates/lists/addressesTemplate.php": "app/views/templates/lists/addressesTemplate.php",
                 
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
@@ -117,7 +137,7 @@ module.exports = function(grunt) {
             tasks: ["uglify"]
         },
         html: {
-            files: ["app/views/*.php", "back/**/*.php"],
+            files: ["app/views/*.php", "app/views/templates/**/*.php", "back/**/*.php"],
             tasks: ["minifyHtml"]
         }
     }

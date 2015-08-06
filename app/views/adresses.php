@@ -40,24 +40,8 @@
                                         <span ng-show="errorPatternAddress === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
                                     </div>
                                 </div>
-                                <div class="multiContent">
-                                    <span class="title">Cat&eacute;gorie</span>
-                                    <ul class="row">
-                                        <li class="col-md-3" ng-repeat="categorie in categories">
-                                            <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
-                                        </li>
-                                    </ul>
-                                    <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
-                                </div>
-                                <div class="multiContent">
-                                    <span class="title">Liste</span>
-                                    <ul class="row">
-                                        <li class="col-md-3" ng-repeat="list in lists">
-                                            <span class="selectObject" ng-class="{active: listIndex === $index}" ng-click="selectList($index, list.name)">{{list.name}}</span>
-                                        </li>
-                                    </ul>
-                                    <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
-                                </div>
+                                <categories template-url="app/views/templates/addresses/categoriesTemplate.php"></categories>
+                                <lists template-url="app/views/templates/addresses/listsTemplateSelect.php"></lists>
                                 <div class="multiContent">
                                     <button type="submit" class="btn btnPrimary btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
                                 </div>
@@ -92,40 +76,10 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="multiContent">
-                                <ul class="row">
-                                    <li class="col-md-6" ng-repeat="list in lists" ng-click="viewAddressesList(list.name)">
-                                        <span class="title col-md-6">{{list.name}}</span>
-                                        <div class="icons col-md-6">
-                                            <i class="glyphicon glyphicon-menu-right"></i>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <p ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</p>
-                            </div>
+                            <lists template-url="app/views/templates/addresses/listsTemplate.php"></lists>
                         </div>
                     </div>
-                    <div id="adressesList" class="inBox other">
-                        <span class="title">Vos adresses <span class="toolTip">{{addresses.length}} Adresse<span ng-show="addresses.length > 1">s</span></span></span>
-                        <div class="inBoxContent">
-                            <ul class="row listAdresses">
-                                <li class="col-md-12 col-sm-12 col-xs-12" ng-repeat="address in addresses | limitTo:-5 | reverse">
-                                    <div class="row">
-                                        <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
-                                        <div class="col-md-4 col-sm-4 col-xs-4 textRight">
-                                            <span class="categorie">{{address.categorie}}</span>
-                                        </div>
-                                    </div>
-                                    <span class="locationAddress">{{address.location}}</span>
-                                </li>
-                            </ul>
-                            <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
-                            <span ng-show="errorLoadAddresses === true" class="errorBlock">Une erreur s'est produite. Merci de recharger la page.</span>
-                            <div class="textRight">
-                                <button class="btn btnPrimary" ng-show="addresses.length > 5">Voir toutes les adresses</button>
-                            </div>
-                        </div>
-                    </div>
+                    <addresses template-url="app/views/templates/addresses/addressesTemplate.php"></addresses>
                 </div>
             </div>
         </div>

@@ -267,15 +267,18 @@ body{
     .headApp{
         .fw3;
         min-height: 100px;
-        line-height: 100px;
         .fs(25px);
         .bg(@white);
-        padding: 0 30px;
+        padding: 10px 30px;
         border-bottom: 1px solid @grey;
         
+        .title{
+            display: inline-block;
+            margin-top: 22px;
+        }
+        
         ul.otherHeadElem{
-            margin-top: -30px;
-            line-height: 0;
+            margin-top: -10px;
             .fw4;
             
             li{
@@ -292,6 +295,11 @@ body{
                     cursor: pointer;
                 }
             }
+        }
+        
+        .errorBlock{
+            .fs(13px);
+            .textLeft;
         }
     }
     

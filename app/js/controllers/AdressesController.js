@@ -1,4 +1,4 @@
-app.controller("AdressesController", function($scope, Autocomplete, Geocode, Address, User, Categorie, Lists){
+app.controller("AdressesController", function($scope, Autocomplete, Geocode, Address, User, Lists){
     
     // Service autocomplétion
     Autocomplete.run();
@@ -10,9 +10,6 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     ///// Initialisation catégorie adresse /////
     $scope.adresse.categorie = "Autre";
-    
-    ///// Récupération des catégories /////
-    Categorie.get($scope);
     
     ///// Sélection de la catégorie /////
     $scope.selectCategorie = function(index, categorie){
@@ -26,26 +23,6 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     };
     
     /////////////////////////////////// Listes ///////////////////////////////////
-    
-    ///// Initialisation des listes /////
-    Lists.get().then(function(response){
-        
-        if(response === "errorLoadLists"){
-
-            $scope.errorLoadLists = true;
-
-        }else{
-
-            $scope.lists = response;
-
-        }
-        
-    }, function(data, status, config, headers){
-        
-        console.log(data, status, config, headers);
-        $scope.errorLoadLists = true;
-        
-    });
     
     ///// Ajout de liste /////
     $scope.adList = function(listName){
@@ -82,26 +59,6 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     /////////////////////////////////// Adresse ///////////////////////////////////
     
-    ///// Initialisation des adresses front /////
-    Address.get().then(function(response){
-        
-        if(response === "errorLoadAddresses"){
-
-            $scope.errorLoadAddresses = true;
-
-        }else{
-
-            $scope.addresses = response;
-
-        }
-        
-    }, function(){
-        
-        console.log(data, status, config, headers);
-        $scope.errorLoadAddresses = true;
-        
-    });
-    
     ///// Ajout adresse /////
     $scope.adresseAdd = function(){
         
@@ -114,22 +71,16 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
             $scope.errorPatternAddress = true;
             return;
             
-        }else if((location === undefined || location === "") && ($scope.adName === undefined || $scope.adName === "")){
+        }else if($scope.adName === undefined || $scope.adName === ""){
             
+            // Si nom adresse vide
             $scope.errorName = true;
-            $scope.errorLocation = true;
             return;
             
         }else if(location === undefined || location === ""){
             
             // Si adresse vide
             $scope.errorLocation = true;
-            return;
-            
-        }else if($scope.adName === undefined || $scope.adName === ""){
-            
-            // Si nom adresse vide
-            $scope.errorName = true;
             return;
             
         }
