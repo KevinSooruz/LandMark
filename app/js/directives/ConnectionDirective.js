@@ -7,9 +7,6 @@ app.directive("connection", function(Modal){
         templateUrl: "app/views/connectionModal.php",
         link: function(scope){
             
-            // Initialisation modal
-            Modal.init(scope);
-            
             // Animation label on focus
             scope.focusInputModal = function(inputId){
         
@@ -44,7 +41,17 @@ app.directive("connection", function(Modal){
                 var uEmailCo = document.getElementById("uEmailCo").value;
                 var uPasswordCo = document.getElementById("uPasswordCo").value;
                 
-                if(uEmailCo === "" || uEmailCo === undefined || uPasswordCo === "" || uPasswordCo === undefined){
+                if(scope.connection.uEmailCo.$error.email){
+                    
+                    scope.wrongMailConnection = true;
+                    return;
+                    
+                }else if(scope.connection.uPasswordCo.$error.minlength || scope.connection.uPasswordCo.$error.maxlength){
+                    
+                    scope.wrongPasswordConnection = true;
+                    return;
+                    
+                }else if(uEmailCo === "" || uEmailCo === undefined || uPasswordCo === "" || uPasswordCo === undefined){
                     
                     return;
                     

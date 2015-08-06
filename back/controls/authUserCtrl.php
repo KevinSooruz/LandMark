@@ -23,6 +23,7 @@ switch($method){
             
             $email = strip_tags($_POST["email"]);
             $password = strip_tags(sha1($_POST["password"])); // Sécurisation mot de passe sha1
+            $passwordNb = strlen($_POST["password"]);
             $verifUser = $authUser->verificationUser($email); // Vérification si utilisateur existe déjà
             $regexEmail = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#"; // Regex email
             
@@ -32,6 +33,10 @@ switch($method){
                     
                     // Utilisateur n'existe pas en base
                     echo "userNotExist";
+                    
+                }else if($passwordNb < 5 OR $passwordNb > 20 OR $_POST["password"] === "undefined"){
+                    
+                    echo "wrongPasswordConnection";
                     
                 }else if($password !== $verifUser["password"]){
                     
@@ -53,23 +58,35 @@ switch($method){
             }else if(isset($_POST["surname"]) && isset($_POST["name"]) && isset($_POST["inscription"]) && $_POST["inscription"] === "login"){ // Inscription
                 
                 $surname = strip_tags($_POST["surname"]);
+                $surnameNb = strlen($surname);
                 $name = strip_tags($_POST["name"]);
+                $nameNb = strlen($name);
                 
-                if($surname === "undefined" OR $name === "undefined" OR $password === "undefined"){
-                
-                    // Champs vides
-                    echo "undefined";
-
+                if($surnameNb < 3 OR $surnameNb > 50 OR $surname === "undefined"){
+                    
+                    // Mauvais prénom
+                    echo "wrongSurnameInscription";
+                    
+                }else if($nameNb < 3 OR $nameNb > 50 OR $name === "undefined"){
+                    
+                    // Mauvais nom
+                    echo "wrongNameInscription";
+                    
                 }else if($email === $verifUser["email"]){
                     
                     // Utilisateur déjà en base
                     echo "userExist";
 
                 }else if(!preg_match($regexEmail, $email)){
-
+                    
                     // Mauvais email
-                    echo "wrongMail";
+                    echo "wrongMailInscription";
 
+                }else if($passwordNb < 5 OR $passwordNb > 20 OR $_POST["password"] === "undefined"){
+                    
+                    // Mauvais mot de passe
+                    echo "wrongPasswordInscription";
+                    
                 }else{
 
                     // Enregistrement utilisateur en base

@@ -2,18 +2,6 @@ services.factory("Modal", function(Api, Log, $timeout){
     
     var modal = {};
     
-    // Initialisation modal
-    modal.init = function(scope){
-        
-        scope.userExist = false; // Initialisation userExist en base (inscription)
-        scope.userNotExist = false; // Initialisation userExist en base (connexion)
-        scope.wrongMail = false; // Initialisation wrongMail backend (inscription)
-        scope.wrongMailCo = false; // Initialisation wrongMail backend (connexion)
-        scope.errorModalBackEnd = false; // Initialisation message erreur général (inscription / connexion)
-        scope.incorrectPassword = false; // Initialisation erreur mot de passe (connexion)
-        
-    };
-    
     // Animation label on focus
     modal.inputFocus = function(inputId){
         
@@ -88,10 +76,17 @@ services.factory("Modal", function(Api, Log, $timeout){
                     
                         break;
                         
+                    case "wrongPasswordConnection":
+                        
+                        // Message erreur password
+                        scope.wrongPasswordConnection = true;
+                        
+                        break;
+                        
                     case "wrongPassword":
                     
                         // Affichage message erreur mot de passe (connexion)
-                        scope.incorrectPassword = true;
+                        scope.wrongPasswordConnection = true;
                     
                         break;
                         
@@ -112,6 +107,20 @@ services.factory("Modal", function(Api, Log, $timeout){
                         }, 200);
                         
                         break;
+                        
+                    case "wrongSurnameInscription":
+                        
+                        // Message erreur surname
+                        scope.wrongSurnameInscription = true;
+                        
+                        break;
+                        
+                    case "wrongNameInscription":
+                        
+                        // Message erreur nom
+                        scope.wrongNameInscription = true;
+                        
+                        break;
 
                     case "userExist":
 
@@ -120,11 +129,19 @@ services.factory("Modal", function(Api, Log, $timeout){
 
                         break;
 
-                    case "wrongMail":
+                    case "wrongMailInscription":
 
                         // Affichage message erreur mauvais email (inscription)
-                        scope.wrongMail = true;
+                        scope.wrongMailInscription = true;
+                        scope.inscription.uEmail.$error.email = true;
 
+                        break;
+                        
+                    case "wrongPasswordInscription":
+                        
+                        // Message erreur password
+                        scope.wrongPasswordInscription = true;
+                        
                         break;
 
                     case "userAdded":

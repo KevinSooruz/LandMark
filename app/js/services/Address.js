@@ -65,7 +65,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
 
                         });
                     
-                        // Si succés on remet tout à 0
+                        // Si succés on remet tout les éléments du formulaire à 0
                         var adName = document.getElementById("adName");
                         var adLocation = document.getElementById("adLocation");
                     
@@ -80,6 +80,10 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                             adLocation.classList.remove("ng-invalid");
                             
                         });
+                    
+                        // Réinitialisation de l'objet adresse pour nouvelle adresse
+                        scope.adresse = {};
+                        scope.adresse.categorie = "Autre";
                     
                         break;
                     

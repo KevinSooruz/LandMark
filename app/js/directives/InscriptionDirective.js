@@ -7,9 +7,6 @@ app.directive("inscription", function(Modal){
         templateUrl: "app/views/inscriptionModal.php",
         link: function(scope){
             
-            // Initialisation modal
-            Modal.init(scope);
-            
             // Animation label on focus
             scope.focusInputModal = function(inputId){
         
@@ -46,7 +43,27 @@ app.directive("inscription", function(Modal){
                 var uEmail = document.getElementById("uEmail").value;
                 var uPassword = document.getElementById("uPassword").value;
                 
-                if(uSurname === "" || uSurname === undefined || uName === "" || uName === undefined || uEmail === "" || uEmail === undefined || uPassword === "" || uPassword === undefined){
+                if(scope.inscription.uSurname.$error.minlength || scope.inscription.uSurname.$error.maxlength || scope.inscription.uSurname.$error.pattern){
+                    
+                    scope.wrongSurnameInscription = true;
+                    return;
+                    
+                }else if(scope.inscription.uName.$error.minlength || scope.inscription.uName.$error.maxlength || scope.inscription.uName.$error.pattern){
+                    
+                    scope.wrongNameInscription = true;
+                    return;
+                    
+                }else if(scope.inscription.uEmail.$error.email){
+                    
+                    scope.wrongMailInscription = true;
+                    return;
+                    
+                }else if(scope.inscription.uPassword.$error.minlength || scope.inscription.uPassword.$error.maxlength){
+                    
+                    scope.wrongPasswordInscription = true;
+                    return;
+                    
+                }else if(uSurname === "" || uSurname === undefined || uName === "" || uName === undefined || uEmail === "" || uEmail === undefined || uPassword === "" || uPassword === undefined){
                     
                     return;
                     

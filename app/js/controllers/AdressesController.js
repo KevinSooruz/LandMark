@@ -4,13 +4,12 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     Autocomplete.run();
     
     // Initialisation Objet adresse
-    var adresse = {
-        
-        categorie: "Autre"
-        
-    };
+    $scope.adresse = {};
     
     /////////////////////////////////// Categories ///////////////////////////////////
+    
+    ///// Initialisation catégorie adresse /////
+    $scope.adresse.categorie = "Autre";
     
     ///// Récupération des catégories /////
     Categorie.get($scope);
@@ -22,7 +21,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         $scope.categorieIndex = index;
         
         // Envoie donnée catégorie à objet adresse
-        adresse.categorie = categorie;
+        $scope.adresse.categorie = categorie;
         
     };
     
@@ -51,7 +50,12 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     ///// Ajout de liste /////
     $scope.adList = function(listName){
         
-        if(listName === undefined || listName === ""){
+        // Si pattern pas correct ou si nom liste vide on ne continu pas
+        if($scope.adLists.listName.$error.pattern){
+            
+            $scope.errorPatternList = true;
+            
+        }else if(listName === undefined || listName === ""){
             
             $scope.errorList = true;
             $scope.errorNameList = true;
@@ -72,7 +76,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         $scope.listIndex = index;
         
         // Envoie donnée liste à objet adresse
-        adresse.list = listName;
+        $scope.adresse.list = listName;
         
     };
     
@@ -104,8 +108,13 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         // Récupération de l'adresse
         var location = document.getElementById("adLocation").value;
         
-        // Si nom adresse vide et adresse vide on ne continu pas
-        if((location === undefined || location === "") && ($scope.adName === undefined || $scope.adName === "")){
+        // Si pattern pas correct ou si nom adresse vide et adresse vide on ne continu pas
+        if($scope.adresses.adName.$error.pattern || $scope.adresses.adLocation.$error.pattern){
+            
+            $scope.errorPatternAddress = true;
+            return;
+            
+        }else if((location === undefined || location === "") && ($scope.adName === undefined || $scope.adName === "")){
             
             $scope.errorName = true;
             $scope.errorLocation = true;
@@ -126,17 +135,17 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         }
         
         // Envoie donnée location à objet adresse
-        adresse.location = location;
+        $scope.adresse.location = location;
         
         // Envoie donnée nom à objet adresse
-        adresse.name = $scope.adName;
+        $scope.adresse.name = $scope.adName;
         
         // Service geocode pour récupérer la latitude et la longitude de l'adresse
         Geocode.run(location).then(function(results){
             
             // Récupération des informations
-            adresse.lat = results[0].geometry.location.G;
-            adresse.lng = results[0].geometry.location.K;
+            $scope.adresse.lat = results[0].geometry.location.G;
+            $scope.adresse.lng = results[0].geometry.location.K;
             
         }, function(status){
             
@@ -146,7 +155,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         }).finally(function(){
             
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
-            Address.post(adresse, $scope);
+            Address.post($scope.adresse, $scope);
             
         });
         

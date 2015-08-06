@@ -15,26 +15,29 @@
                                     <div class="form-group">
                                         <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adName" name="adName" placeholder="Indiquez un nom" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false" ng-minlength="3" ng-maxlength="50" required="">
+                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false; errorPattern = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adName.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adName.$error.minlength">3 car. min</span>
                                                 <span ng-show="adresses.adName.$error.maxlength">50 car. max</span>
+                                                <span ng-show="adresses.adName.$error.pattern">Caract&egrave;re interdit</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="adLocation" class="col-md-2 col-sm-2 control-label">Adresse</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" class="form-control" ng-model="adLocation" ng-class="{errorBackEnd: errorLocation === true}" ng-click="errorLocation = false" required="">
+                                            <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" type="text" class="form-control" ng-model="adLocation" ng-class="{errorBackEnd: errorLocation === true}" ng-click="errorLocation = false; errorPatternAddress = false" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adLocation.$error.required">Obligatoire</span>
+                                                <span ng-show="adresses.adLocation.$error.pattern">Caract&egrave;re interdit</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <span ng-show="errorName === true" class="errorBlock">Merci de renseigner un nom.</span>
                                         <span ng-show="errorLocation === true" class="errorBlock">Merci de renseigner une adresse.</span>
+                                        <span ng-show="errorPatternAddress === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
                                     </div>
                                 </div>
                                 <div class="multiContent">
@@ -71,11 +74,12 @@
                                     <div class="form-group">
                                         <label for="listName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-7 col-sm-7">
-                                            <input id="listName" name="listName" placeholder="Indiquez un nom" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false; errorNameList = false" ng-minlength="3" ng-maxlength="50" required="">
+                                            <input id="listName" name="listName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false; errorNameList = false; errorPatternList = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adLists.listName.$error.required">Obligatoire</span>
                                                 <span ng-show="adLists.listName.$error.minlength">3 car. min</span>
                                                 <span ng-show="adLists.listName.$error.maxlength">50 car. max</span>
+                                                <span ng-show="adLists.listName.$error.pattern">Caract&egrave;re interdit</span>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-3 textRight">
@@ -84,6 +88,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span ng-show="errorNameList === true" class="errorBlock">Merci de renseigner un nom.</span>
+                                        <span ng-show="errorPatternList === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
                                     </div>
                                 </form>
                             </div>
