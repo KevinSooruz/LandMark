@@ -12,6 +12,9 @@ $address = new Address($bdd);
 // Objet list
 $lists = new Lists($bdd);
 
+// Objet User
+$categorie = new Categorie($bdd);
+
 switch($method){
     
     case "GET":
@@ -31,10 +34,28 @@ switch($method){
                     
                 }else{
                     
-                    $address->readOne($nameList);
+                    $value = "list";
+                    $address->readOne($nameList, $value);
                     
                 }
             
+            }else if(isset($_GET["nameCategorie"])){
+                
+                $nameCategorie = strip_tags($_GET["nameCategorie"]);
+                $numberResult = $categorie->verifCategorieExist($nameCategorie); // Vérifier si le nom de categorie existe
+                
+                if($numberResult === 0){
+                    
+                    // Si liste n'existe pas car nombre de liste avec ce nom === 0
+                    echo "noResult";
+                    
+                }else{
+                    
+                    $value = "categorie";
+                    $address->readOne($nameCategorie, $value);
+                    
+                }
+                
             }else{
                 
                 $address->read();

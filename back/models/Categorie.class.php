@@ -36,4 +36,17 @@ class Categorie{
         
     }
     
+    public function verifCategorieExist($nameCategorie){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name FROM categories WHERE name = :nameCategorie");
+        $reqRead->execute(array(
+        
+            "nameCategorie" => $nameCategorie
+        
+        ));
+        
+        return $reqRead->rowCount();
+        
+    }
+    
 }

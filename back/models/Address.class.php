@@ -64,14 +64,23 @@ class Address{
         
     }
     
-    public function readOne($nameList){
+    public function readOne($name, $value){
         
-        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND list = :nameList");
-        $reqRead->execute(array(
-        
-            "user" => $_SESSION["user"],
-            "nameList" => $nameList
+        if($value === "list"){
             
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND list = :name");
+            
+        }else if($value === "categorie"){
+            
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND categorie = :name");
+            
+        }
+        
+        $reqRead->execute(array(
+
+            "user" => $_SESSION["user"],
+            "name" => $name
+
         ));
         
         $result = "[";

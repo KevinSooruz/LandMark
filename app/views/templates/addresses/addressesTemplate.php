@@ -15,7 +15,7 @@
         <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>
         <span ng-show="errorLoadAddresses === true" class="errorBlock">Une erreur s'est produite. Merci de recharger la page.</span>
         <div class="textRight">
-            <button class="btn btnPrimary" ng-show="addresses.length > 5" ng-click="redirect('/addresses/categories')">Voir toutes les adresses</button>
+            <button class="btn btnPrimary" ng-show="addresses.length > 5" ng-click="redirect('/addresses/categories/All')">Voir toutes les adresses</button>
         </div>
     </div>
 </div>

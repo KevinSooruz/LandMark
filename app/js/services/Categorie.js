@@ -5,13 +5,11 @@ services.factory("Categorie", function(Api){
     categorie.get = function(scope){
         
         // Intégration des catégories
-        var dataCategorie = {
+        var data = {};
         
-            categorie: true
+        data.categorie = true;
         
-        };
-        
-        Api.get("back/controls/categorieCtrl.php", dataCategorie).then(function(response){
+        Api.get("back/controls/categorieCtrl.php", data).then(function(response){
         
             if(response.data === "categorieProblem"){
 

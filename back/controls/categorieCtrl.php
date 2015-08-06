@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 include_once "../models/connexionSql.php";
 include_once "../models/loadClass.php";
@@ -8,6 +8,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 
 // Objet User
 $categorie = new Categorie($bdd);
+
+// Objet adresse
+$address = new Address($bdd);
 
 switch($method){
     

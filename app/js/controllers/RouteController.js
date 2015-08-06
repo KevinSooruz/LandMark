@@ -21,7 +21,15 @@ app.config(["$routeProvider", function($routeProvider){
             session: app.session // Vérification si session active pour accéder au compte client
         }
         
-    }).when("/addresses/categories", {
+    }).when("/addresses/categories/All", {
+        
+        templateUrl: "app/views/categories.php",
+        controller: "CategoriesController",
+        resolve:{
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
+    }).when("/addresses/categories/:nameCategorie", {
         
         templateUrl: "app/views/categories.php",
         controller: "CategoriesController",
