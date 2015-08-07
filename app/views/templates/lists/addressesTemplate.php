@@ -11,8 +11,8 @@
                     <div class="location">
                         <span>{{address.location}}</span>
                     </div>
-                    <div class="categorie">
-                        <span class="categorieName"><span class="fw7">Cat&eacute;gorie :</span> {{address.categorie}}</span>
+                    <div class="otherInfo">
+                        <span><span class="fw7">Cat&eacute;gorie :</span> {{address.categorie}}</span>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     </ul>
     <div ng-show="addresses.length === 0" class="col-md-12 center noResults">
         <span class="title">Pas de résultats</span>
-        <p>Vous n'avez pas encore ajouté d'adresse à cette liste.</p>
+        <p>Vous n&rsquo;avez pas encore ajout&eacute; d&rsquo;adresse &agrave; cette  liste.</p>
         <button class="btn btnPrimary" ng-click="redirect('/addresses')">Ajouter une adresse</button><br />
         <i class="glyphicon glyphicon-cloud"></i>
     </div>

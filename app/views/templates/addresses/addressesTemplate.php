@@ -6,7 +6,7 @@
                 <div class="row">
                     <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
                     <div class="col-md-4 col-sm-4 col-xs-4 textRight">
-                        <span class="categorie">{{address.categorie}}</span>
+                        <span class="categorieLabel">{{address.categorie}}</span>
                     </div>
                 </div>
                 <span class="locationAddress">{{address.location}}</span>

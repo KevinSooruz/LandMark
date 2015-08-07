@@ -4,21 +4,24 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     Autocomplete.run();
     
     // Initialisation Objet adresse
-    $scope.adresse = {};
+    var adresse = {};
     
     /////////////////////////////////// Categories ///////////////////////////////////
     
     ///// Initialisation catégorie adresse /////
-    $scope.adresse.categorie = "Autre";
+    adresse.categorie = "Autre";
     
     ///// Sélection de la catégorie /////
     $scope.selectCategorie = function(index, categorie){
+        
+        // Supression message erreur geocode
+        $scope.errorGeocode = false;
         
         // Ajout class active au front
         $scope.categorieIndex = index;
         
         // Envoie donnée catégorie à objet adresse
-        $scope.adresse.categorie = categorie;
+        adresse.categorie = categorie;
         
     };
     
@@ -49,11 +52,14 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     ///// Sélection de la liste /////
     $scope.selectList = function(index, listName){
         
+        // Supression message erreur geocode
+        $scope.errorGeocode = false;
+        
         // Ajout class active au front
         $scope.listIndex = index;
         
         // Envoie donnée liste à objet adresse
-        $scope.adresse.list = listName;
+        adresse.list = listName;
         
     };
     
@@ -61,6 +67,9 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
     
     ///// Ajout adresse /////
     $scope.adresseAdd = function(){
+        
+        // Supression message erreur geocode
+        $scope.errorGeocode = false;
         
         // Récupération de l'adresse
         var location = document.getElementById("adLocation").value;
@@ -86,28 +95,29 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         }
         
         // Envoie donnée location à objet adresse
-        $scope.adresse.location = location;
+        adresse.location = location;
         
         // Envoie donnée nom à objet adresse
-        $scope.adresse.name = $scope.adName;
+        adresse.name = $scope.adName;
         
         // Service geocode pour récupérer la latitude et la longitude de l'adresse
-        Geocode.run(location).then(function(results){
+        Geocode.getId(location).then(function(response){
             
-            // Récupération des informations
-            $scope.adresse.lat = results[0].geometry.location.G;
-            $scope.adresse.lng = results[0].geometry.location.K;
+            adresse.placeId = response[0].place_id;
+            adresse.lat = response[0].geometry.location.G;
+            adresse.lng = response[0].geometry.location.K;
             
         }, function(status){
             
             // Erreurs
             console.log("Error geocode : " + status);
+            $scope.errorGeocode = true;
             
         }).finally(function(){
             
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
-            Address.post($scope.adresse, $scope);
-            
+            Address.post(adresse, $scope);
+
         });
         
     };

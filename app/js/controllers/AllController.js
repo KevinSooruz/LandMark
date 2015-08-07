@@ -2,7 +2,7 @@ app.controller("AllController", function($scope, Log, $location){
     
     // Pattern word
     // "w" de a à z, "s" espace, "$" caractères spéciaux sauf ceux mentionnés
-    $scope.word = /^[\w*\àäâéèëêïîöôüûùç\s*\-!?%€#&()=+/*.,:]+$/;
+    $scope.word = /^[\w*\àäâéèëêïîöôüûùç\s*\-!?%€#&()=+/*.,':]+$/;
     
     // Pattern téléphone
     // "d" tous les chiffres, "s" espaces, "$" caractères spéciaux sauf ceux mentionnés

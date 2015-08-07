@@ -77,6 +77,7 @@ switch($method){
             $list = "";
             $lat = "";
             $lng = "";
+            $placeId = "";
             
             if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
                 
@@ -100,8 +101,14 @@ switch($method){
                     $lng = $_POST["lng"];
 
                 }
+                
+                if(isset($_POST["placeId"])){
+                    
+                    $placeId = $_POST["placeId"];
+                    
+                }
 
-                $address->create($categorie, $location, $name, $list, $lat, $lng);
+                $address->create($categorie, $location, $name, $list, $lat, $lng, $placeId);
                 
             }
             

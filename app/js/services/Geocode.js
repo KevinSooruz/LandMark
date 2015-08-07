@@ -1,9 +1,12 @@
 services.factory("Geocode", function($q){
     
+    // Api Key https://console.developers.google.com/project/985778741950/apiui/credential?authuser=0
+    // https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyCogKpWtl69ABtTDluzuAh4bpAQMbiDHwc&placeid=ChIJrTLr-GyuEmsRBfy61i59si0 -- Ne pas mettre en place car pas assez de société renseigne horaires + telephone (dommage)
+    
     var geocode = {};
     
     // Récupération informations geocodage adresse
-    geocode.run = function(location){
+    geocode.getId = function(location){
         
         var deferred = $q.defer();
         
