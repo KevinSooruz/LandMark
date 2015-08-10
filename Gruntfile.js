@@ -101,10 +101,12 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/inscriptionModal.php": "app/views/templates/inscriptionModal.php",
                 "dist/app/views/templates/connectionModal.php": "app/views/templates/connectionModal.php",
                 "dist/app/views/templates/menu.php": "app/views/templates/menu.php",
+                
                 "dist/app/views/templates/addresses/addressesTemplate.php": "app/views/templates/addresses/addressesTemplate.php",
                 "dist/app/views/templates/addresses/listsTemplate.php": "app/views/templates/addresses/listsTemplate.php",
                 "dist/app/views/templates/addresses/listsTemplateSelect.php": "app/views/templates/addresses/listsTemplateSelect.php",
                 "dist/app/views/templates/addresses/categoriesTemplate.php": "app/views/templates/addresses/categoriesTemplate.php",
+                
                 "dist/app/views/templates/lists/listsTemplate.php": "app/views/templates/lists/listsTemplate.php",
                 "dist/app/views/templates/lists/addressesTemplate.php": "app/views/templates/lists/addressesTemplate.php",
                 

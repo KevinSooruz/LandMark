@@ -69,10 +69,10 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                         var adName = document.getElementById("adName");
                         var adLocation = document.getElementById("adLocation");
                     
-                        scope.categorieIndex = "";
-                        scope.listIndex = "";
                         scope.adName = "";
                         scope.adLocation = "";
+                        scope.categorieSelect = "";
+                        scope.listSelect = "";
                     
                         $timeout(function(){
                             

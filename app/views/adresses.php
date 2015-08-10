@@ -40,46 +40,18 @@
                                         <span ng-show="errorPatternAddress === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
                                     </div>
                                 </div>
-                                <categories template-url="app/views/templates/addresses/categoriesTemplate.php"></categories>
+                                <categories template-url="app/views/templates/addresses/categoriesTemplate.php" template-title="Choisissez une catégorie"></categories>
                                 <lists template-url="app/views/templates/addresses/listsTemplateSelect.php"></lists>
-                                <div class="multiContent">
-                                    <button type="submit" class="btn btnPrimary btnFullWidth" ng-click="adresseAdd()">Ajouter</button>
+                                <div class="multiContent center">
+                                    <button type="submit" class="btn btnPrimary btnBigWidth" ng-click="adresseAdd()">Ajouter</button>
                                     <span ng-show="errorGeocode === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci d&rsquo;enregistrer de nouveau votre adresse.</span>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <lists template-url="app/views/templates/addresses/listsTemplate.php"></lists>
                 </div>
                 <div class="col-md-6">
-                    <div id="listsSelect" class="inBox">
-                        <span class="title">Vos listes <span class="toolTip">{{lists.length}} liste<span ng-show="lists.length > 1">s</span></span></span>
-                        <div class="inBoxContent">
-                            <div class="multiContent">
-                                <form name="adLists" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="listName" class="col-md-2 col-sm-2 control-label">Nom</label>
-                                        <div class="col-md-7 col-sm-7">
-                                            <input id="listName" name="listName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false; errorNameList = false; errorPatternList = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
-                                            <div class="errorInfos">
-                                                <span ng-show="adLists.listName.$error.required">Obligatoire</span>
-                                                <span ng-show="adLists.listName.$error.minlength">3 car. min</span>
-                                                <span ng-show="adLists.listName.$error.maxlength">50 car. max</span>
-                                                <span ng-show="adLists.listName.$error.pattern">Caract&egrave;re interdit</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-3 textRight">
-                                            <button class="btn btnPrimary" ng-click="adList(listName)">Ajouter</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <span ng-show="errorNameList === true" class="errorBlock">Merci de renseigner un nom.</span>
-                                        <span ng-show="errorPatternList === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
-                                    </div>
-                                </form>
-                            </div>
-                            <lists template-url="app/views/templates/addresses/listsTemplate.php"></lists>
-                        </div>
-                    </div>
                     <addresses template-url="app/views/templates/addresses/addressesTemplate.php"></addresses>
                 </div>
             </div>

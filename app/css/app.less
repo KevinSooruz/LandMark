@@ -88,21 +88,27 @@
 ///////////////////////// Couleurs /////////////////////////
 
 @primary: #1bbc9b; // #357df4
-@secondary: #ccf4ec; // #d3e8ff
-@third: #b5b8cf;
 @primaryDark: darken(@primary, 10%);
+@secondary: lighten(@primary, 45%); // #d3e8ff
+@three: #b198dc;
+@four: #56bdde;
+@five: #ff8762;
 @white: #fff;
+@black: #000;
+@error: #d91e18;
+
+// text + bg
 @grey: #e7eaec;
 @greyLight: #f3f3f4;
+@textDark: #676a6c;
+
+// Menu
 @greyDark: #293846;
 @greyDarkLight: #2f4050;
-@textDark: #676a6c;
 @textLight: #9da8b9; // #c4c4c4
+
+// Home
 @bgOpacity: rgba(0, 0, 0, 0.6);
-@primaryOpacity: rgba(27, 188, 155, 0.6); // rgba(53, 125, 244, 0.6)
-@error: #d91e18;
-@errorOpacity: rgba(217, 30, 24, 0.6);
-@black: #000;
 
 ///////////////////////// Boutons /////////////////////////
 
@@ -173,6 +179,10 @@
 
 .btnFullWidth{
     width: 100%;
+}
+
+.btnBigWidth{
+    width: 400px;
 }
 
 .btnGhostGrey{
@@ -286,13 +296,19 @@ body{
                 line-height: 20px;
                 display: inline-block;
                 margin-right: 15px;
+                color: @textLight;
                 
                 &.active{
                     color: @primary;
+                    
+                    &:hover{
+                        color: @primary;
+                    }
                 }
                 
                 &:hover{
                     cursor: pointer;
+                    color: @textDark;
                 }
             }
         }
@@ -307,6 +323,18 @@ body{
         border: 1px solid @grey;
         color: @textLight;
         .placeholder(@textLight);
+        .br(0);
+        .box-shadow(@shadow: none);
+        
+        &:focus{
+            .box-shadow(@shadow: none);
+        }
+        
+        &.select{
+            &:focus{
+                border-color: @primary;
+            }
+        }
     }
     
     .contentBox{
@@ -314,11 +342,12 @@ body{
     }
     
     .toolTip{
-        .bg(@secondary);
+        .bg(@four);
         .fw4;
         .fs(12px);
         padding: 2px 10px;
         .br(4px);
+        color: @white;
     }
     
     .errorBlock{
@@ -367,7 +396,7 @@ body{
                     .relative;
                     
                     label{
-                        .fw4;
+                        .fw7;
                         .textLeft;
                     }
                     
@@ -415,36 +444,6 @@ body{
                     padding-bottom: 0;
                     border-bottom: none;
                 }
-            }
-        }
-        
-        .selectObject{
-            color: @textDark;
-            .bg(@greyLight);
-            display: inline-block;
-            width: 100%;
-            .center;
-             margin-bottom: 3px;
-            padding: 4px;
-            .br(4px);
-                            
-            &.active{
-                .bg(@secondary);
-                color: @textDark;
-            }
-                            
-            &:hover{
-                .bg(@grey);
-                cursor: pointer;
-                                
-                &.active{
-                    .bg(@secondary);
-                    color: @textDark;
-                }
-            }
-                            
-            &:focus{
-                outline: none;
             }
         }
         
@@ -526,7 +525,7 @@ body{
     
     .categorieLabel{
         .fs(12px);
-        .bg(@third);
+        .bg(@three);
         color: @white;
         .br(4px);
         padding: 2px 10px;

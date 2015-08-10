@@ -1,9 +1,8 @@
 <div class="multiContent">
     <span class="title">Cat&eacute;gorie</span>
-    <ul class="row">
-        <li class="col-md-3" ng-repeat="categorie in categories">
-            <span class="selectObject" ng-class="{active: categorieIndex === $index}" ng-click="selectCategorie($index, categorie.name)">{{categorie.name}}</span>
-        </li>
-    </ul>
+    <select class="form-control select" ng-model="categorieSelect" ng-options="categorie.name for categorie in categories" ng-click="selectCategorie()">
+        <option value="">Choisissez votre cat&eacute;gorie</option>
+    </select>
+    <input id="adCategorie" type="hidden" value="{{categorieSelect.name}}">
     <span ng-show="errorCategorieBackEnd === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
 </div>
