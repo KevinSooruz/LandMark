@@ -16,15 +16,14 @@ class Address{
         
     }
     
-    public function create($categorie, $location, $name, $list, $lat, $lng, $phone, $placeId){
+    public function create($categorie, $location, $name, $lat, $lng, $phone, $placeId){
         
-        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, list, lat, lng, id_user, phone, place_id) VALUES(:name, :categorie, :location, :list, :lat, :lng, :user, :phone, :placeid)") or die(print_r($this->_bdd->errorInfo()));
+        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, lat, lng, id_user, phone, place_id) VALUES(:name, :categorie, :location, :lat, :lng, :user, :phone, :placeid)") or die(print_r($this->_bdd->errorInfo()));
         $reqCreate->execute(array(
             
             "name" => $name,
             "categorie" => $categorie,
             "location" => $location,
-            "list" => $list,
             "lat" => $lat,
             "lng" => $lng,
             "user" => $_SESSION["user"],
@@ -37,14 +36,22 @@ class Address{
         
     }
     
-    public function read(){
+    public function read($name, $value){
         
-        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user");
-        $reqRead->execute(array(
-        
-            "user" => $_SESSION["user"]
+        if($value === "categorie"){
             
-        ));
+            $reqRead = $this->reqReadOne($name, $value);
+            
+        }else{
+            
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id FROM addresses WHERE id_user = :user");
+            $reqRead->execute(array(
+        
+                "user" => $_SESSION["user"]
+            
+            ));
+            
+        }
         
         $result = "[";
         while($addresses = $reqRead->fetch()){
@@ -55,7 +62,6 @@ class Address{
                 "name" => $addresses["name"],
                 "categorie" => $addresses["categorie"],
                 "location" => $addresses["location"],
-                "list" => $addresses["list"],
                 "lat" => $addresses["lat"],
                 "lng" => $addresses["lng"],
                 "phone" => $addresses["phone"],
@@ -64,22 +70,14 @@ class Address{
         };
         $result.= "]";
         
-        echo $result;
+        return $result;
         
     }
     
-    public function readOne($name, $value){
+    public function reqReadOne($name, $value){
         
-        if($value === "list"){
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND $value = :name");
             
-            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND list = :name");
-            
-        }else if($value === "categorie"){
-            
-            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND categorie = :name");
-            
-        }
-        
         $reqRead->execute(array(
 
             "user" => $_SESSION["user"],
@@ -87,25 +85,20 @@ class Address{
 
         ));
         
-        $result = "[";
-        while($addresses = $reqRead->fetch()){
-            if($result != "["){
-                $result .= ",";
-            }
-            $result.= json_encode(array(
-                "name" => $addresses["name"],
-                "categorie" => $addresses["categorie"],
-                "location" => $addresses["location"],
-                "list" => $addresses["list"],
-                "lat" => $addresses["lat"],
-                "lng" => $addresses["lng"],
-                "phone" => $addresses["phone"],
-                "placeId" => $addresses["place_id"]
-            ));
-        };
-        $result.= "]";
+        return $reqRead;
         
-        echo $result;
+    }
+    
+    public function verifAddressExist($name){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name");
+        $reqRead->execute(array(
+        
+            "name" => $name
+        
+        ));
+        
+        return $reqRead->rowCount();
         
     }
     

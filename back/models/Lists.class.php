@@ -32,7 +32,7 @@ class Lists{
     
     public function read(){
         
-        $reqRead = $this->_bdd->prepare("SELECT name FROM lists WHERE id_user = :user");
+        $reqRead = $this->_bdd->prepare("SELECT * FROM lists WHERE id_user = :user");
         $reqRead->execute(array(
         
             "user" => $_SESSION["user"]
@@ -45,12 +45,13 @@ class Lists{
                 $result .= ",";
             }
             $result.= json_encode(array(
+                "id" => $lists["id"],
                 "name" => $lists["name"]
             ));
         };
         $result.= "]";
         
-        echo $result;
+        return $result;
         
     }
     

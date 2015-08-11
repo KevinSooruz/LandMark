@@ -15,12 +15,18 @@ $lists = new Lists($bdd);
 // Objet User
 $categorie = new Categorie($bdd);
 
+// Objet AddressesList
+$addressList = new AddressList($bdd);
+
 switch($method){
     
     case "GET":
     
         // Récupération des adresses utilisateur
         if(isset($_GET["user"]) && $_GET["user"] === "addresses"){
+            
+            $value = "";
+            $name = "";
                 
             if(isset($_GET["nameList"])){
             
@@ -34,8 +40,9 @@ switch($method){
                     
                 }else{
                     
-                    $value = "list";
-                    $address->readOne($nameList, $value);
+                    $result = $addressList->read($nameList);
+                    
+                    echo $result;
                     
                 }
             
@@ -52,13 +59,17 @@ switch($method){
                 }else{
                     
                     $value = "categorie";
-                    $address->readOne($nameCategorie, $value);
+                    $result = $address->read($nameCategorie, $value);
+                    
+                    echo $result;
                     
                 }
                 
             }else{
                 
-                $address->read();
+                $result = $address->read($name, $value);
+                
+                echo $result;
                 
             }
                 
@@ -74,11 +85,12 @@ switch($method){
             $categorie = strip_tags($_POST["categorie"]);
             $location = strip_tags($_POST["location"]);
             $name = strip_tags($_POST["name"]);
-            $list = "";
             $lat = "";
             $lng = "";
             $placeId = "";
             $phone = "";
+            $list = "";
+            $numberResult = $address->verifAddressExist($name); // Vérifier si le nom adresse existe
             
             if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
                 
@@ -88,24 +100,23 @@ switch($method){
                 
                 echo "emptyLocation";
                 
+            }else if($numberResult !== 0){
+                    
+                    // Si liste n'existe pas car nombre de liste avec ce nom === 0
+                    echo "nameExist";
+                    
             }else{
                 
-                if(isset($_POST["list"])){
-                
-                    $list = strip_tags($_POST["list"]);
-
-                }
-
                 if(isset($_POST["lat"]) && isset($_POST["lng"])){
 
-                    $lat = $_POST["lat"];
-                    $lng = $_POST["lng"];
+                    $lat = strip_tags($_POST["lat"]);
+                    $lng = strip_tags($_POST["lng"]);
 
                 }
                 
                 if(isset($_POST["placeId"])){
                     
-                    $placeId = $_POST["placeId"];
+                    $placeId = strip_tags($_POST["placeId"]);
                     
                 }
                 
@@ -114,8 +125,17 @@ switch($method){
                     $phone = strip_tags($_POST["phone"]);
                     
                 }
+                
+                if(isset($_POST["list"]) && !empty($_POST["list"])){
+                    
+                    $list = strip_tags($_POST["list"]);
+                    
+                    $addressList->create($name, $list);
+                    
+                }
 
-                $address->create($categorie, $location, $name, $list, $lat, $lng, $phone, $placeId);
+                // Création de l'adresse avec la catégorie correspondante
+                $address->create($categorie, $location, $name, $lat, $lng, $phone, $placeId);
                 
             }
             

@@ -15,7 +15,7 @@
                                     <div class="form-group">
                                         <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false; errorPatternAddress = false; errorGeocode = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
+                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; errorPatternAddress = false; errorGeocode = false; nameExist = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adName.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adName.$error.minlength">3 car. min</span>
@@ -47,6 +47,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span ng-show="errorName === true" class="errorBlock">Merci de renseigner un nom.</span>
+                                        <span ng-show="nameExist === true" class="errorBlock">Ce nom d&rsquo;adresse existe d&eacute;j&agrave;. Merci de le modifier.</span>
                                         <span ng-show="errorLocation === true" class="errorBlock">Merci de renseigner une adresse.</span>
                                         <span ng-show="errorPatternAddress === true" class="errorBlock">Caract&egrave;res sp&eacute;ciaux interdits.</span>
                                     </div>

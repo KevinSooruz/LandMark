@@ -112,6 +112,12 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         
         adresse.list = adList;
         
+        if(adresse.list === undefined){
+            
+            adresse.list = "";
+            
+        }
+        
         // Service geocode pour récupérer la latitude et la longitude de l'adresse
         Geocode.getId(location).then(function(response){
             

@@ -11,7 +11,7 @@ app.controller("AllController", function($scope, Log, $location){
     $scope.tel = /^[0-9\s*\-.+()]+$/;
     
     // Pattern email
-    $scope.mail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]{2,}+\.[a-zA-Z]{2,6}$/;
+    $scope.mail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$/;
     
     /////////////////////////////////// Utilisateur ///////////////////////////////////
     

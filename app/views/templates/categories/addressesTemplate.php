@@ -20,7 +20,6 @@
                     </div>
                     <div class="otherInfo">
                         <span class="info"><span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span></span>
-                        <span class="info"><span class="fw7">Liste :</span> {{address.list}}<span ng-show="address.list === ''">...</span></span>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@
             </form>
         </div>
         <div class="multiContent">
-            <ul class="row">
+            <ul class="row listSelect">
                 <li class="col-md-6" ng-repeat="list in lists" ng-click="redirect('/addresses/lists/{{list.name}}')">
                     <span class="title col-md-6">{{list.name}}</span>
                     <div class="icons col-md-6">

@@ -54,6 +54,12 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                     
                         break;
                     
+                    case "nameExist":
+                    
+                        scope.nameExist = true;
+                    
+                        break;
+                    
                     case "successAddAddress":
                     
                         // Envoie des données au front

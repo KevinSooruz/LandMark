@@ -32,7 +32,7 @@ class Categorie{
         };
         $result.= "]";
         
-        echo $result;
+        return $result;
         
     }
     

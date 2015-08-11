@@ -18,7 +18,9 @@ switch($method){
     
         if(isset($_GET["categorie"]) && $_GET["categorie"] === "true"){
             
-            $categorie->read();
+            $result = $categorie->read();
+            
+            echo $result;
             
         }else{
             
