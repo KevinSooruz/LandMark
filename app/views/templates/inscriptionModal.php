@@ -31,10 +31,10 @@
                 </div>
                 <div class="form-group">
                     <label id="labeluEmail" for="uEmail"><i class="glyphicon glyphicon-envelope"></i> E-mail</label>
-                    <input id="uEmail" class="form-control" ng-class="{errorBackEnd: userExist === true || wrongMailInscription === true}" name="uEmail" ng-model="user.email" type="email" ng-focus="focusInputModal('uEmail')" ng-blur="blurInputModal('uEmail')" ng-click="userExist = false; wrongMailInscription = false" required="">
+                    <input id="uEmail" class="form-control" ng-class="{errorBackEnd: userExist === true || wrongMailInscription === true}" name="uEmail" ng-model="user.email" type="email" ng-focus="focusInputModal('uEmail')" ng-blur="blurInputModal('uEmail')" ng-click="userExist = false; wrongMailInscription = false" ng-pattern="mail" required="">
                     <div class="errorInfos">
                         <span ng-show="inscription.uEmail.$error.required">Obligatoire</span>
-                        <span ng-show="inscription.uEmail.$error.email">E-mail incorrect</span>
+                        <span ng-show="inscription.uEmail.$error.pattern">E-mail incorrect</span>
                         <span ng-show="userExist === true">Utilisateur existant</span>
                     </div>
                 </div>

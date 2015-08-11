@@ -7,8 +7,11 @@ app.controller("AllController", function($scope, Log, $location){
     $scope.word = /^[\w*\àäâéèëêïîöôüûùç\s*\-!?%€#&()=+/*.,':]+$/;
     
     // Pattern téléphone
-    // "d" tous les chiffres, "s" espaces, "$" caractères spéciaux sauf ceux mentionnés
-    $scope.tel = /^[\d*\s*\-.]+$/;
+    // "s" espaces, "$" caractères spéciaux sauf ceux mentionnés
+    $scope.tel = /^[0-9\s*\-.+()]+$/;
+    
+    // Pattern email
+    $scope.mail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]{2,}+\.[a-zA-Z]{2,6}$/;
     
     /////////////////////////////////// Utilisateur ///////////////////////////////////
     

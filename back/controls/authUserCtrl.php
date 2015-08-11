@@ -25,11 +25,16 @@ switch($method){
             $password = strip_tags(sha1($_POST["password"])); // Sécurisation mot de passe sha1
             $passwordNb = strlen($_POST["password"]);
             $verifUser = $authUser->verificationUser($email); // Vérification si utilisateur existe déjà
-            $regexEmail = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#"; // Regex email
+            $regexEmail = "#^[a-zA-Z0-9._-]+@[a-zA-Z0-9]{2,}\.[a-z]{2,6}$#"; // Regex email
             
             if(isset($_POST["connection"]) && $_POST["connection"] === "login"){ // Connexion
                 
-                if($email !== $verifUser["email"]){
+                if(!preg_match($regexEmail, $email)){
+                    
+                    // Mauvais email
+                    echo "wrongMailConnection";
+
+                }else if($email !== $verifUser["email"]){
                     
                     // Utilisateur n'existe pas en base
                     echo "userNotExist";

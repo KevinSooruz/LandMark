@@ -68,6 +68,14 @@ services.factory("Modal", function(Api, Log, $timeout){
             }else{
 
                 switch(response.data){
+                        
+                    case "wrongMailConnection":
+
+                        // Affichage message erreur mauvais email (inscription)
+                        scope.wrongMailConnection = true;
+                        scope.connection.uEmailCo.$error.pattern = true;
+
+                        break;
                     
                     case "userNotExist":
                         
@@ -133,7 +141,7 @@ services.factory("Modal", function(Api, Log, $timeout){
 
                         // Affichage message erreur mauvais email (inscription)
                         scope.wrongMailInscription = true;
-                        scope.inscription.uEmail.$error.email = true;
+                        scope.inscription.uEmail.$error.pattern = true;
 
                         break;
                         

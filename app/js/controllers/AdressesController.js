@@ -60,7 +60,7 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         var location = document.getElementById("adLocation").value;
         
         // Si pattern pas correct ou si nom adresse vide et adresse vide on ne continu pas
-        if($scope.adresses.adName.$error.pattern || $scope.adresses.adLocation.$error.pattern){
+        if($scope.adresses.adName.$error.pattern || $scope.adresses.adLocation.$error.pattern || $scope.adresses.adPhone.$error.pattern){
             
             $scope.errorPatternAddress = true;
             return;
@@ -84,6 +84,15 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
         
         // Envoie donnée nom à objet adresse
         adresse.name = $scope.adName;
+        
+        // Envoie donnée tel à objet adresse
+        adresse.phone = $scope.adPhone;
+        
+        if(adresse.phone === undefined){
+            
+            adresse.phone = "";
+            
+        }
         
         // Envoie donnée catégorie à objet adresse
         var adCategorie = document.getElementById("adCategorie").value;
@@ -118,7 +127,6 @@ app.controller("AdressesController", function($scope, Autocomplete, Geocode, Add
             
         }).finally(function(){
             
-            console.log(adresse);
             // Finally on lance quand même l'enregistrement car pas besoin d'avoir les coordonnées GPS pour enregistrer l'adresse
             Address.post(adresse, $scope);
 

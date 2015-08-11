@@ -61,7 +61,9 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                 
                             name: data.name,
                             location: data.location,
-                            categorie: data.categorie
+                            categorie: data.categorie,
+                            list: data.list,
+                            phone: data.phone
 
                         });
                     
@@ -73,6 +75,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                         scope.adLocation = "";
                         scope.categorieSelect = "";
                         scope.listSelect = "";
+                        scope.adPhone = "";
                     
                         $timeout(function(){
                             

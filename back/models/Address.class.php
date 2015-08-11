@@ -16,9 +16,9 @@ class Address{
         
     }
     
-    public function create($categorie, $location, $name, $list, $lat, $lng, $placeId){
+    public function create($categorie, $location, $name, $list, $lat, $lng, $phone, $placeId){
         
-        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, list, lat, lng, id_user, place_id) VALUES(:name, :categorie, :location, :list, :lat, :lng, :user, :placeid)") or die(print_r($this->_bdd->errorInfo()));
+        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, list, lat, lng, id_user, phone, place_id) VALUES(:name, :categorie, :location, :list, :lat, :lng, :user, :phone, :placeid)") or die(print_r($this->_bdd->errorInfo()));
         $reqCreate->execute(array(
             
             "name" => $name,
@@ -28,6 +28,7 @@ class Address{
             "lat" => $lat,
             "lng" => $lng,
             "user" => $_SESSION["user"],
+            "phone" => $phone,
             "placeid" => $placeId
             
         ));
@@ -38,7 +39,7 @@ class Address{
     
     public function read(){
         
-        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user");
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user");
         $reqRead->execute(array(
         
             "user" => $_SESSION["user"]
@@ -56,7 +57,9 @@ class Address{
                 "location" => $addresses["location"],
                 "list" => $addresses["list"],
                 "lat" => $addresses["lat"],
-                "lng" => $addresses["lng"]
+                "lng" => $addresses["lng"],
+                "phone" => $addresses["phone"],
+                "placeId" => $addresses["place_id"]
             ));
         };
         $result.= "]";
@@ -69,11 +72,11 @@ class Address{
         
         if($value === "list"){
             
-            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND list = :name");
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND list = :name");
             
         }else if($value === "categorie"){
             
-            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng FROM addresses WHERE id_user = :user AND categorie = :name");
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, list, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND categorie = :name");
             
         }
         
@@ -95,7 +98,9 @@ class Address{
                 "location" => $addresses["location"],
                 "list" => $addresses["list"],
                 "lat" => $addresses["lat"],
-                "lng" => $addresses["lng"]
+                "lng" => $addresses["lng"],
+                "phone" => $addresses["phone"],
+                "placeId" => $addresses["place_id"]
             ));
         };
         $result.= "]";

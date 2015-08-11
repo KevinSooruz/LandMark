@@ -78,6 +78,7 @@ switch($method){
             $lat = "";
             $lng = "";
             $placeId = "";
+            $phone = "";
             
             if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
                 
@@ -107,8 +108,14 @@ switch($method){
                     $placeId = $_POST["placeId"];
                     
                 }
+                
+                if(isset($_POST["phone"])){
+                    
+                    $phone = strip_tags($_POST["phone"]);
+                    
+                }
 
-                $address->create($categorie, $location, $name, $list, $lat, $lng, $placeId);
+                $address->create($categorie, $location, $name, $list, $lat, $lng, $phone, $placeId);
                 
             }
             

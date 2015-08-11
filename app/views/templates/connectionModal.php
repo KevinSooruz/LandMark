@@ -11,10 +11,10 @@
             <form name="connection">
                 <div class="form-group">
                     <label id="labeluEmailCo" for="uEmailCo"><i class="glyphicon glyphicon-envelope"></i> E-mail</label>
-                    <input id="uEmailCo" class="form-control" ng-class="{errorBackEnd: userNotExist === true}" name="uEmailCo" ng-model="userCo.email" type="email" ng-focus="focusInputModal('uEmailCo')" ng-blur="blurInputModal('uEmailCo')" ng-click="userNotExist = false; wrongMailConnection = false" required="">
+                    <input id="uEmailCo" class="form-control" ng-class="{errorBackEnd: userNotExist === true}" name="uEmailCo" ng-model="userCo.email" type="email" ng-focus="focusInputModal('uEmailCo')" ng-blur="blurInputModal('uEmailCo')" ng-click="userNotExist = false; wrongMailConnection = false" ng-pattern="mail" required="">
                     <div class="errorInfos">
                         <span ng-show="connection.uEmailCo.$error.required">Obligatoire</span>
-                        <span ng-show="connection.uEmailCo.$error.email">E-mail incorrect</span>
+                        <span ng-show="connection.uEmailCo.$error.pattern">E-mail incorrect</span>
                         <span ng-show="userNotExist === true">Utilisateur inexistant</span>
                     </div>
                 </div>

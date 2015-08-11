@@ -15,7 +15,7 @@
                                     <div class="form-group">
                                         <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false; errorPattern = false; errorGeocode = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
+                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true}" ng-click="errorName = false; errorPatternAddress = false; errorGeocode = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adName.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adName.$error.minlength">3 car. min</span>
@@ -31,6 +31,17 @@
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adLocation.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adLocation.$error.pattern">Caract&egrave;re interdit</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=form-group>
+                                        <label for="adPhone" class="col-md-2 col-sm-2 control-label">T&eacute;l&eacute;phone</label>
+                                        <div class="col-md-10 col-sm-10">
+                                            <input id="adPhone" name="adPhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="adPhone" ng-click="errorPatternAddress = false; errorGeocode = false" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
+                                            <div class="errorInfos">
+                                                <span ng-show="adresses.adPhone.$error.minlength">3 car. min</span>
+                                                <span ng-show="adresses.adPhone.$error.maxlength">30 car. max</span>
+                                                <span ng-show="adresses.adPhone.$error.pattern">Caract&egrave;re interdit</span>
                                             </div>
                                         </div>
                                     </div>
