@@ -182,7 +182,11 @@
 }
 
 .btnBigWidth{
-    width: 400px;
+    width: 300px;
+}
+
+.btnMidWidth{
+    width: 150px;
 }
 
 .btnGhostGrey{
@@ -357,7 +361,7 @@ body{
     }
     
     .errorBlockMargin{
-        margin-top: 10px;
+        margin-top: 15px;
     }
     
     .inBox{
@@ -395,7 +399,7 @@ body{
                 .form-group{
                     .relative;
                     
-                    label{
+                    .control-label{
                         .fw7;
                         .textLeft;
                     }
@@ -407,6 +411,10 @@ body{
                     }
                     
                     &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                    
+                    &.noMargin{
                         margin-bottom: 0;
                     }
                 }
@@ -603,5 +611,10 @@ body{
                 }
             }
         }
+    }
+    
+    .noListForm{
+        display: inline-block;
+        margin-top: 7px;
     }
 }

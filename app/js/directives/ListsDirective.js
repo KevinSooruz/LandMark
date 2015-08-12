@@ -16,7 +16,7 @@ app.directive("lists", function(Lists){
 
                 if(response === "errorLoadLists"){
 
-                    scope.errorLoadLists = true;
+                    scope.errorBackEnd = true;
 
                 }else{
 

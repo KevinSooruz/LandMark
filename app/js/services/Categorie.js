@@ -13,7 +13,7 @@ services.factory("Categorie", function(Api){
         
             if(response.data === "categorieProblem"){
 
-                scope.errorCategorieBackEnd = true;
+                scope.errorBackEnd = true;
 
             }else{
 

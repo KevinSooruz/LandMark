@@ -16,7 +16,7 @@ app.directive("addresses", function(Address){
 
                 if(response === "errorLoadAddresses"){
 
-                    scope.errorLoadAddresses = true;
+                    scope.errorBackEnd = true;
 
                 }else{
 

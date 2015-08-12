@@ -4,7 +4,10 @@ app.controller("AllController", function($scope, Log, $location){
     
     // Pattern word
     // "w" de a à z, "s" espace, "$" caractères spéciaux sauf ceux mentionnés
-    $scope.word = /^[\w*\àäâéèëêïîöôüûùç\s*\-!?%€#&()=+/*.,':]+$/;
+    $scope.word = /^[\w*\àäâéèëêïîöôüûùç\s*\-_.€#=+/:]+$/;
+    
+    // Pattern word adresse
+    $scope.wordAddress = /^[\w*\àäâéèëêïîöôüûùç\s*\-_!?%€#&()=+/*.,':]+$/;
     
     // Pattern téléphone
     // "s" espaces, "$" caractères spéciaux sauf ceux mentionnés
@@ -32,6 +35,21 @@ app.controller("AllController", function($scope, Log, $location){
     $scope.redirect = function(locate){
         
         $location.path(locate);
+        
+    };
+    
+    // Redirection après choix sur menu déroulant. Ne fonctionne pas avec redirect
+    $scope.relocate = function(elem, url){
+        
+        var elemValue = document.getElementById(elem).value;
+        
+        if(elemValue === ""){
+            
+            return;
+            
+        }
+        
+        $location.path(url + elemValue);
         
     };
     
