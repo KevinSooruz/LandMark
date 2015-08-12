@@ -8,7 +8,7 @@ app.config(["$routeProvider", function($routeProvider){
     }).when("/addresses", {
         
         templateUrl: "app/views/adresses.php",
-        controller: "AdressesController",
+        controller: "AddressesController",
         resolve:{
             session: app.session // Vérification si session active pour accéder au compte client
         }
@@ -33,6 +33,14 @@ app.config(["$routeProvider", function($routeProvider){
         
         templateUrl: "app/views/categories.php",
         controller: "CategoriesController",
+        resolve:{
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
+    }).when("/addresses/categories/:nameCategorie/:nameAddress", {
+        
+        templateUrl: "app/views/address.php",
+        controller: "AddressController",
         resolve:{
             session: app.session // Vérification si session active pour accéder au compte client
         }

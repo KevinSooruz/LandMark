@@ -1,9 +1,9 @@
-services.factory("User", function(Api, $q){
+services.factory("User", function(Api, $rootScope){
     
     var user = {};
     
     // Informations utilisateurs
-    user.informations = function(scope){
+    user.get = function(scope){
         
         var data = {
             
@@ -13,7 +13,12 @@ services.factory("User", function(Api, $q){
         
         Api.get("back/controls/userCtrl.php", data).then(function(response){
             
-            console.log(response.data);
+            scope.userSurname = response.data[0].surname;
+            scope.userName = response.data[0].name;
+        
+            $rootScope.user.surname = response.data[0].surname;
+            $rootScope.user.name = response.data[0].name;
+            $rootScope.user.email = response.data[0].email;
             
         }, function(data, status, config, headers){
             

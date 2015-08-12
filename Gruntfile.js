@@ -29,9 +29,10 @@ module.exports = function(grunt) {
                     "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
-                    "app/js/controllers/AdressesController.js",
+                    "app/js/controllers/AddressesController.js",
                     "app/js/controllers/ListsController.js",
                     "app/js/controllers/CategoriesController.js",
+                    "app/js/controllers/AddressController.js",
                     
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -59,9 +60,10 @@ module.exports = function(grunt) {
                     "app/js/filters/Reverse.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
-                    "app/js/controllers/AdressesController.js",
+                    "app/js/controllers/AddressesController.js",
                     "app/js/controllers/ListsController.js",
                     "app/js/controllers/CategoriesController.js",
+                    "app/js/controllers/AddressController.js",
                     
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -97,6 +99,7 @@ module.exports = function(grunt) {
                 "dist/app/views/adresses.php": "app/views/adresses.php",
                 "dist/app/views/lists.php": "app/views/lists.php",
                 "dist/app/views/categories.php": "app/views/categories.php",
+                "dist/app/views/address.php": "app/views/address.php",
                 
                 "dist/app/views/templates/inscriptionModal.php": "app/views/templates/inscriptionModal.php",
                 "dist/app/views/templates/connectionModal.php": "app/views/templates/connectionModal.php",
@@ -106,6 +109,9 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/addresses/listsTemplate.php": "app/views/templates/addresses/listsTemplate.php",
                 "dist/app/views/templates/addresses/listsTemplateSelect.php": "app/views/templates/addresses/listsTemplateSelect.php",
                 "dist/app/views/templates/addresses/categoriesTemplate.php": "app/views/templates/addresses/categoriesTemplate.php",
+                
+                "dist/app/views/templates/categories/addressesTemplate.php": "app/views/templates/categories/addressesTemplate.php",
+                "dist/app/views/templates/categories/categoriesTemplate.php": "app/views/templates/categories/categoriesTemplate.php",
                 
                 "dist/app/views/templates/lists/listsTemplate.php": "app/views/templates/lists/listsTemplate.php",
                 "dist/app/views/templates/lists/addressesTemplate.php": "app/views/templates/lists/addressesTemplate.php",

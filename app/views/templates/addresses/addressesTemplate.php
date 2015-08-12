@@ -10,7 +10,15 @@
                     </div>
                 </div>
                 <span class="locationAddress">{{address.location}}</span>
-                <span class="infoTel"><span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span></span>
+                <div class="elemPlus row">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 textRight">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <i class="glyphicon glyphicon-wrench" ng-click="redirect('/addresses/categories/{{address.categorie}}/{{address.name}}')"></i>
+                    </div>
+                </div>
             </li>
         </ul>
         <p ng-show="addresses.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune adresse</p>

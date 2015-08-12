@@ -1,4 +1,5 @@
 <div id="menuApp">
+    <div id="headMenu">Localize</div>
     <div id="logo"></div>
     <ul>
         <li ng-repeat="link in menu" ng-class="{active: indexMenu === $index}" ng-click="activeMenu($index); redirect(link.locate)">

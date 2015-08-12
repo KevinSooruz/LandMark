@@ -3,7 +3,7 @@
     <div class="content">
         <div id="categories" class="inlineAll">
             <div class="headApp">
-                <span class="title">Adresses {{nameCategorie}}</span>
+                <span class="title">Adresses</span>
                 <categories template-url="app/views/templates/categories/categoriesTemplate.php"></categories>
             </div>
             <form name="searchFull" class="searchFull" ng-show="addresses.length >= 1">

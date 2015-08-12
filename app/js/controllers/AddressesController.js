@@ -1,4 +1,9 @@
-app.controller("AdressesController", function($scope, Autocomplete, Geocode, Address, User, Lists){
+app.controller("AddressesController", function($scope, Autocomplete, Geocode, Address, User, Lists){
+    
+    /////////////////////////////////// Utilisateur ///////////////////////////////////
+    
+    // Initialisation des informations utilisateurs
+    User.get($scope); // Possibilité d'appeler l'utilisateur ailleur dans l'appli grâce à $rootScope
     
     // Service autocomplétion
     Autocomplete.run();

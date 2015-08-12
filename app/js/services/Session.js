@@ -1,4 +1,4 @@
-app.session = function(Api, $location, Log){
+app.session = function(Api, $location, Log, $rootScope){
     
     var session = sessionStorage.getItem("Log");
     

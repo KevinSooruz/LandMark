@@ -1,4 +1,4 @@
-services.factory("Log", function(Api, $location){
+services.factory("Log", function(Api, $location, $rootScope){
     
     var log = {};
     
@@ -23,6 +23,9 @@ services.factory("Log", function(Api, $location){
             
             // Si réponse === logout on retour à la page d'accueil + les informations sessions sont détruites (backend)
             if(response.data === "logout"){
+                
+                // destruction informations utilisateur
+                $rootScope.user = {};
                 
                 // Utilisateur déconnecté
                 log.storageOut();

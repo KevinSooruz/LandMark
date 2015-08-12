@@ -17,7 +17,9 @@ switch($method){
         // Récupération des informations utilisateur
         if(isset($_GET["user"]) && $_GET["user"] === "informations"){
             
-            $user->read();
+            $result = $user->read();
+            
+            echo $result;
             
         }
             

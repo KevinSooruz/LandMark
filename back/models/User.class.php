@@ -38,7 +38,7 @@ class User{
         };
         $result.= "]";
         
-        echo $result;
+        return $result;
         
     }
     

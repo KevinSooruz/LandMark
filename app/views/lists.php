@@ -3,7 +3,7 @@
     <div class="content">
         <div id="adressesListe" class="inlineAll">
             <div class="headApp">
-                <span class="title">Liste {{nameList}}</span>
+                <span class="title">Listes</span>
                 <lists template-url="app/views/templates/lists/listsTemplate.php"></lists>
             </div>
             <addresses template-url="app/views/templates/lists/addressesTemplate.php"></addresses>

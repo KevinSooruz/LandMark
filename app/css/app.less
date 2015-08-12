@@ -101,11 +101,11 @@
 @grey: #e7eaec;
 @greyLight: #f3f3f4;
 @textDark: #676a6c;
+@textLight: #9da8b9;//lighten(@textDark, 15%);
 
 // Menu
 @greyDark: #293846;
 @greyDarkLight: #2f4050;
-@textLight: #9da8b9; // #c4c4c4
 
 // Home
 @bgOpacity: rgba(0, 0, 0, 0.6);
@@ -472,8 +472,23 @@ body{
             border: 1px solid @grey;
         }
         
-        .glyphicon-map-marker{
+        .glyphicon-big{
             .fs(70px);
+        }
+        
+        .elemPlus{
+            margin-top: 15px;
+                
+            .glyphicon{
+                .fs(14px);
+                color: @textLight;
+                margin-left: 5px;
+                    
+                &:hover{
+                    cursor: pointer;
+                    color: @textDark;
+                }
+            }
         }
         
         .title{
@@ -503,7 +518,7 @@ body{
         }
         
         &:hover{
-            .glyphicon-map-marker{
+            .glyphicon-big{
                 color: @primary;
             }
         }
@@ -546,7 +561,7 @@ body{
             .box-shadow(@shadow: none);
             .br(0);
             .bg(@greyLight);
-            height: 45px;
+            height: 55px;
             padding: 6px 15px;
             .fs(13px);
         }
@@ -563,13 +578,24 @@ body{
                 padding: 0 15px!important;
             }
 
-            .locationAddress, .infoTel{
+            .locationAddress{
                 display: inline-block;
                 width: 100%;
             }
 
-            .infoTel{
+            .elemPlus{
                 margin-top: 15px;
+                
+                .glyphicon{
+                    .fs(14px);
+                    color: @textLight;
+                    margin-left: 5px;
+                    
+                    &:hover{
+                        cursor: pointer;
+                        color: @textDark;
+                    }
+                }
             }
 
             &:first-of-type{

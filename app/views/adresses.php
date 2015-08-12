@@ -3,11 +3,24 @@
     <div class="content">
         <div id="adresses" class="inlineAll">
             <div class="headApp">
-                <span class="title">Adresses</span>
+                <span class="title">Tableau de bord</span>
             </div>
             <div class="col-md-12 contentBox">
                 <div class="col-md-6">
-                    <div class="inBox">
+                    <div id="welcome" class="inBox">
+                        <div class="inBoxContent">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2 center">
+                                    <i class="glyphicon glyphicon-certificate"></i>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <span class="title">{{userSurname}} {{userName}}</span>
+                                    <p>Cet espace personnel a &eacute;t&eacute; con&ccedil;u pour vous permettre de r&eacute;pertorier vos lieux pr&eacute;f&eacute;r&eacute;s et de les partager avec vos proches. Vous pouvez ajouter, supprimer ou modifier une adresse et administrer les personnes avec qui vous souhaitez les partager.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inBox other">
                         <span class="title">Ajouter une adresse</span>
                         <div class="inBoxContent">
                             <form name="adresses" class="form-horizontal">
@@ -57,7 +70,6 @@
                                     </div>
                                 </div>
                                 <div class="multiContent textRight">
-                                    <button class="btn btnGhostGrey btnMidWidth">Effacer</button>
                                     <button type="submit" class="btn btnPrimary btnMidWidth" ng-click="adresseAdd()">Ajouter</button>
                                 </div>
                             </form>
@@ -86,7 +98,6 @@
                                     </div>
                                 </div>
                                 <div class="multiContent textRight">
-                                    <button class="btn btnGhostGrey btnMidWidth">Effacer</button>
                                     <button class="btn btnPrimary btnMidWidth" ng-click="adList(listName)">Ajouter</button>
                                 </div>
                             </form>

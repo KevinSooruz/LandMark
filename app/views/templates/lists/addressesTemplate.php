@@ -11,7 +11,7 @@
                     <div class="location">
                         <span>{{address.location}}</span>
                     </div>
-                    <div class="otherInfo">
+                    <div class="elemPlus">
                         <span><span class="fw7">Cat&eacute;gorie :</span> {{address.categorie}}</span>
                     </div>
                 </div>

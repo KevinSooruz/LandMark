@@ -4,7 +4,7 @@
         <li class="compactBox col-md-4" ng-repeat="address in addresses | reverse | filter: addressSearch">
             <div class="contentCompact">
                 <div class="col-md-3 col-sm-3 col-xs-3 center">
-                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <i class="glyphicon glyphicon-map-marker glyphicon-big"></i>
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-9">
                     <div class="row">
@@ -18,8 +18,14 @@
                     <div class="location">
                         <span>{{address.location}}</span>
                     </div>
-                    <div class="otherInfo">
-                        <span class="info"><span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span></span>
+                    <div class="elemPlus row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 textRight">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <i class="glyphicon glyphicon-wrench" ng-click="redirect('/addresses/categories/{{address.categorie}}/{{address.name}}')"></i>
+                        </div>
                     </div>
                 </div>
             </div>

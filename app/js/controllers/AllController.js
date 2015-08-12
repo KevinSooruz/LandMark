@@ -1,4 +1,4 @@
-app.controller("AllController", function($scope, Log, $location){
+app.controller("AllController", function($scope, Log, $location, $rootScope){
     
     /////////////////////////////////// Pattern ///////////////////////////////////
     
@@ -17,6 +17,9 @@ app.controller("AllController", function($scope, Log, $location){
     $scope.mail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$/;
     
     /////////////////////////////////// Utilisateur ///////////////////////////////////
+    
+    // Création de l'objet user
+    $rootScope.user = {};
     
     // Initialisation état connexion utilisateur (log out)
     Log.storageInit();
