@@ -34,6 +34,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
         
     };
     
+    // Ajout d'un adresse
     address.post = function(data, scope){
         
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){

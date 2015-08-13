@@ -42,6 +42,10 @@ class Address{
             
             $reqRead = $this->reqReadOne($name, $value);
             
+        }else if($value === "name"){
+            
+            $reqRead = $this->reqReadOne($name, $value);
+            
         }else{
             
             $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id FROM addresses WHERE id_user = :user");
@@ -95,6 +99,20 @@ class Address{
         $reqRead->execute(array(
         
             "name" => $name
+        
+        ));
+        
+        return $reqRead->rowCount();
+        
+    }
+    
+    public function verifAdressInCategorie($nameAddress, $nameCategorie){
+        
+        $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name AND categorie = :categorie");
+        $reqRead->execute(array(
+        
+            "name" => $nameAddress,
+            "categorie" => $nameCategorie
         
         ));
         

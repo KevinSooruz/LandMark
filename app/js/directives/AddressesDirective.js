@@ -1,4 +1,4 @@
-app.directive("addresses", function(Address){
+app.directive("addresses", function(Address, $location){
     
     var addressesTemplate = {
         
@@ -11,6 +11,10 @@ app.directive("addresses", function(Address){
         },
         link: function(scope){
             
+            var location = $location.path();
+            var splitLocation = location.split("/");
+            var categorie = splitLocation[3];
+            
             ///// Initialisation des adresses front /////
             Address.get().then(function(response){
 
@@ -18,6 +22,18 @@ app.directive("addresses", function(Address){
 
                     scope.errorBackEnd = true;
 
+                }else if(response === "noResult"){
+                    
+                    $location.path("/addresses");
+                    
+                }else if(response === "noResultAddress"){
+                    
+                    $location.path("/addresses/categories/" + categorie);
+                    
+                }else if(response === "noAddressInCategorie"){
+                    
+                    $location.path("/addresses/categories/All");
+                    
                 }else{
 
                     scope.addresses = response;

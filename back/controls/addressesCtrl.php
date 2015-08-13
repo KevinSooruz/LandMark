@@ -56,6 +56,31 @@ switch($method){
                     // Si liste n'existe pas car nombre de liste avec ce nom === 0
                     echo "noResult";
                     
+                }else if(isset($_GET["nameAddress"])){
+                    
+                    $nameAddress = strip_tags($_GET["nameAddress"]);
+                    $numberAddress = $address->verifAddressExist($nameAddress);
+                    $numberAdressInCategorie = $address->verifAdressInCategorie($nameAddress, $nameCategorie);
+                    
+                    if($numberAddress === 0){
+                        
+                        // Si adresse n'existe pas car nombre de liste avec ce nom === 0
+                        echo "noResultAddress";
+                        
+                    }else if($numberAdressInCategorie === 0){
+                        
+                        // Si adresse n'existe pas dans la catégorie
+                        echo "noAddressInCategorie";
+                        
+                    }else{
+                        
+                        $value = "name";
+                        $result = $address->read($nameAddress, $value);
+                        
+                        echo $result;
+                        
+                    }
+                    
                 }else{
                     
                     $value = "categorie";
