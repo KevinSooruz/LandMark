@@ -29,10 +29,15 @@ switch($method){
         if(isset($_POST["name"])){
             
             $name = strip_tags($_POST["name"]);
+            $nameCount = $lists->verifListExist($name);
             
             if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
                 
                 echo "emptyName";
+                
+            }else if($nameCount !== 0){
+                
+                 echo "alreadyExists";
                 
             }else{
                 

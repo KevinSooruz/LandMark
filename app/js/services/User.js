@@ -3,7 +3,14 @@ services.factory("User", function(Api, $rootScope){
     var user = {};
     
     // Informations utilisateurs
-    user.get = function(scope){
+    user.get = function(){
+        
+        user.informations();
+        
+    };
+    
+    // Informations
+    user.informations = function(){
         
         var data = {
             
@@ -13,8 +20,8 @@ services.factory("User", function(Api, $rootScope){
         
         Api.get("back/controls/userCtrl.php", data).then(function(response){
             
-            scope.userSurname = response.data[0].surname;
-            scope.userName = response.data[0].name;
+            $rootScope.userSurname = response.data[0].surname;
+            $rootScope.userName = response.data[0].name;
         
             $rootScope.user.surname = response.data[0].surname;
             $rootScope.user.name = response.data[0].name;

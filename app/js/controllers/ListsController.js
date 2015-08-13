@@ -24,7 +24,7 @@ app.controller("ListsController", function($scope, $routeParams, $location, Addr
     // Function listSuccess permet de continuer si la liste demandée par l'utilisateur est présente dans ses listes personnelles
     var listsSuccess = function(){
         
-        // Initialisation titre
+        // Liste active
         $scope.nameList = $routeParams.nameList;
         
     };

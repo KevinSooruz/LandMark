@@ -1,4 +1,6 @@
-app.controller("CategoriesController", function($scope, $routeParams, $location, Address){
+app.controller("CategoriesController", function($scope, $routeParams, $location, Address, User){
+    
+    User.get();
     
     // Récupération des addresses et vérification si liste demandée existe
     Address.get().then(function(response){
@@ -24,7 +26,7 @@ app.controller("CategoriesController", function($scope, $routeParams, $location,
      // Function categorieSuccess permet de continuer si la liste demandée par l'utilisateur est présente dans ses listes personnelles
     var categorieSuccess = function(){
         
-        // Initialisation titre
+        // Catégorie active
         $scope.nameCategorie = $routeParams.nameCategorie;
         
     };

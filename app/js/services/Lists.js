@@ -46,6 +46,13 @@ services.factory("Lists", function(Api, $timeout, $q){
                     
                         break;
                     
+                    case "alreadyExists":
+                    
+                        scope.errorList = true;
+                        scope.nameListExist = true;
+                    
+                        break;
+                    
                     case "successAddList":
                         
                         var listName = document.getElementById("listName");
