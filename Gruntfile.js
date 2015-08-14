@@ -116,6 +116,10 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/lists/listsTemplate.php": "app/views/templates/lists/listsTemplate.php",
                 "dist/app/views/templates/lists/addressesTemplate.php": "app/views/templates/lists/addressesTemplate.php",
                 
+                "dist/app/views/templates/address/addressTemplate.php": "app/views/templates/address/addressTemplate.php",
+                "dist/app/views/templates/address/categoriesTemplate.php": "app/views/templates/address/categoriesTemplate.php",
+                "dist/app/views/templates/address/listsTemplate.php": "app/views/templates/address/listsTemplate.php",
+                
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
                 "dist/back/controls/authUserCtrl.php": "back/controls/authUserCtrl.php",

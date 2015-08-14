@@ -96,6 +96,7 @@
 @white: #fff;
 @black: #000;
 @error: #d91e18;
+@errorDark: darken(@error, 10%);
 
 // text + bg
 @grey: #e7eaec;
@@ -197,6 +198,16 @@
     &:hover{
         color: @textLight;
         .bg(@greyLight);
+    }
+}
+
+.btnDelete{
+    .bg(@error);
+    color: @white;
+    
+    &:hover, &:focus{
+        .bg(@errorDark);
+        color: @white;
     }
 }
 
@@ -387,7 +398,7 @@ body{
             .title{
                 padding: 0;
                 border: none;
-                margin-bottom: 5px;
+                margin-bottom: 8px;
                 .fs(14px);
             }
             
@@ -648,6 +659,10 @@ body{
     .noListForm{
         display: inline-block;
         margin-top: 7px;
+    }
+    
+    .noMargin{
+        margin: 0;
     }
 
 }
