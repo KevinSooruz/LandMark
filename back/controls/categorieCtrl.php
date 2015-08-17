@@ -6,7 +6,7 @@ include_once "../models/loadClass.php";
 // Permet de définir méthode serveur (POST / GET)
 $method = $_SERVER["REQUEST_METHOD"];
 
-// Objet User
+// Objet Categorie
 $categorie = new Categorie($bdd);
 
 // Objet adresse

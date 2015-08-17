@@ -9,6 +9,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 // Objet adresseList
 $addressList = new AddressList($bdd);
 
+// Objet Lists
+$lists = new Lists($bdd);
+
 // Objet adresse
 $address = new Address($bdd);
 
@@ -26,7 +29,7 @@ switch($method){
             
             $addressListCount = $addressList->addressListVerification($listName, $addressName);
             $addressCount = $address->verifAddressExist($addressName);
-            
+            $listCount = $lists->verifListExist($listName);
             
             if($addressCount === 0){
                 
@@ -37,6 +40,11 @@ switch($method){
                 
                 // Liste non sélectionnée
                 echo "emptyListName";
+                
+            }else if($listCount === 0){
+                
+                // Liste n'existe pas
+                echo "listDoesntExist";
                 
             }else if($addressListCount !== 0){
                 

@@ -110,15 +110,30 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
         
     };
     
-    address.addList = function(scope){
-        
-        scope.errorAddInList = false;
+    // Ajout d'une adresse dans une liste
+    address.addList = function(scope, dataList){
         
         var addressName = document.getElementById("addressName").value;
-        var changeList = document.getElementById("changeList").value;
+        var data = {};
         
-        // Si nom adresse vide on stop
-        if(changeList === "" || changeList === undefined){
+        data.addressName = addressName;
+        
+        if(dataList){
+            
+            if(dataList.list){
+                
+                data.listName = dataList.list.name;
+                
+            }else if(!dataList.list || data.listName === undefined){
+                
+                // Message erreur liste non sélectionnée
+                scope.errorAddInList = true;
+                scope.textErrorAddInList = "Merci de sélectionner une liste.";
+                return;
+                
+            }
+            
+        }else{
             
             // Message erreur liste non sélectionnée
             scope.errorAddInList = true;
@@ -126,14 +141,6 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
             return;
             
         }
-        
-        // Objet pour ajout dans liste
-        var data = {
-            
-            listName: changeList,
-            addressName: addressName
-            
-        };
         
         Api.post("back/controls/addressListCtrl.php", data).then(function(response){
             
@@ -158,6 +165,14 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
                     
                     break;
                     
+                case "listDoesntExist":
+                    
+                    // Message erreur liste n'existe pas
+                    scope.errorAddInList = true;
+                    scope.textErrorAddInList = "Cette liste n'existe pas.";
+                    
+                    break;
+                    
                 case "addressAlreadyExistInList":
                     
                     // Message erreur liste existe déjà
@@ -172,7 +187,10 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
                     Correct.run(scope, "correctChangeList");
                     
                     // Suppression choix liste
-                    scope.listChange = "";
+                    scope.dataList.list = "";
+                    
+                    // Suppression message erreur
+                    scope.errorAddInList = false;
                     
                     break;
                     
@@ -184,6 +202,31 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
             console.log(headers, data, status, config);
             scope.errorAddInList = true;
             scope.textErrorAddInList = "Une erreur s'est produite, merci de recharger la page.";
+            
+        });
+        
+    };
+    
+    // Mise à jour d'une adresse
+    address.update = function(scope, dataUpAddress){
+        
+        console.log(dataUpAddress);
+        
+        // Si champs vides
+        if(dataUpAddress === undefined){
+            
+            return;
+            
+        }
+        
+        return;
+        Api.post("back/controls/addressesCtrl.php", data).then(function(response){
+            
+            console.log(response);
+            
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
             
         });
         

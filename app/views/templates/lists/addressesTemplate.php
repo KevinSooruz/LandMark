@@ -1,7 +1,7 @@
 <div class="col-md-12 contentBox">
     <span ng-show="errorLoadAddresses === true" class="errorBlock">Une erreur s'est produite. Merci de recharger la page.</span>
     <ul>
-        <li class="compactBox col-md-4" ng-repeat="address in addresses | reverse">
+        <li class="compactBox col-md-4" ng-repeat="address in addresses">
             <div class="contentCompact">
                 <div class="col-md-3 col-sm-3 col-xs-3 center">
                     <i class="glyphicon glyphicon-map-marker"></i>

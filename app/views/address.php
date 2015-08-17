@@ -21,9 +21,9 @@
                             <form name="addressModification" class="form-horizontal">
                                 <div class="multiContent" ng-hide="errorBackEnd === true">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2 col-sm-2">Nom</label>
+                                        <label for="changeName" class="control-label col-md-2 col-sm-2">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="changeName" name="changeName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="changeName" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; nameExist = false; errorPatternAddress = false;" ng-minlength="3" ng-maxlength="50" ng-pattern="word">
+                                            <input id="changeName" name="changeName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="dataUpAddress.name" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; nameExist = false; errorPatternAddress = false;" ng-minlength="3" ng-maxlength="50" ng-pattern="word">
                                             <div class="errorInfos">
                                                 <span ng-show="addressModification.changeName.$error.minlength">3 car. min</span>
                                                 <span ng-show="addressModification.changeName.$error.maxlength">50 car. max</span>
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="changePhone" class="col-md-2 col-sm-2 control-label">T&eacute;l&eacute;phone</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="changePhone" name="changePhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="changePhone" ng-click="errorPatternAddress = false;" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
+                                            <input id="changePhone" name="changePhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="dataUpAddress.phone" ng-click="errorPatternAddress = false;" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
                                             <div class="errorInfos">
                                                 <span ng-show="addressModification.changePhone.$error.minlength">3 car. min</span>
                                                 <span ng-show="addressModification.changePhone.maxlength">30 car. max</span>
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="multiContent textRight" ng-hide="errorBackEnd === true">
-                                    <button class="btn btnPrimary btnMidWidth">Modifier</button>
+                                    <button class="btn btnPrimary btnMidWidth" ng-click="updateAddress(dataUpAddress)">Modifier</button>
                                 </div>
                             </form>
                         </div>
