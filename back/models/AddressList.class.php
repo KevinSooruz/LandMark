@@ -59,4 +59,18 @@ class AddressList{
         
     }
     
+    public function addressListVerification($listName, $addressName){
+        
+        $reqRead = $this->_bdd->prepare("SELECT id FROM addresses_lists WHERE name = :addressName AND list = :listName");
+        $reqRead->execute(array(
+            
+            "addressName" => $addressName,
+            "listName" => $listName
+        
+        ));
+        
+        return $reqRead->rowCount();
+        
+    }
+    
 }

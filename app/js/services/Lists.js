@@ -1,4 +1,4 @@
-services.factory("Lists", function(Api, $timeout, $q){
+services.factory("Lists", function(Api, $timeout, $q, Correct){
     
     var lists = {};
     
@@ -39,41 +39,44 @@ services.factory("Lists", function(Api, $timeout, $q){
             
             switch(response.data){
                     
-                    case "emptyName":
-                    
-                        scope.errorList = true;
-                        scope.errorNameList = true;
-                    
-                        break;
-                    
-                    case "alreadyExists":
-                    
-                        scope.errorList = true;
-                        scope.nameListExist = true;
-                    
-                        break;
-                    
-                    case "successAddList":
-                        
-                        var listName = document.getElementById("listName");
-                        
-                        // Ajout de la liste
-                        scope.lists.push({
+                case "emptyName":
 
-                            name: data.name
+                    scope.errorList = true;
+                    scope.errorNameList = true;
 
-                        });
-                        
-                        // Remise à 0 de l'input
-                        scope.listName = "";
-                        
-                        $timeout(function(){
-                            
-                            listName.classList.remove("ng-invalid");
-                            
-                        });
-                        
-                        break;
+                    break;
+
+                case "alreadyExists":
+
+                    scope.errorList = true;
+                    scope.nameListExist = true;
+
+                    break;
+
+                case "successAddList":
+
+                    // Affichage front envoi ok
+                    Correct.run(scope, "correctAddList");
+
+                    var listName = document.getElementById("listName");
+
+                    // Ajout de la liste
+                    scope.lists.push({
+
+                        name: data.name
+
+                    });
+
+                    // Remise à 0 de l'input
+                    scope.listName = "";
+
+                    $timeout(function(){
+
+                        listName.classList.remove("ng-invalid");
+
+                    });
+
+                    break;
                     
             }
             

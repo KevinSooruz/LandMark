@@ -45,6 +45,7 @@ module.exports = function(grunt) {
                     "app/js/services/Address.js",
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
+                    "app/js/services/Correct.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -52,7 +53,8 @@ module.exports = function(grunt) {
                     "app/js/directives/MenuDirective.js",
                     "app/js/directives/AddressesDirective.js",
                     "app/js/directives/ListsDirective.js",
-                    "app/js/directives/CategoriesDirective.js"
+                    "app/js/directives/CategoriesDirective.js",
+                    "app/js/directives/CorrectDir.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -76,6 +78,7 @@ module.exports = function(grunt) {
                     "app/js/services/Address.js",
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
+                    "app/js/services/Correct.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -83,7 +86,8 @@ module.exports = function(grunt) {
                     "app/js/directives/MenuDirective.js",
                     "app/js/directives/AddressesDirective.js",
                     "app/js/directives/ListsDirective.js",
-                    "app/js/directives/CategoriesDirective.js"
+                    "app/js/directives/CategoriesDirective.js",
+                    "app/js/directives/CorrectDir.js"
                 ]
             }
         }
@@ -127,7 +131,7 @@ module.exports = function(grunt) {
                 "dist/back/controls/categorieCtrl.php": "back/controls/categorieCtrl.php",
                 "dist/back/controls/userCtrl.php": "back/controls/userCtrl.php",
                 "dist/back/controls/listsCtrl.php": "back/controls/listsCtrl.php",
-                "dist/back/controls/addressesListCtrl.php": "back/controls/addressesListCtrl.php",
+                "dist/back/controls/addressesListCtrl.php": "back/controls/addressListCtrl.php",
                 
                 "dist/back/models/connexionSql.php": "back/models/connexionSql.php",
                 "dist/back/models/loadClass.php": "back/models/loadClass.php",
@@ -136,7 +140,7 @@ module.exports = function(grunt) {
                 "dist/back/models/Categorie.class.php": "back/models/Categorie.class.php",
                 "dist/back/models/User.class.php": "back/models/User.class.php",
                 "dist/back/models/Lists.class.php": "back/models/Lists.class.php",
-                "dist/back/models/AddressList.class.php": "back/models/AddressList.class.php"
+                "dist/back/models/AddressList.class.php": "back/models/addressList.class.php"
             }
         }
     },

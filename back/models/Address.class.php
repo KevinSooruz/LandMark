@@ -95,9 +95,10 @@ class Address{
     
     public function verifAddressExist($name){
         
-        $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name");
+        $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name AND id_user = :user");
         $reqRead->execute(array(
         
+            "user" => $_SESSION["user"],
             "name" => $name
         
         ));

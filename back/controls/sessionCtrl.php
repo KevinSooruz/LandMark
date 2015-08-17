@@ -7,6 +7,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["token_time"])){
     
     if($_SESSION["token_time"] >= $time){
         
+        $_SESSION["token_time"] = time(); // On relance le token_time à 0
         echo "session"; // Lancement de la session
         
     }else{

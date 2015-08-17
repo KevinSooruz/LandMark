@@ -13,6 +13,8 @@
                     <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
                 </div>
             </div>
+            <input type="hidden" id="addressName" value="{{address.name}}">
+            <span ng-show="errorAddressInList === true" class="errorBlock errorBlockMargin">D&eacute;sol&eacute; mais cette adresse n&rsquo;existe pas.</span>
         </li>
     </ul>
 </div>

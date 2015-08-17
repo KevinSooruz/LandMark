@@ -1,4 +1,4 @@
-services.factory("Address", function(Api, $timeout, $q, $routeParams){
+services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
     
     var address = {};
     
@@ -63,6 +63,9 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
                     
                     case "successAddAddress":
                     
+                        // Affichage front envoi ok
+                        Correct.run(scope, "correctAddAddress");
+                    
                         // Envoie des données au front
                         scope.addresses.push({
                 
@@ -102,6 +105,85 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams){
         }, function(data, status, config, headers){
             
             console.log(data, status, config, headers);
+            
+        });
+        
+    };
+    
+    address.addList = function(scope){
+        
+        scope.errorAddInList = false;
+        
+        var addressName = document.getElementById("addressName").value;
+        var changeList = document.getElementById("changeList").value;
+        
+        // Si nom adresse vide on stop
+        if(changeList === "" || changeList === undefined){
+            
+            // Message erreur liste non sélectionnée
+            scope.errorAddInList = true;
+            scope.textErrorAddInList = "Merci de sélectionner une liste.";
+            return;
+            
+        }
+        
+        // Objet pour ajout dans liste
+        var data = {
+            
+            listName: changeList,
+            addressName: addressName
+            
+        };
+        
+        Api.post("back/controls/addressListCtrl.php", data).then(function(response){
+            
+            // Suppression message erreur adresse / liste
+            scope.errorAddressInList = false;
+            scope.errorAddInList = false;
+            
+            switch(response.data){
+                    
+                case "addressDoesntExist":
+                    
+                    // Message erreur adresse n'existe pas
+                    scope.errorAddressInList = true;
+                    
+                    break;
+                    
+                case "emptyListName":
+                    
+                    // Message erreur liste non sélectionnée
+                    scope.errorAddInList = true;
+                    scope.textErrorAddInList = "Merci de sélectionner une liste.";
+                    
+                    break;
+                    
+                case "addressAlreadyExistInList":
+                    
+                    // Message erreur liste existe déjà
+                    scope.errorAddInList = true;
+                    scope.textErrorAddInList = "Cette adresse existe déjà dans cette liste.";
+                    
+                    break;
+                    
+                case "successAddList":
+                    
+                    // Affichage front envoi ok
+                    Correct.run(scope, "correctChangeList");
+                    
+                    // Suppression choix liste
+                    scope.listChange = "";
+                    
+                    break;
+                    
+                    
+            }
+            
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
+            scope.errorAddInList = true;
+            scope.textErrorAddInList = "Une erreur s'est produite, merci de recharger la page.";
             
         });
         

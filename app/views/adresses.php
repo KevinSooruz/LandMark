@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="inBox other">
-                        <span class="title">Ajouter une adresse</span>
+                        <span class="title">Ajouter une adresse <correct template-correct="correctAddAddress"></correct></span>
                         <div class="inBoxContent">
                             <form name="adresses" class="form-horizontal">
                                 <div class="multiContent">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div id="listsSelect" class="inBox other">
-                        <span class="title">Ajouter une liste</span>
+                        <span class="title">Ajouter une liste <correct template-correct="correctAddList"></correct></span>
                         <div class="inBoxContent">
                             <form name="adLists" class="form-horizontal">
                                 <div class="multiContent">
