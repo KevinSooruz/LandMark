@@ -259,6 +259,16 @@ switch($method){
                 
             }
             
+        }else if(isset($_POST["delete"]) AND $_POST["delete"] === "true" AND isset($_POST["name"]) AND isset($_POST["categorie"])){
+            
+            $name = strip_tags($_POST["name"]);
+            $categorie = strip_tags($_POST["categorie"]);
+            
+            $address->delete($name, $categorie);
+            $addressList->delete($name);
+            
+            echo "successDelete";
+            
         }
     
         break;

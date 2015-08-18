@@ -106,6 +106,19 @@ class Address{
         
     }
     
+    public function delete($name, $categorie){
+        
+        $reqDelete = $this->_bdd->prepare("DELETE FROM addresses WHERE name = :name AND categorie = :categorie AND id_user = :user");
+        $reqDelete->execute(array(
+        
+            "name" => $name,
+            "categorie" => $categorie,
+            "user" => $_SESSION["user"]
+        
+        ));
+        
+    }
+    
     public function verifAddressExist($name){
         
         $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name AND id_user = :user");

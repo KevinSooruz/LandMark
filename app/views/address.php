@@ -55,16 +55,15 @@
                     </div>
                     <div class="inBox center other">
                         <div class="inBoxContent">
-                            <button class="btn btnBigWidth btnDelete">Supprimer l&rsquo;adresse</button>
+                            <button ng-hide="confirmDelete === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer l&rsquo;adresse</button>
+                            <span ng-show="confirmDelete === true"><button class="btn btnPrimary btnMidWidth" ng-click="confirmDelete = false">Annuler</button> <button class="btn btnDelete btnMidWidth" ng-click="deleteAddress()">Supprimer</button></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="inBox other">
                         <span class="title">Position g&eacute;ographique</span>
-                        <div id="map" class="inBoxContent">
-                            
-                        </div>
+                        <div id="map" ng-model="map" class="inBoxContent"></div>
                     </div>
                 </div>
             </div>

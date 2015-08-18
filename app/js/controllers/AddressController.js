@@ -1,4 +1,4 @@
-app.controller("AddressController", function($scope, $routeParams, Address){
+app.controller("AddressController", function($scope, $routeParams, Address, $q){
     
     // Catégorie active
     $scope.nameCategorie = $routeParams.nameCategorie;
@@ -6,7 +6,7 @@ app.controller("AddressController", function($scope, $routeParams, Address){
     // Ajout d'une adresse dans une liste
     $scope.addInList = function(dataList){
         
-        // Copie objet updateAdd
+        // Copie objet dataList
         var data = angular.copy(dataList);
         
         Address.addList($scope, data);
@@ -16,10 +16,16 @@ app.controller("AddressController", function($scope, $routeParams, Address){
     // Modification adresse
     $scope.updateAddress = function(dataUpAddress){
         
-        // Copie objet updateAdd
+        // Copie objet dataUpAddress
         var data = angular.copy(dataUpAddress);
         
         Address.update($scope, data);
+        
+    };
+    
+    $scope.deleteAddress = function(){
+        
+        Address.delete($scope);
         
     };
     

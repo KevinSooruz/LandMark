@@ -37,7 +37,7 @@ app.directive("addresses", function(Address, $location){
                 }else{
 
                     scope.addresses = response;
-
+                    
                 }
 
             }, function(){

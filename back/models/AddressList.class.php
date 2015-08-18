@@ -72,6 +72,18 @@ class AddressList{
         
     }
     
+    public function delete($name){
+        
+        $reqDelete = $this->_bdd->prepare("DELETE FROM addresses_lists WHERE name = :name AND id_user = :user");
+        $reqDelete->execute(array(
+        
+            "name" => $name,
+            "user" => $_SESSION["user"]
+        
+        ));
+        
+    }
+    
     public function addressListVerification($listName, $addressName){
         
         $reqRead = $this->_bdd->prepare("SELECT id FROM addresses_lists WHERE name = :addressName AND list = :listName");

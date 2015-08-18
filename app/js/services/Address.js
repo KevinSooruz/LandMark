@@ -272,11 +272,8 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             
         }
         
-        var addressName = document.getElementById("addressName").value;
-        var categorieName = document.getElementById("categorieName").value;
-        
-        dataUpAddress.name = addressName;
-        dataUpAddress.categorie = categorieName;
+        dataUpAddress.name = scope.addresses[0].name;
+        dataUpAddress.categorie = scope.addresses[0].categorie;
         
         // Envoie des données
         Api.post("back/controls/addressesCtrl.php", dataUpAddress).then(function(response){
@@ -382,6 +379,33 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             scope.dataUpAddress.newcategorie = "";
             
         };
+        
+    };
+    
+    // Suppression adresse
+    address.delete = function(scope){
+        
+        var data = {
+            
+            delete: true,
+            name: scope.addresses[0].name,
+            categorie: scope.addresses[0].categorie
+            
+        };
+        
+        Api.post("back/controls/addressesCtrl.php", data).then(function(response){
+            
+            if(response.data === "successDelete"){
+                
+                $location.path("/addresses/categories/" + data.categorie);
+                
+            }
+            
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
+            
+        });
         
     };
     
