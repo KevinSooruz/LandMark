@@ -221,12 +221,37 @@ switch($method){
                     
                     if(!empty($newCategorieName)){
                         
+                        $adressNameChangeCategorie = $addressName;
+                            
+                        if(!empty($addressNewName)){
+                            
+                            $adressNameChangeCategorie = $addressNewName;
+                            
+                        }
+                        
                         $elem = "categorie";
                         $nameElem = $newCategorieName;
                         
-                        $address->update($elem, $nameElem, $addressName);
+                        $address->update($elem, $nameElem, $adressNameChangeCategorie);
                         
                         echo "Categorie";
+                        
+                    }
+                    
+                    if(!empty($phone)){
+                        
+                        $adressNameChangePhone = $addressName;
+                            
+                        if(!empty($addressNewName)){
+                            
+                            $adressNameChangePhone = $addressNewName;
+                            
+                        }
+                        
+                        $elem = "phone";
+                        $nameElem = $phone;
+                            
+                        $address->update($elem, $nameElem, $adressNameChangePhone);
                         
                     }
                     

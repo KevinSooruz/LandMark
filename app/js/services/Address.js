@@ -278,12 +278,9 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
         dataUpAddress.name = addressName;
         dataUpAddress.categorie = categorieName;
         
-        console.log(dataUpAddress);
-        
         // Envoie des données
         Api.post("back/controls/addressesCtrl.php", dataUpAddress).then(function(response){
             
-            console.log(response.data);
             switch(response.data){
                     
                 case "errorCharNewName":
@@ -321,6 +318,14 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                     
                     break;
                     
+                case "succesChangeAddress":
+                    
+                    success();
+                    
+                    scope.addresses[0].phone = dataUpAddress.phone;
+                    
+                    break;
+                    
                 case "succesChangeAddressName":
                     
                     success();
@@ -332,7 +337,19 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                     
                 case "succesChangeAddressCategorie":
                     
+                    success();
                     
+                    // Redirection
+                    $location.path("/addresses/categories/" + dataUpAddress.newcategorie + "/" + dataUpAddress.name);
+                    
+                    break;
+                    
+                case "succesChangeAddressNameCategorie":
+                    
+                    success();
+                    
+                    // Redirection
+                    $location.path("/addresses/categories/" + dataUpAddress.newcategorie + "/" + dataUpAddress.newname);
                     
                     break;
                     
