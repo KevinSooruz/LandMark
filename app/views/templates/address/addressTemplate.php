@@ -14,6 +14,7 @@
                 </div>
             </div>
             <input type="hidden" id="addressName" value="{{address.name}}">
+            <input type="hidden" id="categorieName" value="{{address.categorie}}">
             <span ng-show="errorAddressInList === true" class="errorBlock errorBlockMargin">D&eacute;sol&eacute; mais cette adresse n&rsquo;existe pas.</span>
         </li>
     </ul>

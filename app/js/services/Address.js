@@ -1,4 +1,4 @@
-services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
+services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $location){
     
     var address = {};
     
@@ -210,25 +210,161 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct){
     // Mise à jour d'une adresse
     address.update = function(scope, dataUpAddress){
         
-        console.log(dataUpAddress);
-        
-        // Si champs vides
+        // Si pas de données
         if(dataUpAddress === undefined){
             
             return;
             
         }
         
-        return;
-        Api.post("back/controls/addressesCtrl.php", data).then(function(response){
+        if(scope.addressModification.changeName.$error.minlength || scope.addressModification.changeName.$error.maxlength){
             
-            console.log(response);
+            // Si erreur nombre de caractères nom
+            scope.errorChangeLengthAddress = true;
+            scope.textErrorChangeAddress = "Nombre de caractères interdit.";
+            return;
+            
+        }if(scope.addressModification.changeName.$error.pattern){
+            
+            // Si erreur pattern nom
+            scope.errorChangeAddress = true;
+            scope.textErrorChangeAddress = "Caractères spéciaux interdits.";
+            return;
+            
+        }else if(scope.addressModification.changePhone.$error.minlength || scope.addressModification.changePhone.$error.maxlength){
+            
+            // Si erreur nombre de caractères phone
+            scope.errorChangeLengthPhone = true;
+            scope.textErrorChangeAddress = "Nombre de caractères interdit.";
+            return;
+            
+        }else if(scope.addressModification.changePhone.$error.pattern){
+            
+            // Si erreur pattern phone
+            scope.errorChangePhone = true;
+            scope.textErrorChangeAddress = "Merci de ne renseigner que des chiffres.";
+            return;
+            
+        }
+        
+        // Si undefined
+        if(dataUpAddress.phone === undefined){
+            
+            dataUpAddress.phone = "";
+            
+        }
+        
+        if(dataUpAddress.newname === undefined){
+            
+            dataUpAddress.newname = "";
+            
+        }
+        
+        // Si categorie
+        if(dataUpAddress.newcategorie){
+            
+            // récupération du nom de la catégorie
+            dataUpAddress.newcategorie = dataUpAddress.newcategorie.name;
+            
+        }else{
+            
+            dataUpAddress.newcategorie = "";
+            
+        }
+        
+        var addressName = document.getElementById("addressName").value;
+        var categorieName = document.getElementById("categorieName").value;
+        
+        dataUpAddress.name = addressName;
+        dataUpAddress.categorie = categorieName;
+        
+        console.log(dataUpAddress);
+        
+        // Envoie des données
+        Api.post("back/controls/addressesCtrl.php", dataUpAddress).then(function(response){
+            
+            console.log(response.data);
+            switch(response.data){
+                    
+                case "errorCharNewName":
+                    
+                    // Si erreur nombre de caractères nom
+                    scope.errorChangeLengthAddress = true;
+                    scope.textErrorChangeAddress = "Nombre de caractères interdit.";
+                    
+                    break;
+                    
+                case "errorCharNewPhone":
+                    
+                    // Si erreur nombre de caractères phone
+                    scope.errorChangeLengthPhone = true;
+                    scope.textErrorChangeAddress = "Nombre de caractères interdit.";
+                    
+                    break;
+                    
+                case "categorieDoesntExist":
+                    
+                    errorDoesntExist("La catégorie");
+                    
+                    break;
+                    
+                case "addressDosentExist":
+                    
+                    errorDoesntExist("L'adresse");
+                    
+                    break;
+                    
+                case "addressAlreadyExist":
+                    
+                    scope.errorChangeAddress = true;
+                    scope.textErrorChangeAddress = "Ce nom d'adresse existe déjà. Merci de le modifier.";
+                    
+                    break;
+                    
+                case "succesChangeAddressName":
+                    
+                    success();
+                    
+                    // Redirection
+                    $location.path("/addresses/categories/" + dataUpAddress.categorie + "/" + dataUpAddress.newname);
+                    
+                    break;
+                    
+                case "succesChangeAddressCategorie":
+                    
+                    
+                    
+                    break;
+                    
+            }
             
         }, function(headers, data, status, config){
             
             console.log(headers, data, status, config);
+            scope.errorChangeAddress = true;
+            scope.textErrorChangeAddress = "Une erreur s'est produite, merci de recharger la page.";
             
         });
+        
+         // Erreur adresse / catégorie n'existe pas
+        var errorDoesntExist = function(elem){
+            
+            scope.errorBackEndAddress = true;
+            scope.textErrorChangeAddress = elem + " d'origine n'existe pas.";
+            
+        };
+        
+        var success = function(){
+            
+            // Affichage front envoi ok
+            Correct.run(scope, "correctChangeAddress");
+            
+            // Réinitialisation
+            scope.dataUpAddress.newname = "";
+            scope.dataUpAddress.phone = "";
+            scope.dataUpAddress.newcategorie = "";
+            
+        };
         
     };
     

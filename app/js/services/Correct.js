@@ -30,7 +30,7 @@ services.factory("Correct", function($timeout){
             case "correctChangeAddress":
                 
                 scope.correctChangeAddress = true;
-                correct.time(correctChangeAddress);
+                correct.time(scope);
                 
                 break;
                 

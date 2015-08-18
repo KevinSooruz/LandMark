@@ -93,6 +93,19 @@ class Address{
         
     }
     
+    public function update($elem, $nameElem, $addressName){
+        
+        $reqUpdate = $this->_bdd->prepare("UPDATE addresses SET $elem = :nameElem WHERE name = :addressName AND id_user = :user");
+        $reqUpdate->execute(array(
+        
+            "nameElem" => $nameElem,
+            "addressName" => $addressName,
+            "user" => $_SESSION["user"]
+            
+        ));
+        
+    }
+    
     public function verifAddressExist($name){
         
         $reqRead = $this->_bdd->prepare("SELECT name FROM addresses WHERE name = :name AND id_user = :user");

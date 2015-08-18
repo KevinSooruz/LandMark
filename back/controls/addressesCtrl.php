@@ -164,6 +164,76 @@ switch($method){
                 
             }
             
+        }else if(isset($_POST["phone"]) && isset($_POST["newname"]) && isset($_POST["newcategorie"])){
+            
+            $phone = strip_tags($_POST["phone"]);
+            $addressName = strip_tags($_POST["name"]);
+            $addressNewName = strip_tags($_POST["newname"]);
+            $categorieName = strip_tags($_POST["categorie"]);
+            $newCategorieName = strip_tags($_POST["newcategorie"]);
+            
+            if(!empty($addressNewName) AND (strlen($addressNewName) < 3 OR strlen($addressNewName) > 50)){
+                
+                echo "errorCharNewName";
+                
+            }else if(!empty($phone) AND (strlen($phone) < 3 OR strlen($phone) > 30)){
+                
+                echo "errorCharNewPhone";
+                
+            }else if(!empty($addressNewName) OR !empty($phone) OR !empty($newCategorieName)){
+                
+                // Vérification si catégorie existe
+                $categorieCount = $categorie->verifCategorieExist($categorieName);
+                
+                // Vérification si adresse existe dans la catégorie
+                $addressCount = $address->verifAdressInCategorie($addressName, $categorieName);
+                
+                // Vérification si nom adresse est déjà présent
+                $addressNameExist = $address->verifAddressExist($addressNewName);
+                
+                if($categorieCount === 0){
+                    
+                    echo "categorieDoesntExist";
+                    
+                }else if($addressCount === 0){
+                    
+                    echo "addressDosentExist";
+                    
+                }else if($addressNameExist !== 0){
+                    
+                    echo "addressAlreadyExist";
+                    
+                }else{
+                    
+                    echo "succesChangeAddress";
+                    
+                    if(!empty($addressNewName)){
+                        
+                        $elem = "name";
+                        $nameElem = $addressNewName;
+                            
+                        $address->update($elem, $nameElem, $addressName);
+                        $addressList->update($elem, $nameElem, $addressName);
+                        
+                        echo "Name";
+                        
+                    }
+                    
+                    if(!empty($newCategorieName)){
+                        
+                        $elem = "categorie";
+                        $nameElem = $newCategorieName;
+                        
+                        $address->update($elem, $nameElem, $addressName);
+                        
+                        echo "Categorie";
+                        
+                    }
+                    
+                }
+                
+            }
+            
         }
     
         break;

@@ -59,6 +59,19 @@ class AddressList{
         
     }
     
+    public function update($elem, $nameElem, $addressName){
+        
+        $reqUpdate = $this->_bdd->prepare("UPDATE addresses_lists SET $elem = :nameElem WHERE name = :addressName AND id_user = :user");
+        $reqUpdate->execute(array(
+        
+            "nameElem" => $nameElem,
+            "addressName" => $addressName,
+            "user" => $_SESSION["user"]
+            
+        ));
+        
+    }
+    
     public function addressListVerification($listName, $addressName){
         
         $reqRead = $this->_bdd->prepare("SELECT id FROM addresses_lists WHERE name = :addressName AND list = :listName");

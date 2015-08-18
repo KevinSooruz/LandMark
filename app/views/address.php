@@ -23,7 +23,7 @@
                                     <div class="form-group">
                                         <label for="changeName" class="control-label col-md-2 col-sm-2">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="changeName" name="changeName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="dataUpAddress.name" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; nameExist = false; errorPatternAddress = false;" ng-minlength="3" ng-maxlength="50" ng-pattern="word">
+                                            <input id="changeName" name="changeName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="dataUpAddress.newname" ng-class="{errorBackEnd: errorChangeAddress === true || errorChangeLengthAddress === true}" ng-click="errorChangeAddress = false; errorChangeLengthAddress = false; errorBackEndAddress = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word">
                                             <div class="errorInfos">
                                                 <span ng-show="addressModification.changeName.$error.minlength">3 car. min</span>
                                                 <span ng-show="addressModification.changeName.$error.maxlength">50 car. max</span>
@@ -34,20 +34,17 @@
                                     <div class="form-group">
                                         <label for="changePhone" class="col-md-2 col-sm-2 control-label">T&eacute;l&eacute;phone</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="changePhone" name="changePhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="dataUpAddress.phone" ng-click="errorPatternAddress = false;" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
+                                            <input id="changePhone" name="changePhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="dataUpAddress.phone" ng-class="{errorBackEnd: errorChangePhone === true || errorChangeLengthPhone === true}" ng-click="errorChangePhone = false; errorChangeLengthPhone = false; errorBackEndAddress = false" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
                                             <div class="errorInfos">
                                                 <span ng-show="addressModification.changePhone.$error.minlength">3 car. min</span>
-                                                <span ng-show="addressModification.changePhone.maxlength">30 car. max</span>
+                                                <span ng-show="addressModification.changePhone.$error.maxlength">30 car. max</span>
                                                 <span ng-show="addressModification.changePhone.$error.pattern">Caract&egrave;re interdit</span>
                                             </div>
                                         </div>
                                     </div>
                                     <categories template-url="app/views/templates/address/categoriesTemplate.php" template-title="Choisissez une catégorie"></categories>
                                     <div class="form-group">
-                                        <span ng-show="errorBackEnd === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
-                                        <span ng-show="errorName === true" class="errorBlock errorBlockMargin">Merci de renseigner un nom.</span>
-                                        <span ng-show="nameExist === true" class="errorBlock errorBlockMargin">Ce nom d&rsquo;adresse existe d&eacute;j&agrave;. Merci de le modifier.</span>
-                                        <span ng-show="errorPatternAddress === true" class="errorBlock errorBlockMargin">Caract&egrave;res sp&eacute;ciaux interdits.</span>
+                                        <span ng-show="errorChangeAddress === true || errorChangePhone === true || errorChangeLengthAddress === true || errorChangeLengthPhone === true || errorBackEndAddress === true" class="errorBlock errorBlockMargin">{{textErrorChangeAddress}}</span>
                                     </div>
                                 </div>
                                 <div class="multiContent textRight" ng-hide="errorBackEnd === true">

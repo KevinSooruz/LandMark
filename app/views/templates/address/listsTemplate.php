@@ -7,12 +7,12 @@
                     <option value="">Choisissez une liste</option>
                 </select>
                 <span ng-show="errorAddInList === true" class="errorBlock errorBlockMargin">{{textErrorAddInList}}</span>
+                <span class="noListForm" ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</span>
+                <span ng-show="errorBackEnd === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
             </div>
             <div class="multiContent textRight" ng-hide="lists.length === 0; errorBackEnd === true">
                 <button class="btn btnPrimary btnMidWidth" ng-click="addInList(dataList)">Ajouter</button>
             </div>
-            <span class="noListForm" ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</span>
-            <span ng-show="errorBackEnd === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
         </form>
     </div>
 </div>
