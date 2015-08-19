@@ -63,7 +63,10 @@
                 <div class="col-md-12">
                     <div class="inBox other">
                         <span class="title">Position g&eacute;ographique</span>
-                        <div id="map" ng-model="map" class="inBoxContent"></div>
+                        <div class="inBoxContent">
+                            <map ng-hide="errorMap === true"></map>
+                            <span ng-show="errorMap === true" class="errorBlock">{{textErrorMap}}</span>
+                        </div>
                     </div>
                 </div>
             </div>

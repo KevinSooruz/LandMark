@@ -46,6 +46,7 @@ module.exports = function(grunt) {
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
                     "app/js/services/Correct.js",
+                    "app/js/services/Map.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -54,7 +55,8 @@ module.exports = function(grunt) {
                     "app/js/directives/AddressesDirective.js",
                     "app/js/directives/ListsDirective.js",
                     "app/js/directives/CategoriesDirective.js",
-                    "app/js/directives/CorrectDir.js"
+                    "app/js/directives/CorrectDir.js",
+                    "app/js/directives/MapDirective.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -79,6 +81,7 @@ module.exports = function(grunt) {
                     "app/js/services/Categorie.js",
                     "app/js/services/Lists.js",
                     "app/js/services/Correct.js",
+                    "app/js/services/Map.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -87,7 +90,8 @@ module.exports = function(grunt) {
                     "app/js/directives/AddressesDirective.js",
                     "app/js/directives/ListsDirective.js",
                     "app/js/directives/CategoriesDirective.js",
-                    "app/js/directives/CorrectDir.js"
+                    "app/js/directives/CorrectDir.js",
+                    "app/js/directives/MapDirective.js"
                 ]
             }
         }
