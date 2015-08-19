@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="adName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="adName" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; errorPatternAddress = false; errorGeocode = false; nameExist = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
+                                            <input id="adName" name="adName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="addAddress.name" ng-class="{errorBackEnd: errorName === true || nameExist === true}" ng-click="errorName = false; errorPatternAddress = false; errorGeocode = false; nameExist = false" ng-minlength="3" ng-maxlength="50" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adName.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adName.$error.minlength">3 car. min</span>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label for="adLocation" class="col-md-2 col-sm-2 control-label">Adresse</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" type="text" class="form-control" ng-model="adLocation" ng-class="{errorBackEnd: errorLocation === true}" ng-click="errorLocation = false; errorPatternAddress = false; errorGeocode = false" ng-pattern="wordAddress" required="">
+                                            <input id="adLocation" name="adLocation" placeholder="Indiquez un lieu" type="text" class="form-control" ng-model="addAddress.location" ng-class="{errorBackEnd: errorLocation === true}" ng-click="errorLocation = false; errorPatternAddress = false; errorGeocode = false" ng-pattern="wordAddress" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adLocation.$error.required">Obligatoire</span>
                                                 <span ng-show="adresses.adLocation.$error.pattern">Caract&egrave;re interdit</span>
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <label for="adPhone" class="col-md-2 col-sm-2 control-label">T&eacute;l&eacute;phone</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="adPhone" name="adPhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="adPhone" ng-click="errorPatternAddress = false; errorGeocode = false" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
+                                            <input id="adPhone" name="adPhone" placeholder="Indiquez un téléphone" type="tel" class="form-control" ng-model="addAddress.phone" ng-click="errorPatternAddress = false; errorGeocode = false" ng-minlength="3" ng-maxlength="30" ng-pattern="tel">
                                             <div class="errorInfos">
                                                 <span ng-show="adresses.adPhone.$error.minlength">3 car. min</span>
                                                 <span ng-show="adresses.adPhone.$error.maxlength">30 car. max</span>

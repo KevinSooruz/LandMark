@@ -5,12 +5,6 @@ app.controller("AddressesController", function($scope, Autocomplete, Geocode, Ad
     // Initialisation des informations utilisateurs
     User.get(); // Possibilité d'appeler l'utilisateur ailleur dans l'appli grâce à $rootScope
     
-    // Service autocomplétion
-    Autocomplete.run();
-    
-    // Initialisation Objet adresse
-    var adresse = {};
-    
     /////////////////////////////////// Categories ///////////////////////////////////
     
     ///// Sélection de la catégorie /////
@@ -55,8 +49,17 @@ app.controller("AddressesController", function($scope, Autocomplete, Geocode, Ad
     
     /////////////////////////////////// Adresse ///////////////////////////////////
     
+    ///// Initialisation Objet adresse /////
+    var adresse = {};
+    
+    ///// Service autocomplétion /////
+    Autocomplete.run($scope);
+    
     ///// Ajout adresse /////
     $scope.adresseAdd = function(){
+        
+        console.log($scope.addAddress.location);
+        return;
         
         // Supression message erreur geocode
         $scope.errorGeocode = false;

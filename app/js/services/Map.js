@@ -1,15 +1,16 @@
 services.factory("Map", function(Address){
     
     // https://developers.google.com/places/javascript/
+    // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     
     var map = {};
     
     // Initialisation de la carte
     map.init = function(zoom, position){
         
-        var map; // carte
+        var mapElem; // carte
         
-        map = new google.maps.Map(document.getElementById("map"), {
+        mapElem = new google.maps.Map(document.getElementById("map"), {
                     
             center: position,
             zoom: zoom,
@@ -20,16 +21,20 @@ services.factory("Map", function(Address){
 
         });
         
-        map.marker(map, position);
+        map.marker(mapElem, position);
         
     };
     
     map.marker = function(map, position){
         
+        var image = "app/images/pin-green.png";
+        
         var marker = new google.maps.Marker({
             
             map: map,
-            position: position
+            position: position,
+            icon: image,
+            animation: google.maps.Animation.DROP
             
         });
         
@@ -65,11 +70,10 @@ services.factory("Map", function(Address){
             
             if(status === google.maps.GeocoderStatus.OK){
                 
-                console.log(results);
                 if(results[0]){
                     
                     // Initalisation de la carte - Zoom + position
-                    map.init(18, results[0].geometry.location);
+                    map.init(20, results[0].geometry.location);
                     
                 }else{
               
