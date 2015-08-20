@@ -49,58 +49,24 @@ app.controller("AddressesController", function($scope, Autocomplete, Geocode, Ad
     
     /////////////////////////////////// Adresse ///////////////////////////////////
     
-    ///// Initialisation Objet adresse /////
-    var adresse = {};
-    
     ///// Service autocomplétion /////
     Autocomplete.run($scope);
+    
+    // Met à jour les informations si l'utilisateur ne sélectionne pas une google place
+    $scope.updateInformations = function(){
+        
+        Autocomplete.updateInformations($scope);
+        
+    };
     
     ///// Ajout adresse /////
     $scope.adresseAdd = function(){
         
-        console.log($scope.addAddress.location);
+        var data = angular.copy($scope.addAddress);
+        
+        Address.post(data, $scope);
+        
         return;
-        
-        // Supression message erreur geocode
-        $scope.errorGeocode = false;
-        
-        // Récupération de l'adresse
-        var location = document.getElementById("adLocation").value;
-        
-        // Si pattern pas correct ou si nom adresse vide et adresse vide on ne continu pas
-        if($scope.adresses.adName.$error.pattern || $scope.adresses.adLocation.$error.pattern || $scope.adresses.adPhone.$error.pattern){
-            
-            $scope.errorPatternAddress = true;
-            return;
-            
-        }else if($scope.adName === undefined || $scope.adName === ""){
-            
-            // Si nom adresse vide
-            $scope.errorName = true;
-            return;
-            
-        }else if(location === undefined || location === ""){
-            
-            // Si adresse vide
-            $scope.errorLocation = true;
-            return;
-            
-        }
-        
-        // Envoie donnée location à objet adresse
-        adresse.location = location;
-        
-        // Envoie donnée nom à objet adresse
-        adresse.name = $scope.adName;
-        
-        // Envoie donnée tel à objet adresse
-        adresse.phone = $scope.adPhone;
-        
-        if(adresse.phone === undefined){
-            
-            adresse.phone = "";
-            
-        }
         
         // Envoie donnée catégorie à objet adresse
         var adCategorie = document.getElementById("adCategorie").value;

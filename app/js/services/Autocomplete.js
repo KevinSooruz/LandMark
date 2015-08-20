@@ -1,4 +1,4 @@
-services.factory("Autocomplete", function(){
+services.factory("Autocomplete", function($timeout, $q){
     
     // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     
@@ -11,13 +11,67 @@ services.factory("Autocomplete", function(){
         var adLocation = document.getElementById("adLocation");
         var search = new google.maps.places.Autocomplete(adLocation);
         
+        // Récupération des informations de l'adresse lors de la sélection
         search.addListener("place_changed", function(){
             
             var place = search.getPlace();
-            console.log(place);
-            scope.addAddress.location = place.formatted_address;
+           
+            // Récupération des résultats
+            autocomplete.result(scope, place);
             
         });
+        
+    };
+    
+    // Affichage des résultats au front
+    autocomplete.result = function(scope, place){
+        
+        if(place){
+            
+            $timeout(function(){
+            
+                // adresse
+                if(place.formatted_address){
+                    
+                    scope.addAddress.location = place.formatted_address;
+                    
+                }
+                
+                // téléphone
+                if(place.formatted_phone_number){
+                    
+                    scope.addAddress.phone = place.formatted_phone_number;
+                    
+                }else{
+                    
+                    scope.addAddress.phone = "";
+                    
+                }
+                
+                // horaires
+                if(place.opening_hours){
+                    
+                    scope.addAddress.opening = place.opening_hours.weekday_text;
+                    
+                }else{
+                    
+                    scope.addAddress.opening = "";
+                    
+                }
+            
+            });
+            
+        }
+        
+        return;
+        
+    };
+    
+    // Met à jour les informations si l'utilisateur ne sélectionne pas une google place
+    autocomplete.updateInformations = function(scope){
+        
+        scope.addAddress.phone = "";
+        scope.addAddress.opening = "";
         
     };
     

@@ -37,6 +37,63 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
     // Ajout d'un adresse
     address.post = function(data, scope){
         
+        // Supression message erreur geocode
+        scope.errorGeocode = false;
+        
+        if(scope.adresses.adName.$error.required){
+            
+            // Si erreur champ vide nom
+            scope.errorAddRequiredAddress = true;
+            scope.textErrorAddAddress = "Merci de reseigner un nom.";
+            return;
+            
+        }else if(scope.adresses.adLocation.$error.required){
+            
+            // Si erreur champ vide location
+            scope.errorAddRequiredLocation = true;
+            scope.textErrorAddAddress = "Merci de reseigner une adresse.";
+            return;
+            
+        }else if(scope.adresses.adName.$error.minlength || scope.adresses.adName.$error.maxlength){
+            
+            // Si erreur nombre de caractères nom
+            scope.errorAddLengthAddress = true;
+            scope.textErrorAddAddress = "Nombre de caractères interdit.";
+            return;
+            
+        }else if(scope.adresses.adName.$error.pattern){
+            
+            // Si erreur pattern nom
+            scope.errorAddAddressPattern = true;
+            scope.textErrorAddAddress = "Caractères spéciaux interdits.";
+            return;
+            
+        }else if(scope.adresses.adLocation.$error.pattern){
+            
+            // Si erreur pattern location
+            scope.errorAddLocationPattern = true;
+            scope.textErrorAddAddress = "Caractères spéciaux interdits.";
+            return;
+            
+        }else if(scope.adresses.adPhone.$error.minlength || scope.adresses.adPhone.$error.maxlength){
+            
+            // Si erreur nombre de caractères téléphone
+            scope.errorAddLengthPhone = true;
+            scope.textErrorAddAddress = "Nombre de caractères interdit.";
+            return;
+            
+        }else if(scope.adresses.adPhone.$error.pattern){
+            
+            // Si erreur pattern téléphone
+            scope.errorAddPhonePattern = true;
+            scope.textErrorAddAddress = "Merci de ne renseigner que des chiffres.";
+            return;
+            
+        }
+        
+        console.log(data);
+        return;
+        
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
             switch(response.data){
