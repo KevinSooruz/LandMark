@@ -113,6 +113,8 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             
         }
         
+        console.log(data);
+        
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
             switch(response.data){

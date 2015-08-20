@@ -4,6 +4,10 @@
     font-size: @fs;
 }
 
+.fs11{
+    .fs(11px);
+}
+
 .fm(@fm){
     font-family: @fm;
 }
@@ -608,6 +612,13 @@ body{
                     }
                 }
                 
+                .link{
+                    .glyphicon{
+                        .fs11;
+                        color: @primary;
+                    }
+                }
+                
                 .hours{
                     margin-top: 10px;
                     
@@ -640,6 +651,10 @@ body{
                     margin: 0;
                     padding: 0;
                     border: none;
+                    
+                    &.active{
+                        color: @primary;
+                    }
                 }
             }
 

@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="inBox">
-                        <span class="title">Modification <correct template-correct="correctChangeAddress"></correct></span>
+                        <span class="title">Modifier l&rsquo;adresse <correct template-correct="correctChangeAddress"></correct></span>
                         <div class="inBoxContent">
                             <form name="addressModification" class="form-horizontal">
                                 <div class="multiContent" ng-hide="errorBackEnd === true">

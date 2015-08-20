@@ -52,7 +52,17 @@ services.factory("Autocomplete", function($timeout, $q){
                 // horaires
                 if(place.opening_hours){
                     
-                    scope.addAddress.opening = place.opening_hours.weekday_text;
+                    var hours = [];
+                    var max = place.opening_hours.weekday_text.length;
+                    var i = 0;
+                    
+                    for(; i < max; i++){
+                        
+                        hours.push(place.opening_hours.weekday_text[i].replace(",", " - "));
+                        
+                    }
+                    
+                    scope.addAddress.opening = hours;
                     
                 }else{
                     

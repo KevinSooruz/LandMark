@@ -1,5 +1,5 @@
 <div class="inBox other">
-    <span class="title">Ajouter dans une liste <correct template-correct="correctChangeList"></correct></span>
+    <span class="title">Ajouter l&rsquo;adresse dans une liste <correct template-correct="correctChangeList"></correct></span>
     <div class="inBoxContent">
         <form name="addAddressInList">
             <div class="multiContent" ng-hide="lists.length === 0; errorBackEnd === true">
