@@ -16,9 +16,9 @@ class Address{
         
     }
     
-    public function create($categorie, $location, $name, $lat, $lng, $phone, $placeId){
+    public function create($categorie, $location, $name, $lat, $lng, $phone, $placeId, $opening){
         
-        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, lat, lng, id_user, phone, place_id) VALUES(:name, :categorie, :location, :lat, :lng, :user, :phone, :placeid)") or die(print_r($this->_bdd->errorInfo()));
+        $reqCreate = $this->_bdd->prepare("INSERT INTO addresses(name, categorie, location, lat, lng, id_user, phone, place_id, opening) VALUES(:name, :categorie, :location, :lat, :lng, :user, :phone, :placeid, :opening)") or die(print_r($this->_bdd->errorInfo()));
         $reqCreate->execute(array(
             
             "name" => $name,
@@ -28,7 +28,8 @@ class Address{
             "lng" => $lng,
             "user" => $_SESSION["user"],
             "phone" => $phone,
-            "placeid" => $placeId
+            "placeid" => $placeId,
+            "opening" => $opening
             
         ));
         
@@ -48,7 +49,7 @@ class Address{
             
         }else{
             
-            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id FROM addresses WHERE id_user = :user");
+            $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id, opening FROM addresses WHERE id_user = :user");
             $reqRead->execute(array(
         
                 "user" => $_SESSION["user"]
@@ -69,7 +70,8 @@ class Address{
                 "lat" => $addresses["lat"],
                 "lng" => $addresses["lng"],
                 "phone" => $addresses["phone"],
-                "placeId" => $addresses["place_id"]
+                "placeId" => $addresses["place_id"],
+                "opening" => $addresses["opening"]
             ));
         };
         $result.= "]";
@@ -80,7 +82,7 @@ class Address{
     
     public function reqReadOne($name, $value){
         
-        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id FROM addresses WHERE id_user = :user AND $value = :name");
+        $reqRead = $this->_bdd->prepare("SELECT name, categorie, location, lat, lng, phone, place_id, opening FROM addresses WHERE id_user = :user AND $value = :name");
             
         $reqRead->execute(array(
 

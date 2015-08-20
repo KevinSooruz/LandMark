@@ -9,8 +9,11 @@
             </div>
             <span class="locationAddress">{{address.location}}</span>
             <div class="elemPlus row">
-                <div class="col-md-8 col-sm-8 col-xs-8">
+                <div class="col-md-12">
                     <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
+                </div>
+                <div class="col-md-12 hours" ng-hide="address.opening === ''">
+                    <span class="fw7">Horaires :</span> <ul class="addressSplit"><li ng-repeat="day in address.opening.split(',')" class="col-md-3">{{day}}</li></ul>
                 </div>
             </div>
             <span ng-show="errorAddressInList === true" class="errorBlock errorBlockMargin">D&eacute;sol&eacute; mais cette adresse n&rsquo;existe pas.</span>

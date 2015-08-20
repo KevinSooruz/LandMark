@@ -7,14 +7,14 @@
                 <categories template-url="app/views/templates/categories/categoriesTemplate.php"></categories>
             </div>
             <div class="col-md-12 contentBox">
-                <div class="col-md-5 col-sm-5">
+                <div class="col-md-6 col-sm-6">
                     <div class="inBox">
                         <span class="title">Adresse</span>
                         <addresses template-url="app/views/templates/address/addressTemplate.php"></addresses>
                     </div>
                     <lists template-url="app/views/templates/address/listsTemplate.php" template-title="Choisissez une liste"></lists>
                 </div>
-                <div class="col-md-7 col-sm-7">
+                <div class="col-md-6 col-sm-6">
                     <div class="inBox">
                         <span class="title">Modification <correct template-correct="correctChangeAddress"></correct></span>
                         <div class="inBoxContent">
@@ -53,12 +53,6 @@
                             </form>
                         </div>
                     </div>
-                    <div class="inBox center other">
-                        <div class="inBoxContent">
-                            <button ng-hide="confirmDelete === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer l&rsquo;adresse</button>
-                            <span ng-show="confirmDelete === true"><button class="btn btnPrimary btnMidWidth" ng-click="confirmDelete = false">Annuler</button> <button class="btn btnDelete btnMidWidth" ng-click="deleteAddress()">Supprimer</button></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="inBox other">
@@ -66,6 +60,14 @@
                         <div class="inBoxContent">
                             <map ng-hide="errorMap === true"></map>
                             <span ng-show="errorMap === true" class="errorBlock">{{textErrorMap}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inBox center other">
+                        <div class="inBoxContent">
+                            <button ng-hide="confirmDelete === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer l&rsquo;adresse</button>
+                            <span ng-show="confirmDelete === true"><button class="btn btnPrimary btnMidWidth" ng-click="confirmDelete = false">Annuler</button> <button class="btn btnDelete btnMidWidth" ng-click="deleteAddress()">Supprimer</button></span>
                         </div>
                     </div>
                 </div>

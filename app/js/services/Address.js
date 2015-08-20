@@ -91,8 +91,27 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             
         }
         
-        console.log(data);
-        return;
+        // Modification données catégorie
+        if(!data.categorie || data.categorie === undefined){
+            
+            data.categorie = "Autre";
+            
+        }else{
+            
+            data.categorie = data.categorie.name;
+            
+        }
+        
+        // Modification donnée liste
+        if(!data.list || data.list === undefined){
+            
+            data.list = "";
+            
+        }else{
+            
+            data.list = data.list.name;
+            
+        }
         
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
@@ -101,20 +120,24 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                     case "emptyName":
                         
                         // Si pas de nom renseigné
-                        scope.errorName = true;
+                        scope.errorAddRequiredAddress = true;
+                        scope.textErrorAddAddress = "Merci de reseigner un nom.";
                     
                         break;
                     
                     case "emptyLocation":
                     
                         // Si pas d'adresse renseignée
-                        scope.errorLocation = true;
+                        scope.errorAddRequiredLocation = true;
+                        scope.textErrorAddAddress = "Merci de reseigner une adresse.";
                     
                         break;
                     
                     case "nameExist":
                     
+                        // si nom existe déjà
                         scope.nameExist = true;
+                        scope.textErrorAddAddress = "Vous possédez déjà une adresse avec ce nom. Merci de le modifier.";
                     
                         break;
                     
@@ -138,11 +161,8 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                         var adName = document.getElementById("adName");
                         var adLocation = document.getElementById("adLocation");
                     
-                        scope.adName = "";
-                        scope.adLocation = "";
-                        scope.categorieSelect = "";
-                        scope.listSelect = "";
-                        scope.adPhone = "";
+                        // Réinitialisation de l'objet adresse pour nouvelle adresse
+                        scope.addAddress = {};
                     
                         $timeout(function(){
                             
@@ -150,10 +170,6 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                             adLocation.classList.remove("ng-invalid");
                             
                         });
-                    
-                        // Réinitialisation de l'objet adresse pour nouvelle adresse
-                        scope.adresse = {};
-                        scope.adresse.categorie = "Autre";
                     
                         break;
                     
@@ -170,7 +186,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
     // Ajout d'une adresse dans une liste
     address.addList = function(scope, dataList){
         
-        var addressName = document.getElementById("addressName").value;
+        var addressName = $routeParams.nameAddress;
         var data = {};
         
         data.addressName = addressName;

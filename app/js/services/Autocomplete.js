@@ -15,6 +15,7 @@ services.factory("Autocomplete", function($timeout, $q){
         search.addListener("place_changed", function(){
             
             var place = search.getPlace();
+            console.log(place);
            
             // Récupération des résultats
             autocomplete.result(scope, place);
@@ -58,6 +59,10 @@ services.factory("Autocomplete", function($timeout, $q){
                     scope.addAddress.opening = "";
                     
                 }
+                
+                scope.addAddress.lat = place.geometry.location.G;
+                scope.addAddress.lng = place.geometry.location.K;
+                scope.addAddress.placeId = place.place_id;
             
             });
             
@@ -72,6 +77,9 @@ services.factory("Autocomplete", function($timeout, $q){
         
         scope.addAddress.phone = "";
         scope.addAddress.opening = "";
+        scope.addAddress.lat = "";
+        scope.addAddress.lng = "";
+        scope.addAddress.placeId = "";
         
     };
     
