@@ -7,25 +7,15 @@ app.controller("AddressesController", function($scope, Autocomplete, Address, Us
     
     /////////////////////////////////// Listes ///////////////////////////////////
     
+    ///// Initialisation objet liste /////
+    $scope.addList = {};
+    
     ///// Ajout de liste /////
-    $scope.adList = function(listName){
+    $scope.adList = function(){
         
-        // Si pattern pas correct ou si nom liste vide on ne continu pas
-        if($scope.adLists.listName.$error.pattern){
-            
-            $scope.errorPatternList = true;
-            
-        }else if(listName === undefined || listName === ""){
-            
-            $scope.errorList = true;
-            $scope.errorNameList = true;
-            return;
-            
-        }else{
-            
-            Lists.post($scope, listName);
-            
-        }
+        var data = angular.copy($scope.addList);
+        
+        Lists.post($scope, data);
         
     };
     

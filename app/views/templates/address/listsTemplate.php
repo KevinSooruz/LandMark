@@ -11,7 +11,7 @@
                 <span ng-show="errorBackEnd === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
             </div>
             <div class="multiContent textRight" ng-hide="lists.length === 0; errorBackEnd === true">
-                <button class="btn btnPrimary btnMidWidth" ng-click="addInList(dataList)">Ajouter</button>
+                <button class="btn btnPrimary btnMidWidth" ng-click="addInList()">Ajouter</button>
             </div>
         </form>
     </div>

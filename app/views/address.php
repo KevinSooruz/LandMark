@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="multiContent textRight" ng-hide="errorBackEnd === true">
-                                    <button class="btn btnPrimary btnMidWidth" ng-click="updateAddress(dataUpAddress)">Modifier</button>
+                                    <button class="btn btnPrimary btnMidWidth" ng-click="updateAddress()">Modifier</button>
                                 </div>
                             </form>
                         </div>

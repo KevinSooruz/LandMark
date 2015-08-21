@@ -1,6 +1,17 @@
-app.controller("ListsController", function($scope, $routeParams){
+app.controller("ListsController", function($scope, $routeParams, Lists){
     
-    // Liste active
+    /////////////////////////////////// Liste ///////////////////////////////////
+    
+    ///// Liste active /////
     $scope.nameList = $routeParams.nameList;
+    
+    ///// Modification de la liste /////
+    $scope.updateList = function(){
+        
+        var data = angular.copy($scope.dataUpList);
+        
+        Lists.update($scope, data);
+        
+    };
     
 });

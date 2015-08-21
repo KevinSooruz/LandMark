@@ -14,20 +14,20 @@ app.controller("AddressController", function($scope, $routeParams, Address, $q){
     $scope.nameCategorie = $routeParams.nameCategorie;
     
     // Ajout d'une adresse dans une liste
-    $scope.addInList = function(dataList){
+    $scope.addInList = function(){
         
         // Copie objet dataList
-        var data = angular.copy(dataList);
+        var data = angular.copy($scope.dataList);
         
         Address.addList($scope, data);
         
     };
     
     // Modification adresse
-    $scope.updateAddress = function(dataUpAddress){
+    $scope.updateAddress = function(){
         
         // Copie objet dataUpAddress
-        var data = angular.copy(dataUpAddress);
+        var data = angular.copy($scope.dataUpAddress);
         
         Address.update($scope, data);
         

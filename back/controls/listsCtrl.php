@@ -26,12 +26,17 @@ switch($method){
     
     case "POST":
     
-        if(isset($_POST["name"])){
+        // add new
+        if(isset($_POST["name"]) AND !isset($_POST["newname"])){
             
             $name = strip_tags($_POST["name"]);
             $nameCount = $lists->verifListExist($name);
             
-            if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
+            if(strlen($name) < 3 OR strlen($name) > 30){
+                
+                echo "errorListLength";
+                
+            }else if(empty($name) OR $name === "undefined"){
                 
                 echo "emptyName";
                 
@@ -45,7 +50,34 @@ switch($method){
                 
             }
             
-        }    
+        }
+    
+        // update
+        if(isset($_POST["name"]) AND isset($_POST["newname"])){
+                
+            $name = strip_tags($_POST["name"]);
+            $newname = strip_tags($_POST["newname"]);
+            $newNameCount = $lists->verifListExist($newname);
+
+            if(strlen($newname) < 3 OR strlen($newname) > 30){
+
+                echo "errorListLengthNew";
+
+            }else if(empty($newname) OR $newname === "undefined"){
+
+                echo "emptyNewName";
+
+            }else if($newNameCount !== 0){
+                
+                echo "alreadyExists";
+                
+            }else{
+
+                $lists->update($name, $newname);
+
+            }
+
+        }
     
         break;
 

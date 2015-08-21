@@ -55,6 +55,30 @@ class Lists{
         
     }
     
+    public function update($name, $newname){
+        
+        $reqUpdate = $this->_bdd->prepare("UPDATE lists SET name = :newname WHERE name = :name AND id_user = :user");
+        $reqUpdate->execute(array(
+        
+            "newname" => $newname,
+            "name" => $name,
+            "user" => $_SESSION["user"]
+        
+        ));
+        
+        $reqUpdateLists = $this->_bdd->prepare("UPDATE addresses_lists SET list = :newname WHERE list = :name AND id_user = :user");
+        $reqUpdateLists->execute(array(
+        
+            "newname" => $newname,
+            "name" => $name,
+            "user" => $_SESSION["user"]
+        
+        ));
+        
+         echo "successUpdateList";
+        
+    }
+    
     public function verifListExist($nameList){
         
         $reqRead = $this->_bdd->prepare("SELECT name FROM lists WHERE id_user = :user AND name = :nameList");

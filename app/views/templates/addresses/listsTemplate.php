@@ -11,11 +11,10 @@
                         </select>
                         <span class="noListForm" ng-show="lists.length === 0">Vous n&rsquo;avez actuellement enregistr&eacute; aucune liste</span>
                     </div>
-                    <input id="choiceSelect" type="hidden" value="{{listChoice.name}}">
                 </div>
             </div>
             <div class="multiContent center">
-                <button class="btn btnPrimary btnBigWidth" ng-click="relocate('choiceSelect', '/addresses/lists/')">Voir {{listChoice.name}}</button>
+                <button class="btn btnPrimary btnBigWidth" ng-click="redirect('/addresses/lists/' + listChoice.name)">Voir {{listChoice.name}}</button>
             </div>
         </form>
         <span ng-show="errorBackEnd === true" class="errorBlock errorBlockMargin">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>

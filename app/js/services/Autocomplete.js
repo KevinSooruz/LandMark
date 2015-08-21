@@ -15,7 +15,6 @@ services.factory("Autocomplete", function($timeout, $q){
         search.addListener("place_changed", function(){
             
             var place = search.getPlace();
-            console.log(place);
            
             // Récupération des résultats
             autocomplete.result(scope, place);

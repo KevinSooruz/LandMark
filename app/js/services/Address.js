@@ -113,8 +113,6 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             
         }
         
-        console.log(data);
-        
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
             switch(response.data){
@@ -285,13 +283,6 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
     // Mise à jour d'une adresse
     address.update = function(scope, dataUpAddress){
         
-        // Si pas de données
-        if(dataUpAddress === undefined){
-            
-            return;
-            
-        }
-        
         if(scope.addressModification.changeName.$error.minlength || scope.addressModification.changeName.$error.maxlength){
             
             // Si erreur nombre de caractères nom
@@ -299,7 +290,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             scope.textErrorChangeAddress = "Nombre de caractères interdit.";
             return;
             
-        }if(scope.addressModification.changeName.$error.pattern){
+        }else if(scope.addressModification.changeName.$error.pattern){
             
             // Si erreur pattern nom
             scope.errorChangeAddress = true;
@@ -318,6 +309,11 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             // Si erreur pattern phone
             scope.errorChangePhone = true;
             scope.textErrorChangeAddress = "Merci de ne renseigner que des chiffres.";
+            return;
+            
+        }else if(dataUpAddress === undefined){
+            
+            // Si pas de donnée
             return;
             
         }

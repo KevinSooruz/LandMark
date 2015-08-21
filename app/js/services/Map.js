@@ -1,5 +1,6 @@
 services.factory("Map", function(Address){
     
+    // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch (trouver toutes les places d'une ville)
     // https://developers.google.com/places/javascript/
     // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     
@@ -73,7 +74,7 @@ services.factory("Map", function(Address){
                 if(results[0]){
                     
                     // Initalisation de la carte - Zoom + position
-                    map.init(20, results[0].geometry.location);
+                    map.init(19, results[0].geometry.location);
                     
                 }else{
               

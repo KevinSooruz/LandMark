@@ -34,6 +34,13 @@ services.factory("Correct", function($timeout){
                 
                 break;
                 
+            case "correctChangeList":
+                
+                scope.correctChangeList = true;
+                correct.time(scope);
+                
+                break;
+                
         }
         
     };
@@ -46,6 +53,7 @@ services.factory("Correct", function($timeout){
             scope.correctAddAddress = false;
             scope.correctAddList = false;
             scope.correctChangeAddress = false;
+            scope.correctChangeList = false;
         
         }, 1500);
         

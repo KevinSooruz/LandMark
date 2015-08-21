@@ -79,7 +79,7 @@
                                     <div class="form-group noMargin">
                                         <label for="listName" class="col-md-2 col-sm-2 control-label">Nom</label>
                                         <div class="col-md-10 col-sm-10">
-                                            <input id="listName" name="listName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="listName" ng-class="{errorBackEnd: errorList === true}" ng-click="errorList = false; errorNameList = false; errorPatternList = false; nameListExist = false" ng-minlength="3" ng-maxlength="30" ng-pattern="word" required="">
+                                            <input id="listName" name="listName" placeholder="Indiquez un nom" type="text" class="form-control" ng-model="addList.name" ng-class="{errorBackEnd: errorPatternList === true || errorListName === true || errorListLength === true || nameListExist === true || errorAddListName === true}" ng-click="errorPatternList = false; errorListName = false; errorListLength = false; nameListExist = false; errorAddListName = false" ng-minlength="3" ng-maxlength="30" ng-pattern="word" required="">
                                             <div class="errorInfos">
                                                 <span ng-show="adLists.listName.$error.required">Obligatoire</span>
                                                 <span ng-show="adLists.listName.$error.minlength">3 car. min</span>
@@ -89,13 +89,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <span ng-show="errorNameList === true" class="errorBlock errorBlockMargin">Merci de renseigner un nom.</span>
-                                        <span ng-show="errorPatternList === true" class="errorBlock errorBlockMargin">Caract&egrave;res sp&eacute;ciaux interdits.</span>
-                                        <span ng-show="nameListExist === true" class="errorBlock errorBlockMargin">Ce nom de liste existe d&eacute;j&agrave;. Merci de le modifier.</span>
+                                        <span ng-show="errorPatternList === true || errorListName === true || errorListLength === true || nameListExist === true || errorAddListName === true" class="errorBlock errorBlockMargin">{{textErrorList}}</span>
                                     </div>
                                 </div>
                                 <div class="multiContent textRight">
-                                    <button class="btn btnPrimary btnMidWidth" ng-click="adList(listName)">Ajouter</button>
+                                    <button class="btn btnPrimary btnMidWidth" ng-click="adList()">Ajouter</button>
                                 </div>
                             </form>
                         </div>
