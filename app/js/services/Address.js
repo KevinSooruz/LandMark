@@ -480,6 +480,55 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
         
     };
     
+    // Suppression d'une adresse dans une liste
+    address.deleteList = function(listName, addressName, scope, index){
+        
+        // Suppression message erreur si actif
+        scope.indexErrorDeleteAddressInList = "";
+        
+        var data = {
+            
+            list: listName,
+            address: addressName
+            
+        };
+        
+        Api.post("back/controls/addressListCtrl.php", data).then(function(response){
+            
+            switch(response.data){
+                    
+                case "addressDoesntExistInList":
+                    
+                    // Erreur si adresse n'est pas trouvée dans la liste
+                    scope.indexErrorDeleteAddressInList = index;
+                    scope.textErrorDeleteAddressInList = "Cette adresse semble ne pas exister dans cette liste. Merci d'essayer de nouveau.";
+                    
+                    break;
+                
+                case "successDeleteAddressInList":
+                    
+                    // Calcul de l'index car affichage des adresses en reverse
+                    var maxAddresses = scope.addresses.length;
+                    var indexReverse = maxAddresses - index - 1;
+
+                    scope.addresses.splice(indexReverse, 1);
+                    
+                    break;
+                
+            }
+            
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
+            
+            // Erreur api
+            scope.indexErrorDeleteAddressInList = index;
+            scope.textErrorDeleteAddressInList = "Une erreur s'est produite. Merci de recharger la page.";
+            
+        });
+        
+    };
+    
     return address;
     
 });

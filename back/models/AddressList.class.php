@@ -86,11 +86,12 @@ class AddressList{
     
     public function addressListVerification($listName, $addressName){
         
-        $reqRead = $this->_bdd->prepare("SELECT id FROM addresses_lists WHERE name = :addressName AND list = :listName");
+        $reqRead = $this->_bdd->prepare("SELECT id FROM addresses_lists WHERE name = :addressName AND list = :listName AND id_user = :user");
         $reqRead->execute(array(
             
             "addressName" => $addressName,
-            "listName" => $listName
+            "listName" => $listName,
+            "user" => $_SESSION["user"]
         
         ));
         

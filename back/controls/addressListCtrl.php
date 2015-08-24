@@ -60,6 +60,25 @@ switch($method){
                 
             }
             
+        }else if(isset($_POST["list"]) AND isset($_POST["address"])){
+            
+            $listName = strip_tags($_POST["list"]);
+            $addressName = strip_tags($_POST["address"]);
+            
+            $addressListCount = $addressList->addressListVerification($listName, $addressName);
+            
+            if($addressListCount === 0){
+                
+                "addressDoesntExistInList";
+                
+            }else{
+                
+                $addressList->delete($addressName);
+                
+                echo "successDeleteAddressInList";
+                
+            }
+            
         }
     
         break;

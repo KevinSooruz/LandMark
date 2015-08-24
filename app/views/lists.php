@@ -37,6 +37,17 @@
                             </form>
                         </div>
                     </div>
+                    <div class="inBox other">
+                        <span class="title">Amis ayant acc&egrave;s &agrave; cette liste</span>
+                        <div class="inBoxContent">
+                        </div>
+                    </div>
+                    <div class="inBox other">
+                        <div class="inBoxContent center">
+                            <button ng-hide="confirmDelete === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer la liste</button>
+                            <span ng-show="confirmDelete === true"><button class="btn btnPrimary btnMidWidth" ng-click="confirmDelete = false">Annuler</button> <button class="btn btnDelete btnMidWidth" ng-click="deleteList()">Supprimer</button></span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div ng-show="addresses.length === 0" class="col-md-12 center noResults">

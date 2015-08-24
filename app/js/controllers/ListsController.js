@@ -1,4 +1,4 @@
-app.controller("ListsController", function($scope, $routeParams, Lists){
+app.controller("ListsController", function($scope, $routeParams, Lists, Address){
     
     /////////////////////////////////// Liste ///////////////////////////////////
     
@@ -11,6 +11,14 @@ app.controller("ListsController", function($scope, $routeParams, Lists){
         var data = angular.copy($scope.dataUpList);
         
         Lists.update($scope, data);
+        
+    };
+    
+    ///// Suppression d'une adresse dans une liste /////
+    $scope.deleteAddressList = function(index, addressName){
+        
+        // Suppression de l'adresse en base de données
+        Address.deleteList($routeParams.nameList, addressName, $scope, index);
         
     };
     
