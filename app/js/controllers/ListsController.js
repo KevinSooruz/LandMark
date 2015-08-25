@@ -18,7 +18,14 @@ app.controller("ListsController", function($scope, $routeParams, Lists, Address)
     $scope.deleteAddressList = function(index, addressName){
         
         // Suppression de l'adresse en base de données
-        Address.deleteList($routeParams.nameList, addressName, $scope, index);
+        Address.deleteAddressList($routeParams.nameList, addressName, $scope, index);
+        
+    };
+    
+    ///// Suppression d'une liste /////
+    $scope.deleteList = function(){
+        
+        Lists.delete($scope);
         
     };
     

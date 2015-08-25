@@ -481,7 +481,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
     };
     
     // Suppression d'une adresse dans une liste
-    address.deleteList = function(listName, addressName, scope, index){
+    address.deleteAddressList = function(listName, addressName, scope, index){
         
         // Suppression message erreur si actif
         scope.indexErrorDeleteAddressInList = "";

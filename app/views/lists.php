@@ -44,8 +44,9 @@
                     </div>
                     <div class="inBox other">
                         <div class="inBoxContent center">
-                            <button ng-hide="confirmDelete === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer la liste</button>
+                            <button ng-hide="confirmDelete === true || errorDeleteList === true" class="btn btnBigWidth btnDelete" ng-click="confirmDelete = true">Supprimer la liste</button>
                             <span ng-show="confirmDelete === true"><button class="btn btnPrimary btnMidWidth" ng-click="confirmDelete = false">Annuler</button> <button class="btn btnDelete btnMidWidth" ng-click="deleteList()">Supprimer</button></span>
+                            <span ng-show="errorDeleteList === true" class="errorBlock">Une erreur s&rsquo;est produite. Merci de recharger la page.</span>
                         </div>
                     </div>
                 </div>

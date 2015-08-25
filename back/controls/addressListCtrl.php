@@ -79,6 +79,12 @@ switch($method){
                 
             }
             
+        }else if(isset($_POST["delete"]) && $_POST["delete"] === "true" && isset($_POST["list"])){
+            
+            $nameList = strip_tags($_POST["list"]);
+            
+            $lists->delete($nameList);
+            
         }
     
         break;

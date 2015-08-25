@@ -195,6 +195,48 @@ services.factory("Lists", function(Api, $timeout, $q, Correct, $routeParams, $lo
         
     };
     
+    // Suppression d'une liste
+    lists.delete = function(scope){
+        
+        // Données envoyées
+        var data = {
+            
+            list: $routeParams.nameList,
+            delete: true
+            
+        };
+        
+        // Envoie des données et attente de la réponse serveur
+        Api.post("back/controls/addressListCtrl.php", data).then(function(response){
+            
+            // Retour au bouton "Supprimer la liste"
+            scope.confirmDelete = false;
+            
+            switch(response.data){
+                    
+                case "successDeleteList":
+                    
+                    // Redirection si succès
+                    $location.path("/addresses");
+                    
+                    break;
+                    
+            }
+            
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
+            
+            // Retour au bouton "Supprimer la liste"
+            scope.confirmDelete = false;
+            
+            // Message erreur suppression
+            scope.errorDeleteList = true;
+            
+        });
+        
+    };
+    
     return lists;
     
 });

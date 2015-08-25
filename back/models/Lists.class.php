@@ -79,6 +79,28 @@ class Lists{
         
     }
     
+    public function delete($nameList){
+        
+        $reqDelete = $this->_bdd->prepare("DELETE FROM lists WHERE name = :nameList AND id_user = :user");
+        $reqDelete->execute(array(
+        
+            "user" => $_SESSION["user"],
+            "nameList" => $nameList
+            
+        ));
+        
+        $reqDeleteInAddressList = $this->_bdd->prepare("DELETE FROM addresses_lists WHERE list = :nameList AND id_user = :user");
+        $reqDeleteInAddressList->execute(array(
+        
+            "user" => $_SESSION["user"],
+            "nameList" => $nameList
+        
+        ));
+        
+        echo "successDeleteList";
+        
+    }
+    
     public function verifListExist($nameList){
         
         $reqRead = $this->_bdd->prepare("SELECT name FROM lists WHERE id_user = :user AND name = :nameList");
