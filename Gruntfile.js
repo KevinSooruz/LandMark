@@ -33,6 +33,7 @@ module.exports = function(grunt) {
                     "app/js/controllers/ListsController.js",
                     "app/js/controllers/CategoriesController.js",
                     "app/js/controllers/AddressController.js",
+                    "app/js/controllers/MapController.js",
                     
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -67,6 +68,7 @@ module.exports = function(grunt) {
                     "app/js/controllers/ListsController.js",
                     "app/js/controllers/CategoriesController.js",
                     "app/js/controllers/AddressController.js",
+                    "app/js/controllers/MapController.js",
                     
                     "app/js/services/Api.js",
                     "app/js/services/Log.js",
@@ -106,6 +108,7 @@ module.exports = function(grunt) {
                 "dist/app/views/lists.php": "app/views/lists.php",
                 "dist/app/views/categories.php": "app/views/categories.php",
                 "dist/app/views/address.php": "app/views/address.php",
+                "dist/app/views/map.php": "app/views/map.php",
                 
                 "dist/app/views/templates/inscriptionModal.php": "app/views/templates/inscriptionModal.php",
                 "dist/app/views/templates/connectionModal.php": "app/views/templates/connectionModal.php",
@@ -125,6 +128,9 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/address/addressTemplate.php": "app/views/templates/address/addressTemplate.php",
                 "dist/app/views/templates/address/categoriesTemplate.php": "app/views/templates/address/categoriesTemplate.php",
                 "dist/app/views/templates/address/listsTemplate.php": "app/views/templates/address/listsTemplate.php",
+                
+                "dist/app/views/templates/map/categoriesTemplate.php": "app/views/templates/map/categoriesTemplate.php",
+                "dist/app/views/templates/map/listsTemplate.php": "app/views/templates/map/listsTemplate.php",
                 
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",

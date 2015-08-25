@@ -1,18 +1,13 @@
-app.directive("map", function(Map, $routeParams){
+app.directive("map", function(Map){
     
     var mapTemplate = {
         
         replace: true,
         restrict: "E",
-        template: "<div id='map' class='small'></div>",
+        template: "<div id='map'></div>",
         link: function(scope, attrs, elem){
             
-            // Si nom d'adresse === Espace modification adresse
-            if($routeParams.nameAddress){
-                
-                Map.initGeocode(scope);
-                
-            }
+            Map.init();
             
         }
         

@@ -1,4 +1,4 @@
-services.factory("Map", function(Address){
+services.factory("Map", function(Address, $location){
     
     // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch (trouver toutes les places d'une ville)
     // https://developers.google.com/places/javascript/
@@ -7,14 +7,24 @@ services.factory("Map", function(Address){
     var map = {};
     
     // Initialisation de la carte
-    map.init = function(zoom, position){
+    map.init = function(){
         
         var mapElem; // carte
+        var marker = false;
+            
+        // Centre France pour initialisation de la carte principale
+        var position = {
+                
+            lat: 46.227638, 
+            lng: 2.213749
+                
+        };
         
+        // Initialisation de la carte
         mapElem = new google.maps.Map(document.getElementById("map"), {
                     
             center: position,
-            zoom: zoom,
+            zoom: 6,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: false,
             streetViewControl: false,
@@ -22,11 +32,47 @@ services.factory("Map", function(Address){
 
         });
         
-        map.marker(mapElem, position);
+        // Récupération de toutes les adresses ou des addresses par catégories / liste
+        Address.get().then(function(response){
+                    
+            if(response === "noResult"){
+                
+                // Categorie n'existe pas
+                $location.path("/map");
+                
+            }else{
+                
+                // Ajout des markers
+                var posMarker;
+                var max = response.length;
+                var i = 0;
+
+                for(; i < max; i++){
+
+                    posMarker = {
+
+                        lat: parseFloat(response[i].lat),
+                        lng: parseFloat(response[i].lng)
+
+                    };
+
+                    map.marker(mapElem, posMarker, max);
+
+                }
+                
+            }
+                    
+        }, function(headers, data, status, config){
+            
+            console.log(headers, data, status, config);
+            map.error(scope);
+            
+        });
         
     };
     
-    map.marker = function(map, position){
+    // Création d'un marker
+    map.marker = function(map, position, max){
         
         var image = "app/images/pin-green.png";
         
@@ -39,56 +85,21 @@ services.factory("Map", function(Address){
             
         });
         
-    };
-    
-    map.initGeocode = function(scope){
-        
-        // Address get pour récupération de l'ID de l'adresse
-        Address.get().then(function(response){
+        // Si max === 1 cela signifie que nous sommes sur la modification d'adresse ou que nous pouvons zommer sur ce point sur la carte
+        if(max === 1){
             
-            // Succès === geocodage
-            map.geocodeById(scope, response[0].placeId);
-
-        }, function(headers, data, status, config){
-
-            console.log(headers, data, status, config);
-            map.error(scope);
-
-        });
+            map.setZoom(19);
+            map.setCenter(position);
+            
+        }
+        
+        //map.createInfo();
         
     };
     
-    // Geocode par ID - plus précis et plus sûr que par lat/lng
-    map.geocodeById = function(scope, placeId){
+    map.createInfo = function(){
         
-        var geocoder = new google.maps.Geocoder;
-        
-        geocoder.geocode({
-            
-            "placeId": placeId
-        
-        }, function(results, status){
-            
-            if(status === google.maps.GeocoderStatus.OK){
-                
-                if(results[0]){
-                    
-                    // Initalisation de la carte - Zoom + position
-                    map.init(19, results[0].geometry.location);
-                    
-                }else{
-              
-                    map.error(scope);
-              
-                }
-                
-            }else{
-                
-                map.error(scope);
-                
-            }
-            
-        });
+        console.log("ok");
         
     };
     

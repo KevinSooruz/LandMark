@@ -1,5 +1,42 @@
 #map{
-    &.small{
-        height: 350px; width: 100%;
+    height: 350px; width: 100%;
+}
+
+#mapPage{
+    @shadowMap: 0 0 6px 1px rgba(0,0,0,0.3);
+    
+    #mapContent{
+        #getMapMarker{
+            .absolute;
+            z-index: 10;
+            bottom: 15px; left: 0; right: 0;
+            .center;
+            
+            i.selectMarker{
+                color: @white;
+                .bg(@primary);
+                height: 60px; width: 60px;
+                line-height: 60px;
+                .br(60px);
+                .box-shadow(@shadow: @shadowMap);
+
+                &:hover{
+                    cursor: pointer;
+                    .bg(@primaryDark);
+                }
+            }
+            
+            form{
+                .box-shadow(@shadow: @shadowMap);
+                width: 90%;
+                margin: 15px auto 0;
+            }
+        }
+        
+        #map{
+            .absolute;
+            height: 100%;
+            z-index: 0;
+        }
     }
 }

@@ -13,13 +13,13 @@ app.directive("lists", function(Lists){
             
             ///// Initialisation des listes /////
             Lists.get().then(function(response){
-
+                
                 if(response === "errorLoadLists"){
 
                     scope.errorBackEnd = true;
 
                 }else{
-
+                    
                     scope.lists = response;
 
                 }

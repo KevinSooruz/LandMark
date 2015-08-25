@@ -1,4 +1,4 @@
-app.directive("menu", function(){
+app.directive("menu", function($location){
     
     return{
         
@@ -15,7 +15,8 @@ app.directive("menu", function(){
                 },
                 {
                     icon: "glyphicon-map-marker",
-                    title: "Carte"
+                    title: "Carte",
+                    locate: "/map"
                 },
                 {
                     icon: "glyphicon-user",
@@ -27,15 +28,10 @@ app.directive("menu", function(){
                 }
             ];
             
-            // Initialisation menu actif
-            scope.indexMenu = 0;
+            var splitPath = $location.$$path.split("/");
+            var splitPathStart = splitPath["1"];
             
-            // Modification menu actif
-            scope.activeMenu = function(index){
-                
-                scope.indexMenu = index;
-                
-            };
+            scope.indexMenu = "/" + splitPathStart;
             
         }
         
