@@ -69,6 +69,22 @@ app.config(["$routeProvider", function($routeProvider){
             session: app.session // Vérification si session active pour accéder au compte client
         }
         
+    }).when("/map/categories/:nameCategorie/:nameAddress", {
+        
+        templateUrl: "app/views/map.php",
+        controller: "mapController",
+        resolve: {
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
+    }).when("/map/search/:cityName/:typeName", {
+        
+        templateUrl: "app/views/map.php",
+        controller: "mapController",
+        resolve: {
+            session: app.session // Vérification si session active pour accéder au compte client
+        }
+        
     }).otherwise({
         
         redirectTo: "/"

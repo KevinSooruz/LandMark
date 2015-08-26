@@ -32,7 +32,7 @@ class AddressList{
     public function read($nameList){
         
         // Jointures : https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-jointures-entre-tables
-        $reqRead = $this->_bdd->prepare("SELECT addresses_lists.name, addresses.categorie, addresses.location, addresses.phone FROM addresses_lists, addresses WHERE addresses_lists.list = :list AND addresses.name = addresses_lists.name AND addresses.id_user = :user");
+        $reqRead = $this->_bdd->prepare("SELECT addresses_lists.name, addresses.categorie, addresses.location, addresses.phone, addresses.place_id, addresses.lat, addresses.lng FROM addresses_lists, addresses WHERE addresses_lists.list = :list AND addresses.name = addresses_lists.name AND addresses.id_user = :user");
         $reqRead->execute(array(
         
             "user" => $_SESSION["user"],
@@ -50,7 +50,10 @@ class AddressList{
                 "location" => $addresses["location"],
                 "categorie" => $addresses["categorie"],
                 "phone" => $addresses["phone"],
-                "categorie" => $addresses["categorie"]
+                "categorie" => $addresses["categorie"],
+                "placeId" => $addresses["place_id"],
+                "lat" => $addresses["lat"],
+                "lng" => $addresses["lng"]
             ));
         };
         $result.= "]";

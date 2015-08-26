@@ -56,7 +56,8 @@ module.exports = function(grunt) {
                     "app/js/directives/ListsDirective.js",
                     "app/js/directives/CategoriesDirective.js",
                     "app/js/directives/CorrectDir.js",
-                    "app/js/directives/MapDirective.js"
+                    "app/js/directives/MapDirective.js",
+                    "app/js/directives/TypeInCity.js"
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
@@ -91,7 +92,8 @@ module.exports = function(grunt) {
                     "app/js/directives/ListsDirective.js",
                     "app/js/directives/CategoriesDirective.js",
                     "app/js/directives/CorrectDir.js",
-                    "app/js/directives/MapDirective.js"
+                    "app/js/directives/MapDirective.js",
+                    "app/js/directives/TypeInCity.js"
                 ]
             }
         }
@@ -131,6 +133,7 @@ module.exports = function(grunt) {
                 
                 "dist/app/views/templates/map/categoriesTemplate.php": "app/views/templates/map/categoriesTemplate.php",
                 "dist/app/views/templates/map/listsTemplate.php": "app/views/templates/map/listsTemplate.php",
+                "dist/app/views/templates/map/typeInCity.php": "app/views/templates/map/typeInCity.php",
                 
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",

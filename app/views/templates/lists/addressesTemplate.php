@@ -16,7 +16,7 @@
                         <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 textRight">
-                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <i class="glyphicon glyphicon-map-marker" ng-click="redirect('/map/categories/{{address.categorie}}/{{address.name}}')"></i>
                         <i class="glyphicon glyphicon-wrench" ng-click="redirect('/addresses/categories/{{address.categorie}}/{{address.name}}')"></i>
                         <i class="glyphicon glyphicon-trash" ng-click="deleteAddressList($index, address.name)"></i>
                     </div>

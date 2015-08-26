@@ -34,4 +34,7 @@ app.controller("mapController", function($scope, Map, $location){
         
     };
     
+    // Initialisation message erreur
+    document.getElementById("errorMap").innerHTML = "";
+    
 });

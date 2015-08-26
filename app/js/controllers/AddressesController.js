@@ -25,7 +25,7 @@ app.controller("AddressesController", function($scope, Autocomplete, Address, Us
     $scope.addAddress = {};
     
     ///// Service autocomplétion /////
-    Autocomplete.run($scope);
+    Autocomplete.run($scope, "adLocation");
     
     // Met à jour les informations si l'utilisateur ne sélectionne pas une google place
     $scope.updateInformations = function(){

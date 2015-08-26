@@ -90,16 +90,15 @@
                 width: 100%;
                 padding: 15px;
                 border-bottom: 1px solid @grey;
-                margin-bottom: 25px;
                 
                 .icons{
-                    .fs(14px);
+                    .fs(12px);
                     float: right;
                     margin: 15px 5px 0 0;
                     color: @textLight;
                     
                     i{
-                        margin-right: -9px;
+                        margin-right: -8px;
                     }
                     
                     &:hover{
@@ -109,9 +108,33 @@
                 }
             }
             
-            #categorieMap{
-                margin-bottom: 15px;
+            .innerContentMenuMap{
+                display: inline-block;
+                width: 100%;
+                padding: 25px 0;
+                border-bottom: 1px solid @grey;
+                
+                #categorieMap{
+                    margin-bottom: 15px;
+                }
+                
+                #findTypeInCity{
+                    input, select{
+                        margin-bottom: 15px;
+                    }
+                    
+                    .form-group{
+                        margin: 0;
+                    }
+                }
             }
+        }
+        
+        #errorMap{
+            .absolute;
+            top: 55px; left: 15px;
+            z-index: 10;
+            color: @error;
         }
         
         #map{

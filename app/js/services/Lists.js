@@ -1,11 +1,9 @@
-services.factory("Lists", function(Api, $timeout, $q, Correct, $routeParams, $location){
+services.factory("Lists", function(Api, $timeout, Correct, $routeParams, $location){
     
     var lists = {};
     
     // Récupération des listes utilisateur
     lists.get = function(scope){
-        
-        var deferred = $q.defer();
         
         // Initialisation objet data
         var data = {};
@@ -14,16 +12,23 @@ services.factory("Lists", function(Api, $timeout, $q, Correct, $routeParams, $lo
         data.user = "lists";
         
         Api.get("back/controls/listsCtrl.php", data).then(function(response){
+            
+            if(response.data === "errorLoadLists"){
 
-            return deferred.resolve(response.data);
+                scope.errorBackEnd = true;
+
+            }else{
+                    
+                scope.lists = response.data;
+
+            }
 
         }, function(data, status, config, headers){
 
-            return deferred.reject(data, status, config, headers);
+            console.log(data, status, config, headers);
+            scope.errorLoadLists = true;
 
         });
-        
-        return deferred.promise;
         
     };
     

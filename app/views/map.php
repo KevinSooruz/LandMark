@@ -11,9 +11,18 @@
                         <i class="glyphicon glyphicon-menu-left"></i>
                     </div>
                 </span>
-                <div class="contentMenu col-md-12">
-                    <categories template-url="app/views/templates/map/categoriesTemplate.php"></categories>
-                    <lists template-url="app/views/templates/map/listsTemplate.php"></lists>
+                <div class="contentMenu">
+                    <div class="innerContentMenuMap">
+                        <div class="col-md-12">
+                            <categories template-url="app/views/templates/map/categoriesTemplate.php"></categories>
+                            <lists template-url="app/views/templates/map/listsTemplate.php"></lists>
+                        </div>
+                    </div>
+                    <div class="innerContentMenuMap">
+                        <div class="col-md-12">
+                            <typeincity></typeincity>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="findPlace">
@@ -23,6 +32,7 @@
                     <button><i class="glyphicon glyphicon-search"></i></button>
                 </form>
             </div>
+            <div id="errorMap"></div>
             <map></map>
         </div>
     </div>

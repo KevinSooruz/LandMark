@@ -5,10 +5,10 @@ services.factory("Autocomplete", function($timeout, $q){
     autocomplete = {};
     
     // Autocomplétion google maps
-    autocomplete.run = function(scope){
+    autocomplete.run = function(scope, elem){
         
         // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
-        var adLocation = document.getElementById("adLocation");
+        var adLocation = document.getElementById(elem);
         var search = new google.maps.places.Autocomplete(adLocation);
         
         // Récupération des informations de l'adresse lors de la sélection

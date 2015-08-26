@@ -12,24 +12,7 @@ app.directive("lists", function(Lists){
         link: function(scope){
             
             ///// Initialisation des listes /////
-            Lists.get().then(function(response){
-                
-                if(response === "errorLoadLists"){
-
-                    scope.errorBackEnd = true;
-
-                }else{
-                    
-                    scope.lists = response;
-
-                }
-
-            }, function(data, status, config, headers){
-
-                console.log(data, status, config, headers);
-                scope.errorLoadLists = true;
-
-            });
+            Lists.get(scope);
             
         }
         
