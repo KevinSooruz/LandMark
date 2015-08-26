@@ -2,16 +2,26 @@
     <menu></menu>
     <div class="content">
         <div id="mapContent" class="inlineAll">
-            <div id="getMapMarker">
-                <div class="col-md-5">
+            <div id="overlay" ng-show="menuMap === true" ng-click="menuMap = false"></div>
+            <div id="mapMenu" ng-class="{showMenuMap: menuMap === true}">
+                <span class="title">
+                    <span>Menu</span>
+                    <div class="icons" ng-click="menuMap = false">
+                        <i class="glyphicon glyphicon-menu-left"></i>
+                        <i class="glyphicon glyphicon-menu-left"></i>
+                    </div>
+                </span>
+                <div class="contentMenu col-md-12">
                     <categories template-url="app/views/templates/map/categoriesTemplate.php"></categories>
-                </div>
-                <div class="col-md-2 center">
-                    <i class="glyphicon glyphicon-plus selectMarker"></i>
-                </div>
-                <div class="col-md-5">
                     <lists template-url="app/views/templates/map/listsTemplate.php"></lists>
                 </div>
+            </div>
+            <div id="findPlace">
+                <div id="menu" ng-click="menuMap = true"><i class="glyphicon glyphicon-menu-hamburger"></i></div>
+                <form name="findAPlace" class="form-inline">
+                    <input class="form-control select" placeholder="Indiquez un lieu" type="text" ng-pattern="wordAddress">
+                    <button><i class="glyphicon glyphicon-search"></i></button>
+                </form>
             </div>
             <map></map>
         </div>

@@ -4,32 +4,113 @@
 
 #mapPage{
     @shadowMap: 0 0 6px 1px rgba(0,0,0,0.3);
+    @widthFindPlace: 320px;
+    @heightFindPlace: 30px;
+    @widthFormFindPlace: @widthFindPlace;
+    @widthMenuMap: 320px;
     
     #mapContent{
-        #getMapMarker{
+        #findPlace{
             .absolute;
+            top: 15px; left: 15px;
+            display: inline-block;
+            height: @heightFindPlace;
             z-index: 10;
-            bottom: 15px; left: 0; right: 0;
-            .center;
+            .box-shadow(@shadow: @shadowMap);
             
-            i.selectMarker{
-                color: @white;
-                .bg(@primary);
-                height: 60px; width: 60px;
-                line-height: 60px;
-                .br(60px);
-                .box-shadow(@shadow: @shadowMap);
-
+            #menu{
+                width: @heightFindPlace; height: @heightFindPlace;
+                display: inline-block;
+                .center;
+                line-height: @heightFindPlace;
+                .bg(@white);
+                color: @textLight;
+                
                 &:hover{
                     cursor: pointer;
-                    .bg(@primaryDark);
+                    color: @textDark;
                 }
             }
             
             form{
-                .box-shadow(@shadow: @shadowMap);
-                width: 90%;
-                margin: 15px auto 0;
+                display: inline-block;
+                
+                input{
+                    height: @heightFindPlace;
+                    border: none;
+                    vertical-align: inherit;
+                    width: @widthFindPlace - (@heightFindPlace * 2);
+                    margin: 0 -3px;
+                }
+                
+                button{
+                    height: @heightFindPlace;
+                    .bg(@primary);
+                    color: @white;
+                    border: none;
+                    width: @heightFindPlace * 2;
+                    
+                    &:hover{
+                        .bg(@primaryDark);
+                    }
+                    
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+        }
+        
+        #overlay{
+            .absolute;
+            top: 0; left: 0; right: 0; bottom:0;
+            z-index: 20;
+            .bg(rgba(0,0,0,0.4));
+        }
+        
+        #mapMenu{
+            .absolute;
+            top: 0; bottom: 0; left: 0;
+            width: @widthMenuMap;
+            z-index: 30;
+            .translate3d(-@widthMenuMap;0;0);
+            .transition-duration(200ms);
+            .bg(@white);
+            overflow-y: auto;
+                
+            &.showMenuMap{
+                .translate3d(0;0;0);
+                .transition-duration(200ms);
+            }
+            
+            .title{
+                .fs(25px);
+                .fw3;
+                display: inline-block;
+                width: 100%;
+                padding: 15px;
+                border-bottom: 1px solid @grey;
+                margin-bottom: 25px;
+                
+                .icons{
+                    .fs(14px);
+                    float: right;
+                    margin: 15px 5px 0 0;
+                    color: @textLight;
+                    
+                    i{
+                        margin-right: -9px;
+                    }
+                    
+                    &:hover{
+                        cursor: pointer;
+                        color: @textDark;
+                    }
+                }
+            }
+            
+            #categorieMap{
+                margin-bottom: 15px;
             }
         }
         
