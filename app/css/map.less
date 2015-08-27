@@ -1,5 +1,31 @@
 #map{
     height: 350px; width: 100%;
+    
+    .block{
+        display: block;
+
+        &.addressAddress, &.addressInternationalPhone{
+            margin-bottom: 10px;
+        }
+    }
+
+    .inline{
+        display: inline-block;
+
+        &.addressRating{
+            color: @five;
+        }
+
+        &.stars{
+            margin-left: 10px;
+            color: @five;
+        }
+
+        &.link{
+            float: right;
+            margin-left: 10px;
+        }
+    }
 }
 
 #mapPage{

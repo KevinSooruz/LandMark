@@ -20,6 +20,18 @@ app.directive("typeincity", function(Map, $location){
                 
             };
             
+            // Affichage modal + informations sur lieu
+            window.addEventListener("click", function(e){
+                
+                if(e.target.className === "inline link linkPrimary linkMoreInfos"){
+                    
+                    scope.showModal = true;
+                    scope.$apply();
+                    
+                }
+                
+            });
+            
             // Validation formulaire
             scope.findTypeForCity = function(){
                 

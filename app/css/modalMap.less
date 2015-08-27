@@ -1,0 +1,23 @@
+#modalMap{
+    .absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    .bg(transparent);
+    .translate3d(0; -9999px; 0);
+    z-index: 999999;
+    width: 700px;
+    margin: 0 auto;
+    
+    &.in{
+        .translate3d(0; 0; 0);
+    }
+    
+    .modalMapBody{
+        .bg(@white);
+        .translate3d(0; -9999px; 0);
+        
+        &.showModal{
+            .translate3d(0; 0; 0);
+            .transition-duration(200ms);
+        }
+    }
+}

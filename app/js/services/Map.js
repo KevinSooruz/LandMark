@@ -8,6 +8,7 @@ services.factory("Map", function(Address, $location, $routeParams){
     var mapElem; // carte
     var marker; // Marker
     var infowindow = new google.maps.InfoWindow(); // Infowindow marker
+    var textElem; // texte infowindow
     
     // Initialisation de la carte
     map.init = function(){
@@ -65,10 +66,10 @@ services.factory("Map", function(Address, $location, $routeParams){
                     };
                     
                     // Place Id du marker
-                    var placeId = response[i].place_id;
+                    var placeId = response[i].placeId;
                     
                     // Création du marker
-                    map.createMarker(posMarker, max, placeId);
+                    map.createMarker(posMarker, max, placeId, response[i]);
 
                 }
                 
@@ -86,7 +87,7 @@ services.factory("Map", function(Address, $location, $routeParams){
     // Initialisation de l'élément carte
     map.initElem = function(position){
         
-        mapElem = new google.maps.Map(document.getElementById("map"), {
+        mapElem = new google.maps.Map(document.getElementById("map"),{
                     
             center: position,
             zoom: 6,
@@ -100,7 +101,7 @@ services.factory("Map", function(Address, $location, $routeParams){
     };
     
     // Création d'un marker
-    map.createMarker = function(position, max, placeId){
+    map.createMarker = function(position, max, placeId, response){
         
         var image = "app/images/pin-green.png";
         
@@ -120,17 +121,26 @@ services.factory("Map", function(Address, $location, $routeParams){
             
         }
         
-        map.markerDetails(position, placeId);
+        
+        map.markerDetails(position, placeId, response);
         
     };
     
     // Ajout des informations à la fenêtre d'infos
-    map.markerDetails = function(position, placeId){
+    map.markerDetails = function(position, placeId, response){
+        
+        // Paramètre "response" correspond aux informations retournées de la bdd si l'affichage des lieux provient des categories / listes créées par l'utilisateur
         
         var service = new google.maps.places.PlacesService(mapElem);
-        var textElem;
         
         google.maps.event.addListener(marker, "click", function(){
+            
+            // Si utilisateur est sur la page de gestion de l'adresse ne pas afficher les informations du lieu sur la carte
+            if($location.path() === "/addresses/categories/" + $routeParams.nameCategorie + "/" + $routeParams.nameAddress){
+
+                return;
+
+            }
             
             service.getDetails({
             
@@ -139,9 +149,60 @@ services.factory("Map", function(Address, $location, $routeParams){
             }, function(place, status){
                 
                 if(status === google.maps.places.PlacesServiceStatus.OK){
+                    
+                    var modalMapTitle = document.getElementById("modalMapTitle");
                 
                     console.log(place);
-                    textElem = "<b>" + place.name + "</b>";
+                    // Nom du lieu
+                    if(response){
+                        
+                        textElem = "<span class='block addressName fw7'>" + response.name + "</span>";
+                        modalMapTitle.innerHTML = "<span>" + response.name + "</span>";
+                        
+                    }else{
+                        
+                        textElem = "<span class='block addressName fw7'>" + place.name + "</span>";
+                        modalMapTitle.innerHTML = "<span>" + place.name + "</span>";
+                        
+                    }
+                    
+                    // Adresse du lieu
+                    textElem += "<span class='block addressAddress'>" + place.formatted_address + "</span>";
+                    
+                    // Téléphones du lieu
+                    if(response){
+                        
+                        if(response.phone !== ""){
+                            
+                            textElem += "<span class='block addressPhone'>" + response.phone + "</span>"
+                            
+                        }
+                        
+                    }else if(place.formatted_phone_number){
+                        
+                        textElem += "<span class='block addressPhone'>" + place.formatted_phone_number + "</span>";
+                        
+                    }
+                    
+                    if(place.international_phone_number){
+                        
+                        textElem += "<span class='block addressInternationalPhone'>" + place.international_phone_number + "</span>";
+                        
+                    }
+                    
+                    // Note du lieu
+                    if(place.rating){
+                        
+                        textElem += "<span class='inline addressRating'>" + place.rating + "/5</span>";
+                        
+                        // Ajout des étoiles en fonction de la note
+                        map.starsRating(place.rating);
+                        
+                        
+                    }
+                    
+                    // Bouton + d'infos
+                    textElem += "<span class='inline link linkPrimary linkMoreInfos'>Plus d'infos</span>";
                     
                     infowindow.setContent(textElem);
                 
@@ -161,6 +222,35 @@ services.factory("Map", function(Address, $location, $routeParams){
         
     };
     
+    // Ajout des étoiles en fonction de la note
+    map.starsRating = function(rating){
+        
+        var max = 5;
+        var i = 0;
+
+        textElem += "<span class='inline stars'>";
+
+        for(; i < max; i++){
+
+            // Tant que i n'est pas supérieur à la note => affiche étoile pleine
+            if(i < rating){
+
+                textElem += "<i class='glyphicon glyphicon-star'></i>";
+
+            }else{
+
+                // Sinon étoile vide
+                textElem += "<i class='glyphicon glyphicon-star-empty'></i>";
+
+            }
+
+        }
+
+        textElem += "</span>";
+        
+    };
+    
+    // Autocompletion recherche ville + type
     map.autocompleteCity = function(scope, elem){
         
         // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
