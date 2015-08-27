@@ -137,6 +137,20 @@
             color: @error;
         }
         
+        #moreResult{
+            .absolute;
+            bottom: 15px; right: 0; left: 0;
+            z-index: 10;
+            .center;
+            .translate3d(0;0;0);
+            .transition-duration(200ms);
+            
+            &.down{
+                .translate3d(0;60px;0);
+                .transition-duration(200ms);
+            }
+        }
+        
         #map{
             .absolute;
             height: 100%;

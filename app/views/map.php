@@ -33,6 +33,9 @@
                 </form>
             </div>
             <div id="errorMap"></div>
+            <div id="moreResult" class="down">
+                <button class="btn btnThree btnMidWidth">Plus de r&eacute;sultats</button>
+            </div>
             <map></map>
         </div>
     </div>

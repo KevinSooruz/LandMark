@@ -6,11 +6,12 @@ services.factory("Map", function(Address, $location, $routeParams){
     
     var map = {};
     var mapElem; // carte
+    var marker; // Marker
+    var infowindow = new google.maps.InfoWindow(); // Infowindow marker
     
     // Initialisation de la carte
     map.init = function(){
         
-        var marker = false;
         var position;
         
         // Centre France pour initialisation de la carte principale
@@ -25,10 +26,10 @@ services.factory("Map", function(Address, $location, $routeParams){
         map.initElem(position);
         
         // Paramètre de recherche sur ville + type de lieux
-        if($routeParams.cityName && $routeParams.typeName){
+        if($routeParams.cityCode && $routeParams.typeName){
             
             // Geocode par adresse renseignée dans l'url
-            map.geocodeByAddress($routeParams.cityName, $routeParams.typeName);
+            map.geocodeByPlaceId($routeParams.cityCode, $routeParams.typeName);
             
             return;
             
@@ -50,20 +51,24 @@ services.factory("Map", function(Address, $location, $routeParams){
             }else{
                 
                 // Ajout des markers
-                var posMarker;
                 var max = response.length;
                 var i = 0;
 
                 for(; i < max; i++){
-
-                    posMarker = {
+                    
+                    // Position du marker
+                    var posMarker = {
 
                         lat: parseFloat(response[i].lat),
                         lng: parseFloat(response[i].lng)
 
                     };
-
-                    map.marker(posMarker, max);
+                    
+                    // Place Id du marker
+                    var placeId = response[i].place_id;
+                    
+                    // Création du marker
+                    map.createMarker(posMarker, max, placeId);
 
                 }
                 
@@ -95,16 +100,15 @@ services.factory("Map", function(Address, $location, $routeParams){
     };
     
     // Création d'un marker
-    map.marker = function(position, max){
+    map.createMarker = function(position, max, placeId){
         
         var image = "app/images/pin-green.png";
         
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             
             map: mapElem,
             position: position,
-            icon: image,
-            animation: google.maps.Animation.DROP
+            icon: image
             
         });
         
@@ -116,13 +120,44 @@ services.factory("Map", function(Address, $location, $routeParams){
             
         }
         
-        //map.createInfo();
+        map.markerDetails(position, placeId);
         
     };
     
-    map.createInfo = function(){
+    // Ajout des informations à la fenêtre d'infos
+    map.markerDetails = function(position, placeId){
         
-        console.log("ok");
+        var service = new google.maps.places.PlacesService(mapElem);
+        var textElem;
+        
+        google.maps.event.addListener(marker, "click", function(){
+            
+            service.getDetails({
+            
+                placeId: placeId
+            
+            }, function(place, status){
+                
+                if(status === google.maps.places.PlacesServiceStatus.OK){
+                
+                    console.log(place);
+                    textElem = "<b>" + place.name + "</b>";
+                    
+                    infowindow.setContent(textElem);
+                
+                }else{
+                    
+                    infowindow.setContent("Aucune information sur ce lieu");
+                    
+                }
+                
+            
+            });
+            
+            // Ouverture de l'infoWindow;
+            infowindow.open(mapElem, this);
+            
+        });
         
     };
     
@@ -142,20 +177,21 @@ services.factory("Map", function(Address, $location, $routeParams){
             var place = search.getPlace();
            
             // Récupération des résultats
-            scope.typeSelect.city = place.formatted_address;
-            scope.typeSelect.id = place.place_id;
+            //scope.typeSelect.city = place.formatted_address;
+            scope.typeSelect.cityCode = place.place_id;
             
         });
         
     };
     
-    map.geocodeByAddress = function(address, typeElem){
+    // Modification de la carte sur la ville demandée par l'internaute
+    map.geocodeByPlaceId = function(cityCode, typeElem){
         
         var geocoder = new google.maps.Geocoder();
         
         geocoder.geocode({
             
-            "address": address
+            "placeId": cityCode
             
         }, function(results, status){
             
@@ -190,6 +226,9 @@ services.factory("Map", function(Address, $location, $routeParams){
     map.nearbySearch = function(typeElem){
         
         var places = new google.maps.places.PlacesService(mapElem);
+        var moreResult = document.getElementById("moreResult");
+        // places.radarSearch // places.nearbySearch
+        // keyword: typeElem  // types: [typeElem]
         
         var searchElem = {
             
@@ -198,41 +237,55 @@ services.factory("Map", function(Address, $location, $routeParams){
             
         };
         
-        places.nearbySearch(searchElem, function(results, status){
+        places.nearbySearch(searchElem, function(results, status, pagination){
             
             if(status === google.maps.places.PlacesServiceStatus.OK){
                 
+                // Création des résultats
                 var max = results.length;
-                var markers;
-                var image = "app/images/pin-green.png";
-                
-                if(max === 0){
-                    
-                    map.textError("Aucun résultat trouvé pour cette recherche.");
-                    return;
-                    
-                }
-                
                 var i = 0;
-                var position;
-                
+
                 for(; i < max; i++){
-                    
-                    // Récupération de la position de chacune des éléments
-                    position = {
-                    
+
+                    // Récupération de la position de chacun des éléments
+                    var position = {
+
                         lat: parseFloat(results[i].geometry.location.G),
                         lng: parseFloat(results[i].geometry.location.K)
-                    
+
                     };
                     
-                    // Affichage de chacun des éléments
-                    map.marker(position);
+                    // Envoie de l'id de la place
+                    var placeId = results[i].place_id;
                     
-                    // Informations sur le lieu
-                    map.addDetails(results[i]);
+                    // Affichage de chacun des éléments
+                    map.createMarker(position, max, placeId);
+
+                }
+                
+                // Si plus de résultats page suivante
+                if(pagination.hasNextPage){
+                    
+                    // Affichage bouton + de résultats
+                    moreResult.classList.remove("down");
+                    
+                    // Affichage des résultats de la page suivante
+                    moreResult.addEventListener("click", function(){
+
+                        pagination.nextPage();
+
+                    });
+                    
+                }else{
+                    
+                    // Suppression bouton + de résultats
+                    moreResult.classList.add("down");
                     
                 }
+                
+            }else if(status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
+                
+                map.textError("Aucun résultat trouvé pour cette recherche.");
                 
             }else{
                 
@@ -241,13 +294,6 @@ services.factory("Map", function(Address, $location, $routeParams){
             }
             
         });
-        
-    };
-    
-    // Ajout des informations à la fenêtre d'infos
-    map.addDetails = function(results){
-        
-        
         
     };
     

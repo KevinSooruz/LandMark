@@ -10,19 +10,28 @@ app.directive("typeincity", function(Map, $location){
             // Autocomplete sur la carte
             Map.autocompleteCity(scope, "typeSelectCity");
             
+            scope.removeCityCode = function(){
+                
+                if(scope.typeSelect){
+                    
+                    scope.typeSelect.cityCode = "";
+                    
+                }
+                
+            };
+            
+            // Validation formulaire
             scope.findTypeForCity = function(){
                 
                 var data = scope.typeSelect;
                 
-                console.log(data);
-                
-                if(data === undefined || data.city === undefined || data.city === "" || !data.type || data.id === "" || data.id === undefined){
+                if(data === undefined || data.city === undefined || data.city === "" || !data.type || data.cityCode === "" || data.cityCode === undefined){
                     
                     return;
                     
                 }else{
                     
-                    $location.path("/map/search/" + data.id + "/" + data.type.type);
+                    $location.path("/map/search/" + data.cityCode + "/" + data.type.type);
                     
                 }
                 

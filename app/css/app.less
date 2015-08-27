@@ -95,6 +95,7 @@
 @primaryDark: darken(@primary, 10%);
 @secondary: lighten(@primary, 45%); // #d3e8ff
 @three: #b198dc;
+@threeDark: darken(@three, 10%);
 @four: #56bdde;
 @five: #ff8762;
 @white: #fff;
@@ -212,6 +213,26 @@
     &:hover, &:focus{
         .bg(@errorDark);
         color: @white;
+    }
+}
+
+.btnThree{
+    .bg(@three);
+    color: @white;
+    
+    &:hover{
+        .bg(@threeDark);
+        color: @white;
+    }
+    
+    &:focus{
+        .bg(@three);
+        color: @white;
+        
+        &:hover{
+            .bg(@threeDark);
+            color: @white;
+        }
     }
 }
 

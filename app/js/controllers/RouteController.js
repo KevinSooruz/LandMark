@@ -77,7 +77,7 @@ app.config(["$routeProvider", function($routeProvider){
             session: app.session // Vérification si session active pour accéder au compte client
         }
         
-    }).when("/map/search/:cityName/:typeName", {
+    }).when("/map/search/:cityCode/:typeName", {
         
         templateUrl: "app/views/map.php",
         controller: "mapController",
