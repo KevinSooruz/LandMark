@@ -2,7 +2,7 @@
     <menu></menu>
     <div class="content">
         <div id="mapContent" class="inlineAll">
-            <div id="overlay" ng-show="menuMap === true || showModal === true" ng-click="menuMap = false; showModal = false"></div>
+            <div id="overlay" ng-show="menuMap === true || showModal === true" ng-click="menuMap = false"></div>
             <div id="mapMenu" ng-class="{showMenuMap: menuMap === true}">
                 <span class="title">
                     <span>Menu</span>

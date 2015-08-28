@@ -9,25 +9,32 @@
                 <span class="title">Adresse</span>
                 <span id="addressAddress" class="block"></span>
             </div>
-            <div class="contentBlock phoneBlock">
+            <div id="phoneBlock" class="contentBlock">
                 <span class="title">Contact</span>
                 <span id="addressPhone" class="block"></span>
                 <span id="addressInternationalPhone" class="block"></span>
             </div>
-            <div class="contentBlock openingBlock">
+            <div id="openingBlock" class="contentBlock">
                 <span class="title">Horaires</span>
                 <ul id="addressOpening"></ul>
             </div>
-            <div class="contentBlock priceBlock">
-                <span class="title">Prix</span>
-                <span id="priceRating" class="inline"></span>
-                <span id="priceStars" class="inline"></span>
+            <div id="ratingBlock" class="contentBlock">
+                <span class="title">Notes</span>
+                <div>
+                    <span id="addressRating" class="inline"></span>
+                    <span id="addressStars" class="inline"></span>
+                </div>
+                <div>
+                    <span id="priceRating" class="inline"></span>
+                    <span id="priceStars" class="inline"></span>
+                </div>
+                <div>
+                    <span id="addressNumberRating" class="inline"></span>
+                </div>
             </div>
-            <div class="contentBlock ratingBlock">
-                <span class="title">Avis</span>
-                <span id="addressRating" class="inline"></span>
-                <span id="addressStars" class="inline"></span>
-                <span id="addressNumberRating" class="inline"></span>
+            <div id="usersBlock" class="contentBlock">
+                <span class="title">Avis des internautes</span>
+                <ul id="userElem"></ul>
             </div>
         </div>
     </div>
