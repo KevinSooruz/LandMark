@@ -1,6 +1,8 @@
 #modalMap{
+     @shadowModal: 0 0 6px 1px rgba(0,0,0,0.3);
+    
     .absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 30px; left: 0; right: 0;
     .bg(transparent);
     .translate3d(0; -9999px; 0);
     z-index: 999999;
@@ -12,12 +14,77 @@
     }
     
     .modalMapBody{
+        .box-shadow(@shadow: @shadowModal);
         .bg(@white);
         .translate3d(0; -9999px; 0);
         
         &.showModal{
             .translate3d(0; 0; 0);
-            .transition-duration(200ms);
+            .transition-duration(400ms);
+        }
+        
+        .modalBlockTitle{
+            .center;
+            padding: 15px;
+            .bg(@greyDarkLight);
+            color: @white;
+            
+            #modalMapTitle{
+                .fs(16px);
+                .fw3;
+            }
+            
+            .glyphicon-remove{
+                float: right;
+                .opacity(0.5);
+                
+                &:hover{
+                    cursor: pointer;
+                    .opacity(1);
+                }
+            }
+        }
+        
+        .modalContent{
+            padding: 15px;
+            
+            .title{
+                display: inline-block;
+                width: 100%;
+                .fw7;
+                color: @textDark;
+                margin-bottom: 2px;
+            }
+            
+            .block{
+                display: block;
+            }
+            
+            .inline{
+                display: inline-block;
+            }
+            
+            .contentBlock{
+                margin-top: 10px;
+                
+                &.ratingBlock{
+                    color: @five;
+                }
+                
+                &.openingBlock{
+                    #addressOpening{
+                        li{
+                            &.active{
+                                color: @primary;
+                            }
+                        }
+                    }
+                }
+                
+                #addressStars, #addressNumberRating, #priceStars{
+                    margin-left: 10px;
+                }
+            }
         }
     }
 }

@@ -150,7 +150,17 @@ services.factory("Map", function(Address, $location, $routeParams){
                 
                 if(status === google.maps.places.PlacesServiceStatus.OK){
                     
+                    // Eléments de la modal + d'infos de la map
                     var modalMapTitle = document.getElementById("modalMapTitle");
+                    var addressAddress = document.getElementById("addressAddress");
+                    var addressPhone = document.getElementById("addressPhone");
+                    var addressInternationalPhone = document.getElementById("addressInternationalPhone");
+                    var addressRating = document.getElementById("addressRating");
+                    var addressStars = document.getElementById("addressStars");
+                    var addressOpening = document.getElementById("addressOpening");
+                    var addressNumberRating = document.getElementById("addressNumberRating");
+                    var priceRating = document.getElementById("priceRating");
+                    var priceStars = document.getElementById("priceStars");
                 
                     console.log(place);
                     // Nom du lieu
@@ -168,25 +178,29 @@ services.factory("Map", function(Address, $location, $routeParams){
                     
                     // Adresse du lieu
                     textElem += "<span class='block addressAddress'>" + place.formatted_address + "</span>";
+                    addressAddress.innerHTML = place.formatted_address;
                     
                     // Téléphones du lieu
                     if(response){
                         
                         if(response.phone !== ""){
                             
-                            textElem += "<span class='block addressPhone'>" + response.phone + "</span>"
+                            textElem += "<span class='block addressPhone'>" + response.phone + "</span>";
+                            addressPhone.innerHTML = response.phone;
                             
                         }
                         
                     }else if(place.formatted_phone_number){
                         
                         textElem += "<span class='block addressPhone'>" + place.formatted_phone_number + "</span>";
+                        addressPhone.innerHTML = place.formatted_phone_number;
                         
                     }
                     
                     if(place.international_phone_number){
                         
                         textElem += "<span class='block addressInternationalPhone'>" + place.international_phone_number + "</span>";
+                        addressInternationalPhone.innerHTML = place.international_phone_number;
                         
                     }
                     
@@ -194,16 +208,34 @@ services.factory("Map", function(Address, $location, $routeParams){
                     if(place.rating){
                         
                         textElem += "<span class='inline addressRating'>" + place.rating + "/5</span>";
+                        addressRating.innerHTML = place.rating + "/5";
                         
                         // Ajout des étoiles en fonction de la note
-                        map.starsRating(place.rating);
+                        map.starsRating(place.rating, addressStars);
+                        addressNumberRating.innerHTML = "Nombre d'avis : " + place.user_ratings_total;
                         
+                        
+                    }
+                    
+                    // Horaires d'ouverture
+                    if(place.opening_hours){
+                        
+                        map.openingHours(place.opening_hours.weekday_text, addressOpening);
+                        
+                    }
+                    
+                    // Niveau des prix
+                    if(place.price_level){
+                        
+                        priceRating.innerHTML = place.price_level + "/5";
+                        map.starsRating(place.price_level, priceStars);
                         
                     }
                     
                     // Bouton + d'infos
                     textElem += "<span class='inline link linkPrimary linkMoreInfos'>Plus d'infos</span>";
                     
+                    // Mise à jour du contenu de la fenêtre
                     infowindow.setContent(textElem);
                 
                 }else{
@@ -223,7 +255,10 @@ services.factory("Map", function(Address, $location, $routeParams){
     };
     
     // Ajout des étoiles en fonction de la note
-    map.starsRating = function(rating){
+    map.starsRating = function(rating, elem){
+        
+        // Initialisation de la note "étoiles" de la modal
+        elem.innerHTML = "";
         
         var max = 5;
         var i = 0;
@@ -234,19 +269,59 @@ services.factory("Map", function(Address, $location, $routeParams){
 
             // Tant que i n'est pas supérieur à la note => affiche étoile pleine
             if(i < rating){
-
-                textElem += "<i class='glyphicon glyphicon-star'></i>";
+                
+                if(elem !== "priceStars"){
+                    
+                    textElem += "<i class='glyphicon glyphicon-star'></i>";
+                    
+                }
+                
+                elem.innerHTML += "<i class='glyphicon glyphicon-star'></i>";
 
             }else{
 
                 // Sinon étoile vide
-                textElem += "<i class='glyphicon glyphicon-star-empty'></i>";
+                if(elem !== "priceStars"){
+                    
+                    textElem += "<i class='glyphicon glyphicon-star-empty'></i>";
+                    
+                }
+                
+                elem.innerHTML += "<i class='glyphicon glyphicon-star-empty'></i>";
 
             }
 
         }
 
         textElem += "</span>";
+        
+    };
+    
+    // Ajout des heures d'ouvertures dans la modal
+    map.openingHours = function(weekday, addressOpening){
+        
+        var date = new Date;
+        var day = date.getDay() - 1;
+        
+        // Initialisation opening hours
+        addressOpening.innerHTML = "";
+        
+        var max = weekday.length;
+        var i = 0;
+        
+        for(; i < max; i++){
+            
+            if(i === day){
+                
+                addressOpening.innerHTML += "<li class='active'>" + weekday[i] + "</li>";
+                
+            }else{
+                
+                addressOpening.innerHTML += "<li>" + weekday[i] + "</li>";
+                
+            }
+            
+        }
         
     };
     
