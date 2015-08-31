@@ -7,7 +7,7 @@ app.directive("map", function(Map){
         template: "<div id='map'></div>",
         link: function(scope, attrs, elem){
             
-            Map.init();
+            Map.init(scope);
             
         }
         

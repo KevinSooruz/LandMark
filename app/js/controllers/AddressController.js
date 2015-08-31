@@ -6,10 +6,6 @@ app.controller("AddressController", function($scope, $routeParams, Address, $q){
     
     $scope.activeDay = day;
     
-    // Initialisation texte changement horaire
-    $scope.textHoraire = "Horaires de la semaine";
-    $scope.horaireDay = true;
-    
     // Catégorie active
     $scope.nameCategorie = $routeParams.nameCategorie;
     
@@ -38,22 +34,5 @@ app.controller("AddressController", function($scope, $routeParams, Address, $q){
         Address.delete($scope);
         
     };
-    
-    // Changement affichage horaires
-    $scope.changeHoraire = function(){
-        
-        if($scope.horaireDay === true){
-            
-            $scope.horaireDay = false;
-            $scope.textHoraire = "Horaires du jour";
-            
-        }else{
-            
-            $scope.horaireDay = true;
-            $scope.textHoraire = "Horaires de la semaine";
-            
-        }
-        
-    }
     
 });

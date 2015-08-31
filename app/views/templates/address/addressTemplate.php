@@ -12,20 +12,10 @@
                 <div class="col-md-12">
                     <span class="fw7">Contact :</span> {{address.phone}}<span ng-show="address.phone === ''">...</span>
                 </div>
-                <div class="col-md-12 hours" ng-hide="address.opening === ''">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <span class="fw7">Horaires :</span> 
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 textRight">
-                            <span ng-click="changeHoraire()" class="link linkPrimary fs11">{{textHoraire}} <i class="glyphicon glyphicon-triangle-bottom"></i></span>
-                        </div>
-                    </div>
-                    <ul class="addressSplit" ng-show="horaireDay === true">
-                        <li ng-repeat="day in address.opening.split(',')" ng-show="activeDay === $index">{{day}}</li>
-                    </ul>
-                    <ul class="addressSplit" ng-show="horaireDay === false">
-                        <li ng-repeat="day in address.opening.split(',')" class="col-md-12" ng-class="{active: activeDay === $index}">{{day}}</li>
+                <div class="col-md-12 hours" ng-hide="dayshours.length === 0 || !dayshours">
+                    <span class="fw7">Horaires :</span>
+                    <ul class="addressSplit">
+                        <li ng-repeat="dayhours in dayshours" class="col-md-12" ng-class="{active: activeDay === $index}">{{dayhours}}</li>
                     </ul>
                 </div>
             </div>

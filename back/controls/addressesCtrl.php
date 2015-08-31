@@ -115,7 +115,6 @@ switch($method){
             $placeId = "";
             $phone = "";
             $list = "";
-            $opening = "";
             $numberResult = $address->verifAddressExist($name); // Vérifier si le nom adresse existe
             
             if(empty($_POST["name"]) OR $_POST["name"] === "undefined"){
@@ -159,15 +158,9 @@ switch($method){
                     $addressList->create($name, $list);
                     
                 }
-                
-                if(isset($_POST["opening"])){
-                    
-                    $opening = strip_tags($_POST["opening"]);
-                    
-                };
 
                 // Création de l'adresse avec la catégorie correspondante
-                $address->create($categorie, $location, $name, $lat, $lng, $phone, $placeId, $opening);
+                $address->create($categorie, $location, $name, $lat, $lng, $phone, $placeId);
                 
             }
             

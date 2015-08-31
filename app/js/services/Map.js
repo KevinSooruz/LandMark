@@ -1,4 +1,4 @@
-services.factory("Map", function(Address, $location, $routeParams){
+services.factory("Map", function(Address, $location, $routeParams, $q){
     
     // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch (trouver toutes les places d'une ville)
     // https://developers.google.com/places/javascript/
@@ -11,7 +11,7 @@ services.factory("Map", function(Address, $location, $routeParams){
     var textElem; // texte infowindow
     
     // Initialisation de la carte
-    map.init = function(){
+    map.init = function(scope){
         
         var position;
         
@@ -69,7 +69,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     var placeId = response[i].placeId;
                     
                     // Création du marker
-                    map.createMarker(posMarker, max, placeId, response[i]);
+                    map.createMarker(scope, posMarker, max, placeId, response[i]);
 
                 }
                 
@@ -101,7 +101,7 @@ services.factory("Map", function(Address, $location, $routeParams){
     };
     
     // Création d'un marker
-    map.createMarker = function(position, max, placeId, response){
+    map.createMarker = function(scope, position, max, placeId, response){
         
         var image = "app/images/pin-green.png";
         
@@ -121,8 +121,66 @@ services.factory("Map", function(Address, $location, $routeParams){
             
         }
         
+        // Si utilisateur est sur la page de gestion de l'adresse ne pas afficher les informations du lieu sur la carte
+        if($location.path() === "/addresses/categories/" + $routeParams.nameCategorie + "/" + $routeParams.nameAddress){
+
+            map.getSingleMarkerDetails(placeId).then(function(response){
+                
+                map.singleMarkerDetails(scope, response);
+                
+            }, function(data, status, headers, config){
+                
+                console.log(data, status, headers, config);
+                
+            });
+            
+            return;
+
+        }
         
         map.markerDetails(position, placeId, response);
+        
+    };
+    
+    // Récupération des résultats de l'adresse seule
+    map.getSingleMarkerDetails = function(placeId){
+        
+        var service = new google.maps.places.PlacesService(mapElem);
+        var deferred = $q.defer();
+        
+        service.getDetails({
+            
+            placeId: placeId
+            
+        }, function(place, status){
+                
+            if(status === google.maps.places.PlacesServiceStatus.OK){
+                    
+                deferred.resolve(place);
+                
+            }else{
+                
+                deferred.reject(status);
+                
+            }
+                
+        });
+        
+        return deferred.promise;
+        
+    };
+    
+    // Affichage des résultats de l'adresse seule
+    map.singleMarkerDetails = function(scope, place){
+        
+        console.log(place);
+        
+        // Si horaires
+        if(place.opening_hours){
+            
+            scope.dayshours = place.opening_hours.weekday_text;
+            
+        }
         
     };
     
@@ -135,13 +193,6 @@ services.factory("Map", function(Address, $location, $routeParams){
         
         google.maps.event.addListener(marker, "click", function(){
             
-            // Si utilisateur est sur la page de gestion de l'adresse ne pas afficher les informations du lieu sur la carte
-            if($location.path() === "/addresses/categories/" + $routeParams.nameCategorie + "/" + $routeParams.nameAddress){
-
-                return;
-
-            }
-            
             service.getDetails({
             
                 placeId: placeId
@@ -149,6 +200,8 @@ services.factory("Map", function(Address, $location, $routeParams){
             }, function(place, status){
                 
                 if(status === google.maps.places.PlacesServiceStatus.OK){
+                    
+                    console.log(place);
                     
                     // Eléments de la modal + d'infos de la map
                     var modalMapTitle = document.getElementById("modalMapTitle");
@@ -191,8 +244,6 @@ services.factory("Map", function(Address, $location, $routeParams){
                     usersBlock.classList.remove("none");
                     
                     var userElem = document.getElementById("userElem");
-                
-                    console.log(place, addressPhone.style.display);
                     
                     // Nom du lieu
                     if(response){
@@ -277,7 +328,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     if(place.rating){
                         
                         textElem += "<span class='inline addressRating'>" + place.rating + "/5</span>";
-                        addressRating.innerHTML = "Global : " + place.rating + "/5";
+                        addressRating.innerHTML = "Global : <span class='importantElem'>" + place.rating + "/5</span>";
                         
                         // Ajout des étoiles en fonction de la note
                         map.starsRating(place.rating, addressStars);
@@ -292,7 +343,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     // Niveau des prix
                     if(place.price_level){
                         
-                        priceRating.innerHTML = "Prix : " + place.price_level + "/5";
+                        priceRating.innerHTML = "Prix : <span class='importantElem'>" + place.price_level + "/5</span>";
                         
                         // Ajout des étoiles en fonction de la note
                         map.starsRating(place.price_level, priceStars);
@@ -306,7 +357,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     // Nombre total d'avis
                     if(place.user_ratings_total){
                         
-                        addressNumberRating.innerHTML = "Nombre de notes : " + place.user_ratings_total;
+                        addressNumberRating.innerHTML = "Nombre de notes : <span class='importantElem'>" + place.user_ratings_total + "</span>";
                         
                     }else{
                         
@@ -385,7 +436,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     
                 }
                 
-                elem.innerHTML += "<i class='glyphicon glyphicon-star'></i>";
+                elem.innerHTML += "<i class='glyphicon glyphicon-star importantElem'></i>";
 
             }else{
 
@@ -397,7 +448,7 @@ services.factory("Map", function(Address, $location, $routeParams){
                     
                 }
                 
-                elem.innerHTML += "<i class='glyphicon glyphicon-star-empty'></i>";
+                elem.innerHTML += "<i class='glyphicon glyphicon-star-empty importantElem'></i>";
 
             }
 
@@ -457,7 +508,7 @@ services.factory("Map", function(Address, $location, $routeParams){
             // Création de l'élément note utilisateur "1"
             var userRating = document.createElement("span");
             userRating.setAttribute("class", "userRating block");
-            userRating.innerHTML = "Note : " + reviews[i].rating + "/5";
+            userRating.innerHTML = "Note : <span class='importantElem'>" + reviews[i].rating + "/5</span>";
             
             // Création de lélément étoiles de l'utilisateur "2"
             var starsUser = document.createElement("span");

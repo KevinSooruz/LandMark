@@ -28,7 +28,7 @@ services.factory("Autocomplete", function($timeout, $q){
         
         if(place){
             
-            $timeout(function(){
+            $timeout(function(){ // impossible d'effectuer une promise donc timeout pour remplacer "moins fiable"
             
                 // adresse
                 if(place.formatted_address){
@@ -48,27 +48,6 @@ services.factory("Autocomplete", function($timeout, $q){
                     
                 }
                 
-                // horaires
-                if(place.opening_hours){
-                    
-                    var hours = [];
-                    var max = place.opening_hours.weekday_text.length;
-                    var i = 0;
-                    
-                    for(; i < max; i++){
-                        
-                        hours.push(place.opening_hours.weekday_text[i].replace(",", " - "));
-                        
-                    }
-                    
-                    scope.addAddress.opening = hours;
-                    
-                }else{
-                    
-                    scope.addAddress.opening = "";
-                    
-                }
-                
                 scope.addAddress.lat = place.geometry.location.G;
                 scope.addAddress.lng = place.geometry.location.K;
                 scope.addAddress.placeId = place.place_id;
@@ -85,7 +64,6 @@ services.factory("Autocomplete", function($timeout, $q){
     autocomplete.updateInformations = function(scope){
         
         scope.addAddress.phone = "";
-        scope.addAddress.opening = "";
         scope.addAddress.lat = "";
         scope.addAddress.lng = "";
         scope.addAddress.placeId = "";
