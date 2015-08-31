@@ -622,6 +622,31 @@ body{
             .elemPlus{
                 margin-top: 15px;
                 
+                &.elemPlusAddress{
+                    margin-top: 0;
+                }
+                
+                ul.stars{
+                    display: inline-block;
+                    margin-left: 10px;
+                    
+                    li{
+                        margin: 0;
+                        padding: 0;
+                        border: none;
+                        display: inline-block;
+                        
+                        .glyphicon{
+                            margin: 0;
+                            color: @five;
+                            
+                            &:hover{
+                                cursor: auto;
+                            }
+                        }
+                    }
+                }
+                
                 .glyphicon{
                     .fs(14px);
                     color: @textLight;
@@ -640,12 +665,47 @@ body{
                     }
                 }
                 
-                .hours{
+                .blockElemPlus{
                     margin-top: 10px;
                     
                     .fw7{
                         display: inline-block;
-                        margin-bottom: 3px;
+                        margin-bottom: 2px;
+                        width: 100%;
+                    }
+                    
+                    &.comments{
+                        margin-top: 25px;
+
+                        .title{
+                            display: inline-block;
+                            .center;
+                            .bg(@greyLight);
+                            padding: 10px 0!important;
+                            .fw7;
+                        }
+                        
+                        ul{
+                            li{
+                                padding: 25px 0;
+                                
+                                .userComment{
+                                    display: inline-block;
+                                    margin-bottom: 8px;
+                                }
+                                
+                                &:last-of-type{
+                                    padding-bottom: 0;
+                                    border: none;
+                                }
+                            }
+                            
+                            &.stars{
+                                li{
+                                    padding: 0;
+                                }
+                            }
+                        }
                     }
                 }
             }

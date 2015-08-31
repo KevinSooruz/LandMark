@@ -1,4 +1,4 @@
-services.factory("Map", function(Address, $location, $routeParams, $q){
+services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
     
     // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch (trouver toutes les places d'une ville)
     // https://developers.google.com/places/javascript/
@@ -30,7 +30,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
         if($routeParams.cityCode && $routeParams.typeName){
             
             // Geocode par adresse renseignée dans l'url
-            map.geocodeByPlaceId($routeParams.cityCode, $routeParams.typeName);
+            map.geocodeByPlaceId(scope, $routeParams.cityCode, $routeParams.typeName);
             
             return;
             
@@ -138,7 +138,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
 
         }
         
-        map.markerDetails(position, placeId, response);
+        map.markerDetails(scope, position, placeId, response);
         
     };
     
@@ -173,8 +173,6 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
     // Affichage des résultats de l'adresse seule
     map.singleMarkerDetails = function(scope, place){
         
-        console.log(place);
-        
         // Si horaires
         if(place.opening_hours){
             
@@ -182,10 +180,65 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
             
         }
         
+        // Note globale
+        if(place.rating){
+            
+            scope.globalRating = place.rating;
+            scope.starsGlobalRating = Stars.run(place.rating);
+            
+        }
+        
+        // Note des prix
+        if(place.price_level){
+            
+            scope.priceRating = place.price_level;
+            scope.starsPriceRating = Stars.run(place.price_level);
+            
+        }
+        
+        // Nombre de votes
+        if(place.user_ratings_total){
+            
+            scope.nbRating = place.user_ratings_total;
+            
+        }
+        
+        // Si commentaires
+        if(place.reviews){
+            
+            scope.userComments = map.markerComments(scope, place.reviews);
+            
+        }
+        
+    };
+    
+    // Création du commentaire pour chacun des commentaires
+    map.markerComments = function(scope, reviews){
+        
+        var comments = [];
+        var max = reviews.length;
+        var i = 0;
+        
+        for(; i < max; i++){
+            
+            comments.push({
+                
+                author: reviews[i].author_name,
+                text: reviews[i].text,
+                rating: reviews[i].rating,
+                starsComment: Stars.run(reviews[i].rating),
+                date: map.commentsdate(reviews[i].time)
+                
+            });
+            
+        }
+        
+        return comments;
+        
     };
     
     // Ajout des informations à la fenêtre d'infos
-    map.markerDetails = function(position, placeId, response){
+    map.markerDetails = function(scope, position, placeId, response){
         
         // Paramètre "response" correspond aux informations retournées de la bdd si l'affichage des lieux provient des categories / listes créées par l'utilisateur
         
@@ -204,22 +257,6 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
                     console.log(place);
                     
                     // Eléments de la modal + d'infos de la map
-                    var modalMapTitle = document.getElementById("modalMapTitle");
-                    
-                    var addressAddress = document.getElementById("addressAddress");
-                    
-                    var addressPhone = document.getElementById("addressPhone");
-                    addressPhone.classList.remove("none");
-                    
-                    var addressInternationalPhone = document.getElementById("addressInternationalPhone");
-                    addressInternationalPhone.classList.remove("none");
-                    
-                    var phoneBlock = document.getElementById("phoneBlock");
-                    phoneBlock.classList.remove("none");
-                    
-                    var openingBlock = document.getElementById("openingBlock");
-                    openingBlock.classList.remove("none");
-                    
                     var addressOpening = document.getElementById("addressOpening");
                     
                     var ratingBlock = document.getElementById("ratingBlock");
@@ -245,82 +282,52 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
                     
                     var userElem = document.getElementById("userElem");
                     
-                    // Nom du lieu
+                    ///// Nom du lieu /////
                     if(response){
                         
                         textElem = "<span class='block addressName fw7'>" + response.name + "</span>";
-                        modalMapTitle.innerHTML = "<span>" + response.name + "</span>";
+                        scope.modalMapTitle = response.name;
                         
                     }else{
                         
                         textElem = "<span class='block addressName fw7'>" + place.name + "</span>";
-                        modalMapTitle.innerHTML = "<span>" + place.name + "</span>";
+                        scope.modalMapTitle = place.name;
                         
                     }
                     
-                    // Adresse du lieu
+                    ///// Adresse du lieu /////
                     textElem += "<span class='block addressAddress'>" + place.formatted_address + "</span>";
-                    addressAddress.innerHTML = place.formatted_address;
+                    scope.addressAddress = place.formatted_address;
                     
-                    // Téléphones du lieu
+                    ///// Téléphones du lieu /////
                     if(response){
                         
                         if(response.phone !== ""){
                             
                             textElem += "<span class='block addressPhone'>" + response.phone + "</span>";
-                            addressPhone.innerHTML = response.phone;
-                            
-                        }else{
-                            
-                            addressPhone.classList.add("none");
+                            scope.addressPhone = response.phone;
                             
                         }
                         
                     }else if(place.formatted_phone_number){
                         
                         textElem += "<span class='block addressPhone'>" + place.formatted_phone_number + "</span>";
-                        addressPhone.innerHTML = place.formatted_phone_number;
-                        
-                    }else{
-                        
-                        addressPhone.classList.add("none");
+                        scope.addressPhone = place.formatted_phone_number;
                         
                     }
                     
                     if(place.international_phone_number){
                         
                         textElem += "<span class='block addressInternationalPhone'>" + place.international_phone_number + "</span>";
-                        addressInternationalPhone.innerHTML = place.international_phone_number;
-                        
-                    }else{
-                        
-                        addressInternationalPhone.classList.add("none");
+                        scope.addressInternationalPhone = place.international_phone_number;
                         
                     }
                     
-                    // Si aucun téléphone
-                    if(!place.formatted_phone_number && !place.international_phone_number){
-                        
-                        if(response.phone){
-                            
-                            phoneBlock.classList.remove("none");
-                            
-                        }else{
-                            
-                            phoneBlock.classList.add("none");
-                            
-                        }
-                        
-                    }
-                    
-                    // Horaires d'ouverture
+                    ///// Horaires d'ouverture ///
                     if(place.opening_hours){
                         
-                        map.openingHours(place.opening_hours.weekday_text, addressOpening);
-                        
-                    }else{
-                        
-                        openingBlock.classList.add("none");
+                        scope.addressOpening = place.opening_hours.weekday_text;
+                        scope.dayActif = map.openingHours();
                         
                     }
                     
@@ -464,30 +471,12 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
     };
     
     // Ajout des heures d'ouvertures dans la modal
-    map.openingHours = function(weekday, addressOpening){
+    map.openingHours = function(){
         
         var date = new Date;
         var day = date.getDay() - 1;
         
-        // Initialisation opening hours
-        addressOpening.innerHTML = "";
-        
-        var max = weekday.length;
-        var i = 0;
-        
-        for(; i < max; i++){
-            
-            if(i === day){
-                
-                addressOpening.innerHTML += "<li class='active'>" + weekday[i] + "</li>";
-                
-            }else{
-                
-                addressOpening.innerHTML += "<li>" + weekday[i] + "</li>";
-                
-            }
-            
-        }
+        return day;
         
     };
     
@@ -577,7 +566,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
     };
     
     // Modification de la carte sur la ville demandée par l'internaute
-    map.geocodeByPlaceId = function(cityCode, typeElem){
+    map.geocodeByPlaceId = function(scope, cityCode, typeElem){
         
         var geocoder = new google.maps.Geocoder();
         
@@ -602,7 +591,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
                 mapElem.setZoom(15);
                 
                 // Affichage des éléments demandés proches de la ville
-                map.nearbySearch(typeElem);
+                map.nearbySearch(scope, typeElem);
                 
             }else{
                 
@@ -615,7 +604,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
     };
     
     // Places proches du lieu choisi
-    map.nearbySearch = function(typeElem){
+    map.nearbySearch = function(scope, typeElem){
         
         var places = new google.maps.places.PlacesService(mapElem);
         var moreResult = document.getElementById("moreResult");
@@ -651,7 +640,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q){
                     var placeId = results[i].place_id;
                     
                     // Affichage de chacun des éléments
-                    map.createMarker(position, max, placeId);
+                    map.createMarker(scope, position, max, placeId);
 
                 }
                 

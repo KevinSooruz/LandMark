@@ -12,7 +12,6 @@
                         <span class="title">Adresse</span>
                         <addresses template-url="app/views/templates/address/addressTemplate.php"></addresses>
                     </div>
-                    <lists template-url="app/views/templates/address/listsTemplate.php" template-title="Choisissez une liste"></lists>
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="inBox">
@@ -53,6 +52,7 @@
                             </form>
                         </div>
                     </div>
+                    <lists template-url="app/views/templates/address/listsTemplate.php" template-title="Choisissez une liste"></lists>
                 </div>
                 <div class="col-md-12">
                     <div class="inBox other">

@@ -1,22 +1,24 @@
 <div id="modalMap" ng-class="{in: showModal === true}">
     <div class="modalMapBody" ng-class="{showModal: showModal === true}">
         <div class="modalBlockTitle">
-            <span id="modalMapTitle"></span>
+            <span>{{modalMapTitle}}</span>
             <i class="glyphicon glyphicon-remove" ng-click="showModal = false"></i>
         </div>
         <div class="modalContent">
             <div>
                 <span class="title">Adresse</span>
-                <span id="addressAddress" class="block"></span>
+                <span class="block">{{addressAddress}}</span>
             </div>
             <div id="phoneBlock" class="contentBlock">
                 <span class="title">Contact</span>
-                <span id="addressPhone" class="block"></span>
-                <span id="addressInternationalPhone" class="block"></span>
+                <span class="block">{{addressPhone}}</span>
+                <span class="block">{{addressInternationalPhone}}</span>
             </div>
             <div id="openingBlock" class="contentBlock">
                 <span class="title">Horaires</span>
-                <ul id="addressOpening"></ul>
+                <ul id="addressOpening">
+                    <li ng-class="{active: dayActif === $index}" ng-repeat="hours in addressOpening">{{hours}}</li>
+                </ul>
             </div>
             <div id="ratingBlock" class="contentBlock">
                 <span class="title">Notes</span>

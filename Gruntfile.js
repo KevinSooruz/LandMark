@@ -47,6 +47,7 @@ module.exports = function(grunt) {
                     "app/js/services/Lists.js",
                     "app/js/services/Correct.js",
                     "app/js/services/Map.js",
+                    "app/js/services/Stars.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
@@ -84,6 +85,7 @@ module.exports = function(grunt) {
                     "app/js/services/Lists.js",
                     "app/js/services/Correct.js",
                     "app/js/services/Map.js",
+                    "app/js/services/Stars.js",
                     
                     "app/js/directives/InscriptionDirective.js",
                     "app/js/directives/ConnectionDirective.js",
