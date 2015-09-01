@@ -28,8 +28,8 @@
             <div id="findPlace">
                 <div id="menu" ng-click="menuMap = true"><i class="glyphicon glyphicon-menu-hamburger"></i></div>
                 <form name="findAPlace" class="form-inline">
-                    <input class="form-control select" placeholder="Indiquez un lieu" type="text" ng-pattern="wordAddress">
-                    <button><i class="glyphicon glyphicon-search"></i></button>
+                    <input id="autocompletePlaceMap" class="form-control select" placeholder="Indiquez un lieu" type="text" ng-model="findAPlace.placeId" ng-pattern="wordAddress">
+                    <button ng-click="goToPlace(findAPlace.placeId)"><i class="glyphicon glyphicon-search"></i></button>
                 </form>
             </div>
             <div id="errorMap" ng-show="mapError === true">{{textErrorMap}}</div>

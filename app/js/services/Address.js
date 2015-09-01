@@ -40,59 +40,67 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
         // Supression message erreur geocode
         scope.errorGeocode = false;
         
-        if(scope.adresses.adName.$error.required){
+        if(scope.adresses){
             
-            // Si erreur champ vide nom
-            scope.errorAddRequiredAddress = true;
-            scope.textErrorAddAddress = "Merci de reseigner un nom.";
-            return;
+            if(scope.adresses.adName.$error.required){
             
-        }else if(scope.adresses.adLocation.$error.required){
-            
-            // Si erreur champ vide location
-            scope.errorAddRequiredLocation = true;
-            scope.textErrorAddAddress = "Merci de reseigner une adresse.";
-            return;
-            
-        }else if(scope.adresses.adName.$error.minlength || scope.adresses.adName.$error.maxlength){
-            
-            // Si erreur nombre de caractères nom
-            scope.errorAddLengthAddress = true;
-            scope.textErrorAddAddress = "Nombre de caractères interdit.";
-            return;
-            
-        }else if(scope.adresses.adName.$error.pattern){
-            
-            // Si erreur pattern nom
-            scope.errorAddAddressPattern = true;
-            scope.textErrorAddAddress = "Caractères spéciaux interdits.";
-            return;
-            
-        }else if(scope.adresses.adLocation.$error.pattern){
-            
-            // Si erreur pattern location
-            scope.errorAddLocationPattern = true;
-            scope.textErrorAddAddress = "Caractères spéciaux interdits.";
-            return;
-            
-        }else if(scope.adresses.adPhone.$error.minlength || scope.adresses.adPhone.$error.maxlength){
-            
-            // Si erreur nombre de caractères téléphone
-            scope.errorAddLengthPhone = true;
-            scope.textErrorAddAddress = "Nombre de caractères interdit.";
-            return;
-            
-        }else if(scope.adresses.adPhone.$error.pattern){
-            
-            // Si erreur pattern téléphone
-            scope.errorAddPhonePattern = true;
-            scope.textErrorAddAddress = "Merci de ne renseigner que des chiffres.";
-            return;
+                // Si erreur champ vide nom
+                scope.errorAddRequiredAddress = true;
+                scope.textErrorAddAddress = "Merci de reseigner un nom.";
+                return;
+
+            }else if(scope.adresses.adLocation.$error.required){
+
+                // Si erreur champ vide location
+                scope.errorAddRequiredLocation = true;
+                scope.textErrorAddAddress = "Merci de reseigner une adresse.";
+                return;
+
+            }else if(scope.adresses.adName.$error.minlength || scope.adresses.adName.$error.maxlength){
+
+                // Si erreur nombre de caractères nom
+                scope.errorAddLengthAddress = true;
+                scope.textErrorAddAddress = "Nombre de caractères interdit.";
+                return;
+
+            }else if(scope.adresses.adName.$error.pattern){
+
+                // Si erreur pattern nom
+                scope.errorAddAddressPattern = true;
+                scope.textErrorAddAddress = "Caractères spéciaux interdits.";
+                return;
+
+            }else if(scope.adresses.adLocation.$error.pattern){
+
+                // Si erreur pattern location
+                scope.errorAddLocationPattern = true;
+                scope.textErrorAddAddress = "Caractères spéciaux interdits.";
+                return;
+
+            }else if(scope.adresses.adPhone.$error.minlength || scope.adresses.adPhone.$error.maxlength){
+
+                // Si erreur nombre de caractères téléphone
+                scope.errorAddLengthPhone = true;
+                scope.textErrorAddAddress = "Nombre de caractères interdit.";
+                return;
+
+            }else if(scope.adresses.adPhone.$error.pattern){
+
+                // Si erreur pattern téléphone
+                scope.errorAddPhonePattern = true;
+                scope.textErrorAddAddress = "Merci de ne renseigner que des chiffres.";
+                return;
+
+            }
             
         }
         
         // Modification données catégorie
         if(!data.categorie || data.categorie === undefined){
+            
+            data.categorie = "Autre";
+            
+        }else if(data.categorie === "Autre"){
             
             data.categorie = "Autre";
             
@@ -115,40 +123,63 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
         
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
+            var path = $location.path();
+            var pathSplit = path.split("/");
+            
             switch(response.data){
                     
-                    case "emptyName":
+                case "emptyName":
+
+                    // Si pas de nom renseigné
+                    scope.errorAddRequiredAddress = true;
+                    scope.textErrorAddAddress = "Merci de reseigner un nom.";
+
+                    break;
+
+                case "emptyLocation":
+
+                    // Si pas d'adresse renseignée
+                    scope.errorAddRequiredLocation = true;
+                    scope.textErrorAddAddress = "Merci de reseigner une adresse.";
+
+                    break;
+
+                case "nameExist":
+
+                    // si nom existe déjà
+                    scope.nameExist = true;
+                    
+                    if(pathSplit["2"] === "search"){
                         
-                        // Si pas de nom renseigné
-                        scope.errorAddRequiredAddress = true;
-                        scope.textErrorAddAddress = "Merci de reseigner un nom.";
-                    
-                        break;
-                    
-                    case "emptyLocation":
-                    
-                        // Si pas d'adresse renseignée
-                        scope.errorAddRequiredLocation = true;
-                        scope.textErrorAddAddress = "Merci de reseigner une adresse.";
-                    
-                        break;
-                    
-                    case "nameExist":
-                    
-                        // si nom existe déjà
-                        scope.nameExist = true;
+                        scope.textErrorAddAddress = "Cett adresse semble déjà exister.";
+                        
+                    }else{
+                        
                         scope.textErrorAddAddress = "Vous possédez déjà une adresse avec ce nom. Merci de le modifier.";
+                        
+                    }
+
+                    break;
+
+                case "successAddAddress":
+
+                    // Si ajout adresse depuis la modal
+                    if(pathSplit["2"] === "search"){
+                        
+                        // Fermeture de la modal
+                        scope.showModal = false;
                     
-                        break;
-                    
-                    case "successAddAddress":
-                    
+                        // Fermeture des boutons d'ajout depuis la modal
+                        scope.selectCatAddAddressMap = false;
+                        
+                    }else{
+                        
                         // Affichage front envoi ok
                         Correct.run(scope, "correctAddAddress");
-                    
+
                         // Envoie des données au front
                         scope.addresses.push({
-                
+
                             name: data.name,
                             location: data.location,
                             categorie: data.categorie,
@@ -156,22 +187,24 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                             phone: data.phone
 
                         });
-                    
+
                         // Si succés on remet tout les éléments du formulaire à 0
                         var adName = document.getElementById("adName");
                         var adLocation = document.getElementById("adLocation");
-                    
+
                         // Réinitialisation de l'objet adresse pour nouvelle adresse
                         scope.addAddress = {};
-                    
+
                         $timeout(function(){
-                            
+
                             adName.classList.remove("ng-invalid");
                             adLocation.classList.remove("ng-invalid");
-                            
+
                         });
+                        
+                    }
                     
-                        break;
+                    break;
                     
             }
             

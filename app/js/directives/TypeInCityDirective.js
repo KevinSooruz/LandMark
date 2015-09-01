@@ -7,7 +7,7 @@ app.directive("typeincity", function(Map, $location){
         templateUrl: "app/views/templates/map/typeInCity.php",
         link: function(scope){
             
-            // Autocomplete sur la carte
+            // Autocomplete ville + type de lieu
             Map.autocompleteCity(scope, "typeSelectCity");
             
             scope.removeCityCode = function(){

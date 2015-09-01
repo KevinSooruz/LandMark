@@ -1,4 +1,4 @@
-services.factory("Autocomplete", function($timeout, $q){
+services.factory("Autocomplete", function($q){
     
     // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     
@@ -28,31 +28,30 @@ services.factory("Autocomplete", function($timeout, $q){
         
         if(place){
             
-            $timeout(function(){ // impossible d'effectuer une promise donc timeout pour remplacer "moins fiable"
+            // adresse
+            if(place.formatted_address){
+
+                scope.addAddress.location = place.formatted_address;
+
+            }
+
+            // téléphone
+            if(place.formatted_phone_number){
+
+                scope.addAddress.phone = place.formatted_phone_number;
+
+            }else{
+
+                scope.addAddress.phone = "";
+
+            }
+
+            scope.addAddress.lat = place.geometry.location.G;
+            scope.addAddress.lng = place.geometry.location.K;
+            scope.addAddress.placeId = place.place_id;
             
-                // adresse
-                if(place.formatted_address){
-                    
-                    scope.addAddress.location = place.formatted_address;
-                    
-                }
-                
-                // téléphone
-                if(place.formatted_phone_number){
-                    
-                    scope.addAddress.phone = place.formatted_phone_number;
-                    
-                }else{
-                    
-                    scope.addAddress.phone = "";
-                    
-                }
-                
-                scope.addAddress.lat = place.geometry.location.G;
-                scope.addAddress.lng = place.geometry.location.K;
-                scope.addAddress.placeId = place.place_id;
-            
-            });
+            // Appliquer les changements au scope
+            scope.$apply();
             
         }
         

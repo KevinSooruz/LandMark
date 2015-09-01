@@ -2,7 +2,7 @@
     <div class="modalMapBody" ng-class="{showModal: showModal === true}">
         <div class="modalBlockTitle">
             <span>{{modalMapTitle}}</span>
-            <i class="glyphicon glyphicon-remove" ng-click="showModal = false"></i>
+            <i class="glyphicon glyphicon-remove" ng-click="showModal = false; selectCatAddAddressMap = false; nameExist = false;"></i>
         </div>
         <div class="modalContent">
             <div>
@@ -53,12 +53,13 @@
         <div class="modalFooter textRight">
             <div ng-hide="selectCatAddAddressMap === true">
                 <button ng-show="btnAddAddressMap === true" class="btn btnPrimary" ng-click="selectCatAddAddressMap = true">Ajouter cette adresse</button>
-                <button class="btn btnThree" ng-click="showModal = false">Fermer</button>
+                <button class="btn btnThree" ng-click="showModal = false; nameExist = false;">Fermer</button>
             </div>
             <div ng-show="selectCatAddAddressMap === true">
                 <categories template-url="app/views/templates/map/categoriesTemplateModal.php"></categories>
-                <button class="btn btnPrimary btnMidWidth" ng-click="addAddressMapModal(addThisPlace, mapSelectModal.categorie)">Valider</button>
-                <button class="btn btnDelete btnMidWidth" ng-click="selectCatAddAddressMap = false">Annuler</button>
+                <button class="btn btnPrimary btnMidWidth" ng-click="addAddressMapModal(addThisPlace, mapSelectModal.categorie); nameExist = false;">Valider</button>
+                <button class="btn btnDelete btnMidWidth" ng-click="selectCatAddAddressMap = false; nameExist = false;">Annuler</button>
+                <span ng-show="nameExist === true" class="errorBlock errorBlockMargin">{{textErrorAddAddress}}</span>
             </div>
         </div>
     </div>

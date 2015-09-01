@@ -29,8 +29,14 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         // Paramètre de recherche sur ville + type de lieux
         if($routeParams.cityCode && $routeParams.typeName){
             
-            // Geocode par adresse renseignée dans l'url
+            // Geocode par id renseigné dans l'url
             map.geocodeByPlaceId(scope, $routeParams.cityCode, $routeParams.typeName);
+            
+            return;
+            
+        }else if($routeParams.cityCode){
+            
+            map.geocodeByPlaceId(scope, $routeParams.cityCode);
             
             return;
             
@@ -231,8 +237,6 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
             }, function(place, status){
                 
                 if(status === google.maps.places.PlacesServiceStatus.OK){
-                    
-                    console.log(place);
                     
                     // Initialisation du lieu à ajouter depuis la modal
                     scope.addThisPlace = place;
@@ -441,32 +445,49 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         // Restriction aux recherches de villes
         var element = document.getElementById(elem);
-        var search = new google.maps.places.Autocomplete(element, {
+        
+        if(elem === "autocompletePlaceMap"){
             
-            types: ["(cities)"]
+            var search = new google.maps.places.Autocomplete(element);
             
-        });
+        }else{
+            
+            var search = new google.maps.places.Autocomplete(element, {
+            
+                types: ["(cities)"]
+            
+            });
+            
+        }
         
         search.addListener("place_changed", function(){
             
             var place = search.getPlace();
            
             // Récupération des résultats
-            //scope.typeSelect.city = place.formatted_address;
-            scope.typeSelect.cityCode = place.place_id;
+            if(elem === "autocompletePlaceMap"){
+                
+                scope.findAPlace.placeId = place.place_id;
+                
+            }else{
+                
+                //scope.typeSelect.city = place.formatted_address;
+                scope.typeSelect.cityCode = place.place_id;
+                
+            }
             
         });
         
     };
     
     // Modification de la carte sur la ville demandée par l'internaute
-    map.geocodeByPlaceId = function(scope, cityCode, typeElem){
+    map.geocodeByPlaceId = function(scope, code, typeElem){
         
         var geocoder = new google.maps.Geocoder();
         
         geocoder.geocode({
             
-            "placeId": cityCode
+            "placeId": code
             
         }, function(results, status){
             
@@ -482,10 +503,21 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                 
                 // Modification de la position de mapElem sur la ville ciblée
                 mapElem.setCenter(position);
-                mapElem.setZoom(15);
                 
-                // Affichage des éléments demandés proches de la ville
-                map.nearbySearch(scope, typeElem);
+                if(typeElem){
+                    
+                    mapElem.setZoom(15);
+                
+                    // Affichage des éléments demandés proches de la ville
+                    map.nearbySearch(scope, typeElem);
+                    
+                }else{
+                    
+                    var max = 1;
+                    
+                    map.createMarker(scope, position, max, code);
+                    
+                }
                 
             }else{
                 
@@ -594,6 +626,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         
         scope.mapError = true;
         scope.textErrorMap = text;
+        scope.$apply();
         
     };
     
