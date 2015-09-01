@@ -221,6 +221,9 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         
         google.maps.event.addListener(marker, "click", function(){
             
+            // Etat bouton enregistrement adresse
+            map.addAddressState(scope);
+            
             service.getDetails({
             
                 placeId: placeId
@@ -230,6 +233,9 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                 if(status === google.maps.places.PlacesServiceStatus.OK){
                     
                     console.log(place);
+                    
+                    // Initialisation du lieu à ajouter depuis la modal
+                    scope.addThisPlace = place;
                     
                     ///// Nom du lieu /////
                     if(response){
@@ -563,6 +569,24 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
             }
             
         });
+        
+    };
+    
+    // Etat bouton enregistrement adresse
+    map.addAddressState = function(scope){
+        
+        var path = $location.path();
+        var pathSplit = path.split("/");
+        
+        if(pathSplit["2"] === "search"){
+
+            scope.btnAddAddressMap = true;
+
+        }else{
+
+            scope.btnAddAddressMap = false;
+
+        }
         
     };
     

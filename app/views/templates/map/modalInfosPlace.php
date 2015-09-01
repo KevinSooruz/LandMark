@@ -50,5 +50,16 @@
                 </ul>
             </div>
         </div>
+        <div class="modalFooter textRight">
+            <div ng-hide="selectCatAddAddressMap === true">
+                <button ng-show="btnAddAddressMap === true" class="btn btnPrimary" ng-click="selectCatAddAddressMap = true">Ajouter cette adresse</button>
+                <button class="btn btnThree" ng-click="showModal = false">Fermer</button>
+            </div>
+            <div ng-show="selectCatAddAddressMap === true">
+                <categories template-url="app/views/templates/map/categoriesTemplateModal.php"></categories>
+                <button class="btn btnPrimary btnMidWidth" ng-click="addAddressMapModal(addThisPlace, mapSelectModal.categorie)">Valider</button>
+                <button class="btn btnDelete btnMidWidth" ng-click="selectCatAddAddressMap = false">Annuler</button>
+            </div>
+        </div>
     </div>
 </div>

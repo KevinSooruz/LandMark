@@ -35,6 +35,25 @@ app.controller("mapController", function($scope, Map, $location){
     };
     
     // Initialisation message erreur
-    document.getElementById("errorMap").innerHTML = "";
+    $scope.mapError = false;
+    $scope.textErrorMap = "";
+    
+    $scope.addAddressMapModal = function(place, categorie){
+        
+        var data = {
+            
+            name: "",
+            location: "",
+            categorie: "",
+            phone: "",
+            lat: "",
+            lng: "",
+            placeId: ""
+            
+        };
+        
+        console.log(place, categorie);
+        
+    };
     
 });

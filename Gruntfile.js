@@ -139,6 +139,7 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/map/listsTemplate.php": "app/views/templates/map/listsTemplate.php",
                 "dist/app/views/templates/map/typeInCity.php": "app/views/templates/map/typeInCity.php",
                 "dist/app/views/templates/map/modalInfosPlace.php": "app/views/templates/map/modalInfosPlace.php",
+                "dist/app/views/templates/map/categoriesTemplateModal.php": "app/views/templates/map/categoriesTemplateModal.php",
                 
                 "dist/back/controls/sessionCtrl.php": "back/controls/sessionCtrl.php",
                 "dist/back/controls/logoutCtrl.php": "back/controls/logoutCtrl.php",
