@@ -18,7 +18,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         // Centre France pour initialisation de la carte principale
         position = {
                 
-            lat: 46.227638, 
+            lat: 46.227638,
             lng: 2.213749
                 
         };
@@ -78,7 +78,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         }, function(headers, data, status, config){
             
             console.log(headers, data, status, config);
-            map.error(scope);
+            map.error(scope, "Désolé, nous ne pouvons pas afficher la position géographique de votre adresse.");
             
         });
         
@@ -206,34 +206,9 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         // Si commentaires
         if(place.reviews){
             
-            scope.userComments = map.markerComments(scope, place.reviews);
+            scope.userComments = map.markerComments(place.reviews);
             
         }
-        
-    };
-    
-    // Création du commentaire pour chacun des commentaires
-    map.markerComments = function(scope, reviews){
-        
-        var comments = [];
-        var max = reviews.length;
-        var i = 0;
-        
-        for(; i < max; i++){
-            
-            comments.push({
-                
-                author: reviews[i].author_name,
-                text: reviews[i].text,
-                rating: reviews[i].rating,
-                starsComment: Stars.run(reviews[i].rating),
-                date: map.commentsdate(reviews[i].time)
-                
-            });
-            
-        }
-        
-        return comments;
         
     };
     
@@ -255,32 +230,6 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                 if(status === google.maps.places.PlacesServiceStatus.OK){
                     
                     console.log(place);
-                    
-                    // Eléments de la modal + d'infos de la map
-                    var addressOpening = document.getElementById("addressOpening");
-                    
-                    var ratingBlock = document.getElementById("ratingBlock");
-                    ratingBlock.classList.remove("none");
-                    
-                    var addressRating = document.getElementById("addressRating");
-                    addressRating.classList.remove("none");
-                    
-                    var addressStars = document.getElementById("addressStars");
-                    addressStars.classList.remove("none");
-                    
-                    var priceRating = document.getElementById("priceRating");
-                    priceRating.classList.remove("none");
-                    
-                    var priceStars = document.getElementById("priceStars");
-                    priceStars.classList.remove("none");
-                    
-                    var addressNumberRating = document.getElementById("addressNumberRating");
-                    addressNumberRating.classList.remove("none");
-                    
-                    var usersBlock = document.getElementById("usersBlock");
-                    usersBlock.classList.remove("none");
-                    
-                    var userElem = document.getElementById("userElem");
                     
                     ///// Nom du lieu /////
                     if(response){
@@ -306,6 +255,11 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                             
                             textElem += "<span class='block addressPhone'>" + response.phone + "</span>";
                             scope.addressPhone = response.phone;
+                            scope.addressPhoneState = "ok";
+                            
+                        }else{
+                            
+                            scope.addressPhoneState = "no";
                             
                         }
                         
@@ -313,6 +267,11 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                         
                         textElem += "<span class='block addressPhone'>" + place.formatted_phone_number + "</span>";
                         scope.addressPhone = place.formatted_phone_number;
+                        scope.addressPhoneState = "ok";
+                        
+                    }else if(!place.formatted_phone_number){
+                        
+                        scope.addressPhoneState = "no";
                         
                     }
                     
@@ -320,6 +279,11 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                         
                         textElem += "<span class='block addressInternationalPhone'>" + place.international_phone_number + "</span>";
                         scope.addressInternationalPhone = place.international_phone_number;
+                        scope.addressInternationalPhoneState = "ok";
+                        
+                    }else{
+                        
+                        scope.addressInternationalPhoneState = "no";
                         
                     }
                     
@@ -328,65 +292,69 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                         
                         scope.addressOpening = place.opening_hours.weekday_text;
                         scope.dayActif = map.openingHours();
+                        scope.addressOpeningState = "ok";
+                        
+                    }else{
+                        
+                        scope.addressOpeningState = "no";
                         
                     }
                     
                     // Note du lieu
                     if(place.rating){
                         
-                        textElem += "<span class='inline addressRating'>" + place.rating + "/5</span>";
-                        addressRating.innerHTML = "Global : <span class='importantElem'>" + place.rating + "/5</span>";
+                        textElem += "<span class='inline addressRating'>" + place.rating + "/5<ul><li ng-repeat='star in addressStars'><i class='{{star.type}}'></i></li></ul></span>";
+                        scope.addressRating = place.rating;
                         
                         // Ajout des étoiles en fonction de la note
-                        map.starsRating(place.rating, addressStars);
+                        textElem += Stars.runInfoWindow(place.rating);
+                        scope.addressStars = Stars.run(place.rating);
+                        
+                        scope.addressRatingState = "ok";
                         
                     }else{
                         
-                        addressRating.classList.add("none");
-                        addressStars.classList.add("none");
+                        scope.addressRatingState = "no";
                         
                     }
                     
                     // Niveau des prix
                     if(place.price_level){
                         
-                        priceRating.innerHTML = "Prix : <span class='importantElem'>" + place.price_level + "/5</span>";
+                        scope.priceRating = place.price_level;
                         
                         // Ajout des étoiles en fonction de la note
-                        map.starsRating(place.price_level, priceStars);
+                        scope.priceStars = Stars.run(place.price_level);
+                        
+                        scope.priceRatingState = "ok";
                         
                     }else{
                         
-                        priceRating.classList.add("none");
-                        priceStars.classList.add("none");
+                        scope.priceRatingState = "no";
+                        
                     }
                     
                     // Nombre total d'avis
                     if(place.user_ratings_total){
                         
-                        addressNumberRating.innerHTML = "Nombre de notes : <span class='importantElem'>" + place.user_ratings_total + "</span>";
+                        scope.addressNumberRating = place.user_ratings_total;
+                        scope.addressNumberRatingState = "ok";
                         
                     }else{
                         
-                        addressNumberRating.classList.add("none");
-                        
-                    }
-                    
-                    // Si aucune note et aucun avis
-                    if(!place.rating && ! place.price_level && ! place.user_rating_total){
-                        
-                        ratingBlock.classList.add("none");
+                        scope.addressNumberRatingState = "no";
                         
                     }
                     
                     // Commentaires clients
                     if(place.reviews){
                         
-                        map.comments(place.reviews, userElem);
+                        scope.userComments = map.markerComments(place.reviews);
+                        scope.userCommentsState = "ok";
                         
                     }else{
                         
-                        usersBlock.classList.add("none");
+                        scope.userCommentsState = "no";
                         
                     }
                     
@@ -412,61 +380,28 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         
     };
     
-    // Ajout des étoiles en fonction de la note
-    map.starsRating = function(rating, elem){
+    // Création du commentaire pour chacun des commentaires
+    map.markerComments = function(reviews){
         
-        // Initialisation de la note "étoiles" de la modal
-        elem.innerHTML = "";
-        
-        // Attribut id de l'élément
-        var elemId = elem.getAttribute("id");
-        
-        var max = 5;
+        var comments = [];
+        var max = reviews.length;
         var i = 0;
-
-        // Si attribut id de l'élément est différent de addressStars on n'affiche rien dans infowindow
-        if(elemId === "addressStars"){
-            
-            textElem += "<span class='inline stars'>";
-            
-        }
         
         for(; i < max; i++){
-
-            // Tant que i n'est pas supérieur à la note => affiche étoile pleine
-            if(i < rating){
-                
-                // Si attribut id de l'élément est différent de addressStars on n'affiche rien dans infowindow
-                if(elemId === "addressStars"){
-                    
-                    textElem += "<i class='glyphicon glyphicon-star'></i>";
-                    
-                }
-                
-                elem.innerHTML += "<i class='glyphicon glyphicon-star importantElem'></i>";
-
-            }else{
-
-                // Sinon étoile vide
-                // Si attribut id de l'élément est différent de addressStars on n'affiche rien dans infowindow
-                if(elemId === "addressStars"){
-                    
-                    textElem += "<i class='glyphicon glyphicon-star-empty'></i>";
-                    
-                }
-                
-                elem.innerHTML += "<i class='glyphicon glyphicon-star-empty importantElem'></i>";
-
-            }
-
-        }
-
-        // Si attribut id de l'élément est différent de addressStars on n'affiche rien dans infowindow
-        if(elemId === "addressStars"){
             
-            textElem += "</span>";
+            comments.push({
+                
+                author: reviews[i].author_name,
+                text: reviews[i].text,
+                rating: reviews[i].rating,
+                starsComment: Stars.run(reviews[i].rating),
+                date: map.commentsdate(reviews[i].time)
+                
+            });
             
         }
+        
+        return comments;
         
     };
     
@@ -480,53 +415,6 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         
     };
     
-    // Ajout des commentaires clients
-    map.comments = function(reviews, userElem){
-        
-        // Initialisation comments
-        userElem.innerHTML = "";
-        
-        var max = reviews.length;
-        var i = 0;
-        
-        for(; i < max; i++){
-            
-            // Création de l'élément
-            var liste = document.createElement("li");
-            
-            // Création de l'élément note utilisateur "1"
-            var userRating = document.createElement("span");
-            userRating.setAttribute("class", "userRating block");
-            userRating.innerHTML = "Note : <span class='importantElem'>" + reviews[i].rating + "/5</span>";
-            
-            // Création de lélément étoiles de l'utilisateur "2"
-            var starsUser = document.createElement("span");
-            var idName = "starsUser" + i;
-            starsUser.setAttribute("id", idName);
-            starsUser.setAttribute("class", "inline starsUserBlock");
-            
-            // Ajout des étoiles par rapport à la note
-            map.starsRating(reviews[i].rating, starsUser);
-            
-            // insertion des étoiles "2" dans le block "1"
-            userRating.appendChild(starsUser);
-            
-            // Création de la date
-            var date = map.commentsdate(reviews[i].time);
-            
-            // Ajout des éléments à l'élément liste
-            liste.innerHTML += "<span class='block userName'>" + reviews[i].author_name + "</span>";
-            liste.innerHTML += "<span class='block userComment'>" + reviews[i].text + "</span>";
-            liste.appendChild(userRating);
-            liste.innerHTML += "<span class='block userDate'>Le : " + date + "</span>";
-            
-            // Insertion de l'élément complet dans la liste
-            userElem.appendChild(liste);
-            
-        }
-        
-    };
-    
     // Date commentaire du lieu
     map.commentsdate = function(time){
         
@@ -537,7 +425,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         var month = date.getMonth();
         var year = date.getFullYear();
         
-        return(day + " " + months[month] + " " +year);
+        return(day + " " + months[month] + " " + year);
         
     };
     
@@ -595,7 +483,7 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                 
             }else{
                 
-                map.textError("Une erreur s'est produite. Merci de recharger la page.");
+                map.error(scope, "Une erreur s'est produite. Merci de recharger la page.");
                 
             }
             
@@ -666,11 +554,11 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
                 
             }else if(status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
                 
-                map.textError("Aucun résultat trouvé pour cette recherche.");
+                map.error(scope, "Aucun résultat trouvé pour cette recherche.");
                 
             }else{
                 
-                map.textError("Une erreur s'est produite. Merci de recharger la page.");
+                map.error(scope, "Une erreur s'est produite. Merci de recharger la page.");
                 
             }
             
@@ -678,17 +566,10 @@ services.factory("Map", function(Address, $location, $routeParams, $q, Stars){
         
     };
     
-    map.error = function(scope){
+    map.error = function(scope, text){
         
-        scope.textErrorMap = "Désolé, nous ne pouvons pas afficher la position géographique de votre adresse.";
-        scope.errorMap = true;
-        
-    };
-    
-    map.textError = function(texte){
-        
-        var elem = document.getElementById("errorMap");
-        elem.innerHTML = texte;
+        scope.mapError = true;
+        scope.textErrorMap = text;
         
     };
     

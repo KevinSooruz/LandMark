@@ -32,7 +32,7 @@
                     <button><i class="glyphicon glyphicon-search"></i></button>
                 </form>
             </div>
-            <div id="errorMap"></div>
+            <div id="errorMap" ng-show="mapError === true">{{textErrorMap}}</div>
             <div id="moreResult" class="down">
                 <button class="btn btnThree btnMidWidth">Plus de r&eacute;sultats</button>
             </div>

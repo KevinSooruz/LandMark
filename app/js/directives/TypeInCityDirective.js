@@ -224,7 +224,7 @@ app.directive("typeincity", function(Map, $location){
                     type: "home_goods_store"
                 },
                 {
-                    name: "Hopital",
+                    name: "Hôpital",
                     type: "hospital"
                 },
                 {
@@ -380,7 +380,7 @@ app.directive("typeincity", function(Map, $location){
                     type: "zoo"
                 },
                 {
-                    name: "Hotel",
+                    name: "Hôtel",
                     type: "lodging"
                 },
                 {
