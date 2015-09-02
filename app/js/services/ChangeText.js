@@ -3,8 +3,9 @@ services.factory("ChangeText", function($timeout){
     var changeText = {};
     
     // Fonction de changement de texte
-    changeText.run = function($scope, arr, i){
+    changeText.run = function($scope, i){
         
+        var arr = ["vos collègues", "vos amis", "vos proches", "tous ceux qui vous entourent"];
         var max = arr.length; // Nombre max de textes dans array
         
         // Timetout de la fonction
@@ -19,7 +20,7 @@ services.factory("ChangeText", function($timeout){
             // si le nombre est inférieur au maximum on relance la fonction
             if(i < max){
                 
-                changeText.run($scope, arr, i);
+                changeText.run($scope, i);
                 
             }
 

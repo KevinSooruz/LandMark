@@ -107,13 +107,6 @@ services.factory("Modal", function(Api, Log, $timeout){
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/addresses");
                         
-                        // suppression modal : Timeout pour éviter de revenir sur la page d'accueil avant d'être renvoyé vers le compte utilisateur
-                        $timeout(function(){
-                            
-                            scope.modalConnection = false;
-                            
-                        }, 200);
-                        
                         break;
                         
                     case "wrongSurnameInscription":
@@ -162,13 +155,6 @@ services.factory("Modal", function(Api, Log, $timeout){
                         // do something
                         // La session est créé (backend), on peut renvoyer vers le profil utilisateur
                         Log.in("/addresses");
-                        
-                        // suppression modal : Timeout pour éviter de revenir sur la page d'accueil avant d'être renvoyé vers le compte utilisateur
-                        $timeout(function(){
-                            
-                            scope.modalInscription = false;
-                            
-                        }, 200);
 
                         break;
 

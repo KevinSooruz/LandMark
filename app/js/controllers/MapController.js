@@ -51,9 +51,14 @@ app.controller("mapController", function($scope, Map, $location, Address){
     // Ajout adresse depuis la modal
     $scope.addAddressMapModal = function(place, categorie){
         
+        // Remplacement de caractères spéciaux du nom pour éviter les problèmes d'enregistrement dans base de données
+        var name;
+        name = $scope.modalMapTitle.replace("&", "AND");
+        name = name.replace("'", "");
+        
         var data = {
             
-            name: place.name,
+            name: name,
             location: place.formatted_address,
             phone: place.formatted_phone_number,
             categorie: "Autre",
