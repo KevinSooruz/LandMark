@@ -27,6 +27,7 @@ module.exports = function(grunt) {
                     "app/js/controllers/InitController.js",
                     "app/js/controllers/RouteController.js",
                     "app/js/filters/Reverse.js",
+                    "app/js/filters/Slice.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AddressesController.js",
@@ -59,12 +60,15 @@ module.exports = function(grunt) {
                     "app/js/directives/CorrectDir.js",
                     "app/js/directives/MapDirective.js",
                     "app/js/directives/TypeInCityDirective.js",
-                    "app/js/directives/ModalDirective.js"
+                    "app/js/directives/ModalDirective.js",
+                    "app/js/directives/PaginationDirective.js",
+                    "app/js/services/Pagination.js",
                 ],
                 "dist/app/js/app.js" : [
                     "app/js/controllers/InitController.js",
                     "app/js/controllers/RouteController.js",
                     "app/js/filters/Reverse.js",
+                    "app/js/filters/Slice.js",
                     "app/js/controllers/AllController.js",
                     "app/js/controllers/HomeController.js",
                     "app/js/controllers/AddressesController.js",
@@ -97,7 +101,8 @@ module.exports = function(grunt) {
                     "app/js/directives/CorrectDir.js",
                     "app/js/directives/MapDirective.js",
                     "app/js/directives/TypeInCityDirective.js",
-                    "app/js/directives/ModalDirective.js"
+                    "app/js/directives/ModalDirective.js",
+                    "app/js/directives/PaginationDirective.js"
                 ]
             }
         }
@@ -119,6 +124,7 @@ module.exports = function(grunt) {
                 "dist/app/views/templates/inscriptionModal.php": "app/views/templates/inscriptionModal.php",
                 "dist/app/views/templates/connectionModal.php": "app/views/templates/connectionModal.php",
                 "dist/app/views/templates/menu.php": "app/views/templates/menu.php",
+                "dist/app/views/templates/pagination.php": "app/views/templates/pagination.php",
                 
                 "dist/app/views/templates/addresses/addressesTemplate.php": "app/views/templates/addresses/addressesTemplate.php",
                 "dist/app/views/templates/addresses/listsTemplate.php": "app/views/templates/addresses/listsTemplate.php",

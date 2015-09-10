@@ -121,6 +121,13 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
             
         }
         
+        // Modification donnée téléphone
+        if(!data.phone || data.phone === undefined){
+            
+            data.phone = "";
+            
+        }
+        
         Api.post("back/controls/addressesCtrl.php", data).then(function(response){
             
             var path = $location.path();
@@ -151,7 +158,7 @@ services.factory("Address", function(Api, $timeout, $q, $routeParams, Correct, $
                     
                     if(pathSplit["2"] === "search"){
                         
-                        scope.textErrorAddAddress = "Cett adresse semble déjà exister.";
+                        scope.textErrorAddAddress = "Cette adresse semble déjà exister.";
                         
                     }else{
                         

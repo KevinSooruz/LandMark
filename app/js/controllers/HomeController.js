@@ -1,4 +1,4 @@
-app.controller("HomeController", function($scope, ChangeText){
+app.controller("HomeController", function($scope, ChangeText, $http){
     
     $scope.modalInscription = false; // Initialisation modal inscription
     

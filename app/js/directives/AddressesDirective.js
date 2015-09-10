@@ -17,7 +17,9 @@ app.directive("addresses", function(Address, $location){
             
             ///// Initialisation des adresses front /////
             Address.get().then(function(response){
-
+                
+                var maxAddresses = response.length;
+                
                 if(response === "errorLoadAddresses"){
 
                     scope.errorBackEnd = true;
@@ -33,6 +35,10 @@ app.directive("addresses", function(Address, $location){
                 }else if(response === "noAddressInCategorie"){
                     
                     $location.path("/addresses/categories/All");
+                    
+                }else if(maxAddresses === 0){
+                    
+                    scope.noResultAddress = true;
                     
                 }else{
 

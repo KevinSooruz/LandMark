@@ -612,11 +612,15 @@ body{
 
             .title{
                 padding: 0 15px!important;
+                height: 20px;
+                overflow: hidden;
             }
 
             .locationAddress{
                 display: inline-block;
                 width: 100%;
+                height: 20px;
+                overflow: hidden;
             }
 
             .elemPlus{
@@ -730,9 +734,24 @@ body{
                 }
             }
         }
+        
+        &.complete{
+            display: inline-block;
+            width: 100%;
+            
+            li{
+                padding: 0 15px;
+                margin-bottom: 15px;
+                border: none;
+                
+                .inBoxComplete{
+                    .bg(@white);
+                    padding: 15px;
+                    border-bottom: 1px solid @grey;
+                }
+            }
+        }
     }
-
-
 
     ul.listSelect{
         li{
