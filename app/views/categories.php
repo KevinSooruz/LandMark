@@ -7,7 +7,7 @@
                 <categories template-url="app/views/templates/categories/categoriesTemplate.php"></categories>
             </div>
             <form name="searchFull" class="searchFull" ng-show="addresses.length >= 1">
-                <input class="form-control" placeholder="Rechercher une adresse..." ng-model="addressSearch">
+                <input class="form-control" placeholder="Rechercher une adresse..." ng-model="addressSearch" ng-keyup="removePagination(); numberResult()">
             </form>
             <addresses template-url="app/views/templates/categories/addressesTemplate.php"></addresses>
         </div>

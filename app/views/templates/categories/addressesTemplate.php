@@ -1,7 +1,7 @@
 <div class="col-md-12 contentBox">
     <span ng-show="errorLoadAddresses === true" class="errorBlock">Une erreur s'est produite. Merci de recharger la page.</span>
     <ul class="listAdresses complete">
-        <li class="col-md-4 col-sm-4" ng-repeat="address in addresses | reverse | filter: addressSearch | slice:start:end">
+        <li class="col-md-4 col-sm-4 addressBlock" ng-repeat="address in addresses | reverse | filter: addressSearch | slice:start:end">
             <div class="inBoxComplete">
                 <div class="row">
                     <span class="title col-md-8 col-sm-8 col-xs-8">{{address.name}}</span>
@@ -23,6 +23,11 @@
         </li>
     </ul>
     <pagination list-view="addresses"></pagination>
+    <div ng-show="noResultSearch === true" class="col-md-12 center noResults">
+        <span class="title">&laquo;{{addressSearch}}&raquo;</span>
+        <p>Nous n&rsquo;avons trouv&eacute; aucun r&eacute;sultat pour cette recherche.</p>
+        <i class="glyphicon glyphicon-cloud"></i>
+    </div>
     <div ng-show="noResultAddress === true" class="col-md-12 center noResults">
         <span class="title">Pas de résultats</span>
         <p>Vous n&rsquo;avez pas encore ajout&eacute; d&rsquo;adresse &agrave; cette cat&eacute;gorie.</p>

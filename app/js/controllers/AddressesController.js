@@ -1,4 +1,4 @@
-app.controller("AddressesController", function($scope, Autocomplete, Address, User, Lists){
+app.controller("AddressesController", function($scope, Autocomplete, Address, User, Lists, $location){
     
     /////////////////////////////////// Utilisateur ///////////////////////////////////
     
@@ -16,6 +16,23 @@ app.controller("AddressesController", function($scope, Autocomplete, Address, Us
         var data = angular.copy($scope.addList);
         
         Lists.post($scope, data);
+        
+    };
+    
+    ///// Affichage d'une liste /////
+    $scope.listView = function(){
+        
+        // Si listChoice existe
+        if($scope.listChoice){
+            
+            // Si un nom a bien était sélectionné
+            if($scope.listChoice.name){
+                
+                $location.path("/addresses/lists/" + $scope.listChoice.name);
+                
+            }
+            
+        }
         
     };
     

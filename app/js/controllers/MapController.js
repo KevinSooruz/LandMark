@@ -6,6 +6,12 @@ app.controller("mapController", function($scope, Map, $location, Address){
     // Se rendre sur le lieu sélectionné dans le moteur de recherche
     $scope.goToPlace = function(placeId){
         
+        if(placeId === undefined || placeId === ""){
+            
+            return;
+            
+        }
+        
         $location.path("/map/search/" + placeId);
         
     };
